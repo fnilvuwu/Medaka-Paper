@@ -1,0 +1,182 @@
+\section{Materials and Method}
+
+%%%% Sumber Data %%%%
+\subsection{Data Sources}
+
+Sumber data yang digunakan dalam membangun model komputasi untuk deteksi dan klasifikasi ikan Oryzias sp. menggunakan YOLOyek data primer dan jumlahnya sangat terbatas
+
+Data sources in this paper are mixture which is retained
+
+\begin{itemize}
+    \item Data primer adalah data yang diperoleh secara langsung berdasarkan hasil deteksi tangkapan video dan citra ada di akurium.
+    \item Data sekunder adalah data citra ikan Oryzias yang tersedia banyak di Internet
+    \item Data buatan yang dibangkitkan dengan mekanisme Generative-AI yang mekanismenya
+\end{itemize}
+
+Semuanya akan dipreprocessing dengan metode yang sama
+
+ %%%% Metode Pengolahan Data %%%%
+\subsection{Research Methodology}~\label{Sec:olahData}
+
+The concept of data mining is used in this study as the fundamental method for detecting and classifying two species of Medaka fish, i.e., \textit{Oryzias javanicus} and \textit{Oryzias celebensis}. Using a \textit{deep learning} model with the YOLOv8 algorithm, one of the most advanced and efficient \textit{object detection} methods, allows for simultaneous detection and classification. To systematically implement the data mining concept, this study proposes a data processing framework in three stages: the data preprocessing or data preparation stage, the data processing or model building stage, and the post-processing or model evaluation stage. The data preprocessing stage is highly crucial and important in building a model with good performance. The preprocessing stage consists of three sub-stages, including \textit{Business Process Understanding}, \textit{Data Understanding}, and \textit{Data Preparation}. Below is an explanation of these three stages as illustrated in~\ref{fig:dataMiningProcess}.
+
+    \begin{figure*}[ht]
+        \centering
+        \includegraphics[width=150mm]{image/5StepDataMiningProcess1.jpg} 
+        \vspace{-6mm}
+        \caption{Stages in Data Mining Process}
+        \label{fig:dataMiningProcess}
+    \end{figure*}
+    
+
+    %%%% Mengatasi data terbatas %%%%
+    \subsection{Data Preprocessing Stage}
+    
+    The data preprocessing stage,  consists of 4 activities that are consecutive processes.
+
+        %%%% Memahami Proses %%%%
+        %\subsubsection{Business Process Understanding: Handling Small Dataset}
+        %\subsubsection{Considered Dataset Problem}
+        \subsubsection{Problem Understanding}
+        The main difficulty in designing and building AI intelligent information systems for the endangered Oryzias sp. is that the small size, transparent
+        Datasets for the endangered Medaka fish are difficult to find or detect due to its small size and endemic nature. In addition, conservationists do not have datasets and even the image data of Medaka fish available on the Internet is very limited. However, if directly captured medaka fish image data is combined with medaka fish image data obtained from Internet sources, it can be feasibly used in building detection and classification models using deep learning model methods. With a certain framework based on digital image processing techniques, a feasible dataset can be generated to build the model. To be more convincing, primary data and secondary data are built with a minimum proportion of 70\%:30\%. Then a data normality test is conducted to ensure that the deviation or difference between primary and secondary data is very small.
+    
+        In the Business Process Understanding stage, the primary objective of this study is to automatically detect and classify two species of Medaka fish, namely \textit{Oryzias javanicus} and \textit{Oryzias celebensis}, using artificial intelligence (AI) technology. This detection and classification aim to support conservation efforts for rare species and facilitate scientific research in this field. The algorithm used, YOLOv8, was chosen due to its efficient and real-time object detection capabilities, which are highly suitable for the identification of fish species in various conditions.
+        
+        The data collection process in this research uses modality data in the form of digital images, which consist of images of fish taken directly or obtained from secondary sources through the data scraping method. Since this data is an unstructured dataset, data processing is done using deep learning methods. Deep learning enables effective processing and analysis of complex image data to detect and classify objects in images with high accuracy.
+        
+        The fish images are collected in RGB (Red, Green, Blue) or BGR (Blue, Green, Red) color formats, which are standard formats in digital image processing. These formats are compatible with most of the deep learning algorithms used in this study. The selection of this format aims to allow the image data to be optimally processed by the detection algorithm.
+        
+        To solve this fish species detection and classification problem, this research uses the YOLOv8 algorithm, which is one of the latest deep learning methods for object detection. This algorithm is able to detect and classify objects in real-time with high accuracy despite variations in image capture angle, object size, and lighting. With this method, it is expected that the model will be able to correctly recognize fish species in various conditions and help in efforts to conserve and monitor Medaka fish populations in the wild.
+  
+%   %%% Sumber Data %%%%
+    \subsubsection{Mixture Data Sources}\label{dataSources}
+
+{\bf Additional:} \\
+1. Data sourced from primary and secondary data \\
+2. The dataset needs to be normalized to ensure that there is no deviation or difference in data so that the mixed dataset is suitable for processing.
+
+    
+    This study uses a \textbf{dataset mixture}, which is a combination of primary and secondary data. The \textbf{primary dataset} was obtained through direct observation, by taking photos of Medaka fish in various locations. This data includes images of two fish species, \textit{Oryzias javanicus} and \textit{Oryzias celebensis}. The \textbf{secondary dataset}, on the other hand, was collected from online sources using \textit{data scraping} techniques to gather additional images of both species. The orientation, \textit{size}, and \textit{image parameters} were standardized so that both the primary and secondary data could be used fairly.
+
+    The use of a mixed dataset of primary and secondary data in this study has provided significant benefits. The primary dataset was obtained through direct observation, while the secondary data was collected through data scraping techniques. This approach created the variation required to properly train the YOLOv8 model, enabling the detection and classification of two fish species, O. celebensis and O. javanicus, under various lighting conditions and viewing angles.
+
+    \subsubsection{Data Labeling}
+    
+    Additional: Explanation of the labeling mechanism using Roboflow. In a single file, there may be more than one object with different classes. Capture of still image objects is taken from various pose angles of the moving object.
+    
+        Object labeling work step:
+        \begin{itemize}
+            \item All 792 image files (without annotations) were placed in one folder
+            \item Each image is annotated by giving a bounding box and label to each object in the image
+            \item Each annotation result per each image is saved as a txt file with the same name between the image file and the label file  
+        \end{itemize}
+        
+        \subsubsection{Splitting Data}
+        The splitting ratio of data used in training and testing the model is 4:1. Depending on the experiment conducted, the training data was
+
+
+        \subsubsection{Data Understanding}
+        The data acquisition process in this study was conducted through various modalities to ensure that the resulting dataset is comprehensive and of high quality. Data was collected from two main sources: primary data, which was obtained through direct image capture of Medaka fish in various places, and secondary data, which was obtained from online sources using data scraping techniques. The images were captured with various viewing angles and lighting conditions, in order to enrich the variety of data needed to train the deep learning-based object detection model.
+        
+        The acquired dataset consists of two main components, namely image data (X) and label data (Y). The image data (X) is a digital image of Medaka fish that will be used as input for the model, while the label data (Y) is the detection and classification information associated with the image, namely the fish species (Oryzias javanicus or Oryzias celebensis) and the coordinates of its bounding box in the image. This label data is very important as it is used as a reference in the model training process to learn the relationship between the image and the correct label.
+        
+        With the combination of image data (X) and label data (Y), the YOLOv8 model can be trained to automatically detect and classify fish species. This varied data collection from different modalities ensures that the model has the ability to recognize Medaka fish in various situations and conditions, which is important to achieve good generalization and high accuracy in detection.
+
+        %%%% Persiapan Data %%%%
+        \subsubsection{Data Preparation}
+        The Data Preparation stage is an important step in ensuring that the dataset is ready to be used for deep learning model training. In this research, several processes are carried out to prepare the data, including image restoration, data uniformity, data augmentation, and division of the dataset into appropriate subsets.
+        
+        \begin{enumerate}[label=\alph*.]
+            \item Image Restoration\\
+            Image restoration is performed to improve the quality of images that may have suffered damage or noise during the data capture process. This process includes blurred image repair, contrast improvement, and removal of visual artifacts that may interfere with the performance of the detection model. The goal is to produce clearer and more consistent images, so that the model can more easily detect and classify objects.
+
+            \item Data Uniformity\\
+            After restoration, the next step is data homogenization to ensure that all images have the same parameters. Some of the aspects that are uniformed include:
+            \begin{enumerate}[label=\roman*.]
+                \item Orientation: Images that have different orientations (e.g. upside down or skewed) are adjusted for uniformity.
+                \item Resize: All images are resized to have the same dimensions, so that they can be processed by the model efficiently.
+                \item Image Parameters: Image parameters such as contrast, saturation, and blur are also adjusted to ensure that there are no significant visual differences between the images, which may affect the performance of the model. In this way, the input images have a consistent state so that the model can focus on the important features of the object.
+            \end{enumerate}
+            
+            \item Data Augmentation\\
+            To increase the amount of data and enrich the variety of images, data augmentation is performed. Augmentation helps the model become more robust to variations in new images that may not be encountered during training. The augmentation techniques used in this research include:
+            \begin{enumerate}[label=\roman*.]
+                \item Flip: The image is flipped vertically and horizontally to produce variations in the position of the object.
+                \item Rotate: The image is rotated in several fixed angles of 90 degrees, 180 degrees, and 270 degrees to increase the variety of viewpoints of the objects in the image. This augmentation technique is very effective for improving the generalization ability of the model without the need to augment the original data.
+            \end{enumerate}
+            
+            \item Dataset split (Train, Validation, Test)\\
+            After the data is processed, the dataset is divided into three subsets: training set, validation set, and test set. This division is done in a certain proportion to ensure that the model is properly trained, validated, and tested. Generally, the data is divided with a 4:1 composition between train data and test data.
+            \begin{enumerate}[label=\roman*.]
+                \item Training sets are used to train the model and help the model learn patterns from the data.
+                \item Validation sets are used to monitor the performance of the model during training and assist in the hyperparameter tuning process.
+                \item Test sets are used after training is complete to test the model's capabilities on data that has never been seen before, in order to assess the model's generalization performance in the real world.
+            \end{enumerate}
+        \end{enumerate}
+
+    %%%% Pemodelan %%%%   
+    \subsection{Data Training or Modeling}
+    In the Modeling stage, three main experiments were conducted to improve the performance of Medaka fish species detection and classification using a deep learning-based approach. Each experiment had different objectives and methods, namely fine-tuning YOLOv8, 5-fold cross-validation YOLOv8, and using the AdaBoost ensemble method. The following is an explanation of each experiment:
+    
+    \subsection{Data Post-processing or Evaluation}~\label{measurements}
+
+    Model evaluation was conducted to assess the performance of the YOLOv8 model in detecting and classifying Medaka fish species. The evaluation process includes the use of a loss function to assess the quality of training as well as a confusion matrix-based evaluation matrix to measure the model's performance on test data. The following is an explanation of the evaluation methods used:
+
+    \subsubsection{Evaluation based on Loss Function (Data Validation)}
+    
+        During the training and validation process, the model is evaluated using several loss functions that measure the prediction error on various aspects:
+        \begin{enumerate}[label=\alph*.]
+            \item Bounding Box Loss: Measures how well the model predicts the coordinates of the bounding box surrounding the fish object in the image. The lower the box loss, the more accurate the prediction of the object's location in the image.
+            \item Classification Loss (Cls Loss): Measuring the misclassification of fish species (\textit{Oryzias javanicus} or \textit{Oryzias celebensis}) predicted by the model. A low Cls loss indicates that the model is able to classify the object correctly.
+            \item Distribution Focal Loss (DFL Loss): Measures how well the model predicts the confidence score distribution of the bounding box prediction.
+        \end{enumerate}
+        The results of each loss function are evaluated at train loss (during training) and validation loss (during validation) to identify whether the model is overfitting or underfitting. A decrease in the training and validation loss values indicates that the model is learning well from the data.
+        
+        \subsubsection{Evaluation Based on Confusion Matrix (Data Test)}
+        After training, the performance of the model is evaluated on the test data (test set) using the confusion matrix, which is a table that shows the classification results of the model against the test data. From the confusion matrix, several important evaluation metrics are calculated:
+        \begin{enumerate}[label=\alph*.]
+            \item Accuracy: Measures the proportion of correct predictions out of all predictions. This metric shows how often the model makes correct predictions overall.
+            \item Precision (Sensitivity): Measures how many true positives out of all positive predictions are accurate. High precision indicates that the model rarely makes mistakes in classifying objects as a particular species.
+            \item Recall: Measures how well the model detects all true positive objects. A high recall indicates that the model is able to capture most of the objects that actually exist.
+            \item F1-Score: Is a combination of precision and recall, providing a more balanced picture of the model's performance in cases where it is important to balance between precision and recall.
+        \end{enumerate}
+        Confusion matrix is also used to calculate True Positives (TP), True Negatives (TN), False Positives (FP), and False Negatives (FN), which form the basis for calculating other evaluation metrics. Using the confusion matrix, model performance can be evaluated in more detail, providing an understanding of how the model performs on actual test data.
+
+        \begin{table*}[ht]
+            \centering
+            \caption{Confusion Matrix}
+            \vspace{3mm}
+            \label{table:confusion_matrix} 
+            \begin{tabular}{ccc}
+                \toprule & 
+                \begin{tabular}[c]{@{}c@{}}Predicted (+)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Predicted (--)\end{tabular} \\ \hline
+                \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Actual (+)\end{tabular}}  & TP & FN \\ \hline
+                \multicolumn{1}{c}{\begin{tabular}[c]{@{}c@{}}Actual (-)\end{tabular}} & FP & TN \\
+                \bottomrule
+            \end{tabular}
+        \end{table*}
+    
+        \begin{equation}
+            Accuracy = \frac{TP + TN}{TP + TN + FP + FN}
+        \end{equation}
+
+        \begin{equation}
+            \text{Accuracy}=\frac 1N 
+            \sum_i \{ \text{I}( \hat{y}=+|y=+) \text{ or } \text{I}( \hat{y}=-|y=-) \}
+        \end{equation}
+        
+        \begin{equation}
+            Precsission = \frac{TP}{TP + FP}
+        \end{equation} 
+        
+        \begin{equation}
+            Recall = \frac{TP}{TP + FN}
+        \end{equation} 
+        
+        \begin{equation}
+            \begin{split}
+                F1-score & = \frac{TP + TN}{TP + \frac{1}{2}(FP + FN)}\\ & = \frac{2 \times precission \times recall}{precission + recall}
+            \end{split}
+        \end{equation} 
+ 

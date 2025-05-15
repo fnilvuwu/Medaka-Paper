@@ -1,0 +1,243 @@
+\section{Results}
+    
+    \subsection{Mixture Data Preparation}
+    This subsection presents the results of the mixed data preparation process with the stages described in the subsection~\ref{Sec:olahData}. 
+
+Data preparation sequence:
+\begin{enumerate}
+    \item download digital image file 
+    \item Restoration of all digital objects in the file by removing the noise in the file. For video files or moving images, restoration is performed on each frame of the captured image per-second.
+    \item The file restoration process is performed by removing noise applying a Gaussian kernel function.
+    \item All image files are then normalized to 640x640 pixels.
+    \item Normalized files containing multiple objects are annotated according to their respective species names.
+\end{enumerate}
+    
+    \subsubsection{Data Acquisition and Labeling}
+
+    The data preparation stage was initially performed by collecting primary data from captured still images and moving videos into a main folder\footnote{Digital still image and moving video of an object hereafter are called digital object}. Next, all digital objects in a file were provided with bounding boxes and annotated with labels corresponding to their species. (The annotation results of the digital objects were stored as metadata along with other information such as location, time, authorship, etc., in a file). A summary of the dataset obtained using the methods described in subsection \ref{dataSources} can be seen in Table~\ref{table:data_sources} 
+
+    \begin{table*}[ht]
+        \centering
+        \caption{Recapitulation of Primary and Secondary Data}
+        \label{table:data_sources}
+        \begin{tabular}{@{}clllc@{}}
+            \toprule
+            No. & \multicolumn{1}{c}{Fish Class} & \multicolumn{1}{c}{Data Primer} & \multicolumn{1}{c}{Data Sekunder} & Jumlah \\ \midrule
+            1. & \textit{O. Javanicus} & \multicolumn{1}{c}{257} & \multicolumn{1}{c}{178} & \multicolumn{1}{c}{435} \\
+            2. & \textit{O. Celebensis} & \multicolumn{1}{c}{287} & \multicolumn{1}{c}{70} & \multicolumn{1}{c}{357} \\ \midrule
+            \multicolumn{1}{l}{} & \multicolumn{1}{c}{\textbf{Total}} & \multicolumn{1}{c}{\textbf{544}} & \multicolumn{1}{c}{\textbf{248}} & \multicolumn{1}{c}{\textbf{792}} \\ 
+            \bottomrule
+        \end{tabular}
+    \end{table*}
+    
+    The mixture data consisted of 792 total images, i.e., 435 (55\%) images of O. Javanicus and 357 (45\%) O. celebensis fish images which after preprocessing were divided into subsets for each experiment. Primary data yielded 544 (69\%) fish and secondary data 248 (31\%) fish.
+
+    \subsubsection{Image Restoration}
+    Remove noise by applying brightness, contrast and gaussian kernel function settings. Size 
+
+    
+    \subsubsection{Normality Test of Data}
+    A normality test is performed to show that the primary and secondary data in the dataset are equivalent.
+    
+    \begin{figure*}[ht]
+    \centering
+    \includegraphics[width=160mm, height=160mm,scale=0.5]{image/dataset_hybrid.jpg}
+    \caption{Resulted mixture images data with their annotation respectively}
+    \label{fig:dataset_hybrid}
+    \end{figure*}
+    
+    \subsubsection{Data Splitting}
+    Experiment 1: Data Train 634 (80\%), Data Test 158 (20\%) - Model Experiment 1
+    
+    Experiment 2: Train data is divided into 5 groups with an arrangement of 127 (16\%) each. Each group is named dataset A, B, C, D, and E. Then the model is cross validated with a combination of train data and validation data ratio of 4:1 or 80\% training data and 20\% validation data from 634 train data in experiment 1. Overall, train data 508 (64\%), Validation Data 127 (16\%), and Test Data 158 (20\%). The simulated cross validation experiment design can be organized as follows. \\
+    Model 1: ABCD as Train, E as Validation (80,20) \\
+    Model 2: ABCE as Train, D as Validation \\
+    Model 3: ABDE as Train, C as Validation \\
+    Model 4: ACDE as Train, B as Validation\\\
+    Model 5: BCDE as Train, A as Validation \\
+    Selection of the best model is obtained by selecting the model with Accuracy and Best Fitting.
+
+    Experiment 3: AdaBoost ensemble with weak learner model taken from experiment 2.
+
+ 
+    \subsection{The Model Results}
+        \subsubsection{Experiment 1: Single Model (YOLOv8 Fine-Tuning)}
+        In the first experiment, the YOLOv8 model was trained with data divided in the ratio of 70:20:10 for training, validation, and testing. The dataset consists of:
+        Train data: 556 images (70\%)
+        Validation Data: 160 images (20\%)
+        Test Data: 77 images (10\%)
+        
+        The model was trained for 100 epochs with a batch size of 16. Figure 1 shows a consistent downward trend in train/box\_loss, train/cls\_loss, and train/dfl\_loss, indicating the model was able to learn effectively. The loss on the validation data also decreased despite slight fluctuations at the beginning of training, which stabilized near the end of training.
+        
+        Figure 2 displays the Precision and Recall metrics, both of which show significant improvement. The model's Precision stabilized around 0.8, while the Recall reached 0.9, demonstrating the model's ability to correctly classify both fish species.
+        
+        The model was evaluated using Confusion Matrix (Figure 3), where the model successfully detected O. celebensis with a precision of 0.96 and recall of 0.95, and O. javanicus with a precision of 0.87 and recall of 0.81. Although there were some errors in the classification of O. javanicus, the overall results show that the model was quite effective in this fish species detection and classification task.
+
+        \begin{figure*}[ht]
+        \centering
+        \includegraphics[scale=0.35]{image/Experiment 1/exp1_box_loss_dashboard.png}
+        \caption{Caption}
+        \label{fig:exp1_box_loss_dashboard}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+        \includegraphics[width=160mm]{image/Experiment 1/exp1_class_loss_dashboard.png}
+        \caption{Caption}
+        \label{fig:exp1_class_loss_dashboard}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+        \includegraphics[width=160mm]{image/Experiment 1/exp1_confusion_matrix.png}
+        \caption{Caption}
+        \label{fig:exp1_confusion_matrix}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+            \begin{tabular}{cc}
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 1/exp1_p_curve.png}
+                    \\ a)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 1/exp1_r_curve.png}
+                    \\ b)\end{tabular} \\
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 1/exp1_pr_curve.png}
+                    \\ c)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 1/exp1_f1_curve.png}
+                    \\ d)\end{tabular}
+            \end{tabular}
+        \caption{Caption}
+        \label{fig:exp1_curve}
+        \end{figure*}
+        
+        \subsubsection{Experiment 2: 5-Fold Cross Validation}
+        In the second experiment, the 5-fold cross-validation method is applied to evaluate the stability and generalization ability of the YOLOv8 model. The dataset is divided into three main subsets:
+        Train data: 508 images (64\%)
+        Validation Data: 127 images (16\%)
+        Test Data: 158 images (20\%)
+        
+        The training process was conducted with a variety of subsets used as validation sets within each fold. Five models were trained using different combinations of data in each fold. The data sharing scheme for each model is as follows:
+        Model 1: Trained on subsets A, B, C, D and validated on subset E
+        Model 2: Trained on subsets A, B, C, E and validated on subset D
+        Model 3: Trained on subsets A, B, D, E and validated on subset C
+        Model 4: Trained on subsets A, C, D, E and validated on subset B
+        Model 5: Trained on subsets B, C, D, E and validated on subset A
+        
+        Each cross-validation iteration allows each subset to act as the validation set once, while the other subset is used as the training set. After the 5-fold cross-validation process is complete, the model performance metrics are averaged to obtain a more robust and generalizable performance estimate.
+        
+        The cross-validation results show that the average mAP50 value of all folds is 0.78, with an average precision of 0.77 and an average recall of 0.82. The application of the cross-validation method is essential to ensure that the model not only performs well on the training data, but is also able to maintain its performance on unseen data. This proves the model's ability to recognize fish species with a high degree of accuracy outside the training data, ensuring better generalization ability and reducing the risk of overfitting.
+
+        \begin{figure*}[ht]
+        \centering
+            \begin{tabular}{cc}
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model1_box_loss_dashboard.png}
+                    \\ a)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model2_box_loss_dashboard.png}
+                    \\ b)\end{tabular} \\
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model3_box_loss_dashboard.png}
+                    \\ c)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model4_box_loss_dashboard.png}
+                    \\ d)\end{tabular} \\
+                \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model5_box_loss_dashboard.png}
+                    \\ e)\end{tabular}}
+            \end{tabular}
+        \caption{Caption}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+            \begin{tabular}{cc}
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model1_class_loss_dashboard.png}
+                    \\ a)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model2_class_loss_dashboard.png}
+                    \\ b)\end{tabular} \\
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model3_class_loss_dashboard.png}
+                    \\ c)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model4_class_loss_dashboard.png}
+                    \\ d)\end{tabular} \\
+                \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model5_class_loss_dashboard.png}
+                    \\ e)\end{tabular}}
+            \end{tabular}
+        \caption{Caption}
+        \end{figure*}
+
+        Based on the results of 5-fold cross-validation and visual analysis on the performance metrics of each model, Model 4 showed the best results with more consistent and higher precision, recall, and mAP values than the other models.
+
+        \begin{figure*}[ht]
+        \centering
+            \begin{tabular}{cc}
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model1_confusion_matrix.png}
+                    \\ a)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model2_confusion_matrix.png}
+                    \\ b)\end{tabular} \\
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model3_confusion_matrix.png}
+                    \\ c)\end{tabular} & 
+                \begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model4_confusion_matrix.png}
+                    \\ d)\end{tabular} \\
+                \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}
+                    \includegraphics[width=75mm]{image/Experiment 2/exp2_model5_confusion_matrix.png}
+                    \\ e)\end{tabular}}
+            \end{tabular}
+        \caption{Caption}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+        \includegraphics[scale=0.5]{image/Experiment 2/exp2_error_box_loss.png}
+        \caption{Caption}
+        \label{fig:exp2_error_box_loss}
+        \end{figure*}
+
+        \begin{figure*}[ht]
+        \centering
+        \includegraphics[scale=0.5]{image/Experiment 2/exp2_error_class_loss.png}
+        \caption{Caption}
+        \label{fig:exp2_error_class_loss}
+        \end{figure*}
+
+        
+        \subsubsection{Experiment 3: Ensemble Method (AdaBoost)}
+        In the third experiment, the ensemble approach was applied by combining five models from the cross-validation results using the AdaBoost algorithm. The aim was to improve the prediction accuracy by correcting the weaknesses of each individual model. Each model was given a different weight based on their performance, with the model that had more prediction errors gaining more weight in subsequent iterations.
+        
+        After using the AdaBoost ensemble, mAP50 increased to 0.81, and mAP50-95 increased to 0.63. In addition, precision increased to 0.82, while recall increased to 0.86. Combining these models proved to be effective in correcting errors that may occur in individual models, especially in the case of images that are more difficult to identify due to differences in lighting or object position.
+        
+        In the third experiment, the ensemble approach was applied by combining five models from the cross-validation results using the AdaBoost algorithm. The aim was to improve the prediction accuracy by correcting the weaknesses of each individual model. Each model was given a different weight based on their performance, with the model that had more prediction errors gaining more weight in subsequent iterations.
+        
+        After using the AdaBoost ensemble, mAP50 increased to 0.81, and mAP50-95 increased to 0.63. In addition, precision increased to 0.82, while recall increased to 0.86. Combining these models proved to be effective in correcting errors that may occur in individual models, especially in the case of images that are more difficult to identify due to differences in lighting or object position.
+
+    \subsection{Performance Evaluation}
+    Performance evaluation of the ensemble models showed that combining the five models with the AdaBoost technique resulted in a significant improvement in the detection and classification of both fish species. With an mAP50 of 0.80 and mAP50-95 of 0.65 on the test dataset, this indicates that the ensemble method is highly effective in dealing with real-world image complexity.
+    
+    The Confusion Matrix of the ensemble model shows an increase in better detection for both species. O. celebensis had a precision of 0.96 and recall of 0.95, while O. javanicus had a precision of 0.87 and recall of 0.81. These results show a steady improvement from each experiment, with the ensemble model giving the best performance.
+
+%%%% Pembahasan %%%%
+\section{Discussion}
+    \subsection{AdaBoost Ensemble Method}
+    One of the main contributions of this research is the application of the AdaBoost ensemble method to the YOLOv8 model. The AdaBoost algorithm helps mitigate the limitations of individual models by focusing on misclassified samples. In each iteration, greater weight is assigned to samples that were incorrectly predicted in the previous iteration, allowing the ensemble to improve detection accuracy for more challenging images, such as those involving small or partially obscured Medaka fish.
+
+    By integrating AdaBoost with YOLOv8, the model becomes more robust, especially in scenarios where the data is imbalanced or complex. This ensemble approach also contributes to reducing bias, enhancing the model's ability to generalize beyond the training data. The improved mAP values, particularly in difficult image scenarios, demonstrate the ensemble's effectiveness in boosting prediction accuracy.
+    \subsection{5-Fold Cross-Validation for Model Generalization}
+    Another major contribution of this paper is the implementation of 5-fold cross-validation, which played a critical role in preventing overfitting and ensuring that the model performed well on unseen data. By splitting the dataset into five subsets and training the model iteratively, the process provided more reliable and stable performance metrics. Each subset was used once as the validation set while the other four subsets served as training data, resulting in averaged performance metrics that better reflect the model’s true capabilities.
+
+    This method enabled a thorough evaluation of YOLOv8’s performance under different data conditions, showing that the model was capable of detecting and classifying Medaka fish species consistently, even in challenging real-world images. The consistent high precision and recall values across the folds demonstrate the model’s strong generalization ability.
+    \subsection{Key Contributions to Real-World Application}
+    The integration of these techniques into a YOLOv8-based system for endangered species detection contributes significantly to the field of conservation technology. The ability to detect small, rare species with high accuracy has immediate applications in monitoring populations, tracking habitat changes, and assisting conservation efforts in real-time. AdaBoost and 5-fold cross-validation ensure the model's robustness and reliability in varying environments, offering a practical solution for real-world applications where data might be limited and imbalanced.
+

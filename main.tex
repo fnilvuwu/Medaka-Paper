@@ -1,0 +1,133 @@
+% \documentclass{elsarticle}
+% %\documentclass[3p,times]{elsarticle}
+
+% \usepackage{graphicx} % Required for inserting images
+% \usepackage{booktabs}
+
+\documentclass[10pt]{article}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage[section]{placeins}
+\usepackage{xcolor}
+\usepackage{breakcites}
+\usepackage{lineno}
+\usepackage{hyphenat}
+
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{etoolbox}
+\makeatletter
+% \patchcmd\@combinedblfloats{\box\@outputbox}{\unvbox\@outputbox}{}{%
+%   \errmessage{\noexpand\@combinedblfloats could not be patched}%
+% }%
+\makeatother
+
+
+\usepackage{natbib}
+
+
+\renewenvironment{abstract}
+  {{\bfseries\noindent{\abstractname}\par\nobreak}\footnotesize}
+  {\bigskip}
+
+\titlespacing{\section}{0pt}{*3}{*1}
+\titlespacing{\subsection}{0pt}{*2}{*0.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{0pt}
+
+
+\usepackage{authblk}
+
+
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\usepackage{latexsym}
+\usepackage{textcomp}
+\usepackage{longtable}
+\usepackage{tabulary}
+\usepackage{booktabs,array,multirow}
+\usepackage{amsfonts,amsmath,amssymb}
+\providecommand\citet{\cite}
+\providecommand\citep{\cite}
+\providecommand\citealt{\cite}
+% You can conditionalize code for latexml or normal latex using this.
+\newif\iflatexml\latexmlfalse
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}%
+
+\AtBeginDocument{\DeclareGraphicsExtensions{.pdf,.PDF,.eps,.EPS,.png,.PNG,.tif,.TIF,.jpg,.JPG,.jpeg,.JPEG}}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+\usepackage{float}
+
+\usepackage{enumitem}
+
+\begin{document}
+
+\title{\bf Improving automatic classifier performance for endangered Oryzias minnow species using YOLOv8}
+
+
+\author[a,b]{Armin Lawi}
+\author[a]{Muhammad Haerul}
+\author[a]{Iman Mustika Ismail}
+\author[a]{Rahmatullah R.}
+\author[c]{Irma Andriani}
+\author[d]{Andi Iqbal Baharuddin}
+
+\affil[a]{Information Systems Study Program, Hasanuddin University, Makassar, Indonesia}
+\affil[b]{B.J. Habibie Institute of Technology, Parepare, Indonesia}
+\affil[c]{Department of Biology, Hasanuddin University, Makassar, Indonesia}
+\affil[d]{Department of Fishery, Hasanuddin University, Makassar, Indonesia}
+
+
+\vspace{-1em}
+
+
+% \date{September 01, 2024}
+
+
+\begingroup
+\let\center\flushleft
+\let\endcenter\endflushleft
+\maketitle
+\endgroup
+
+
+\selectlanguage{english}
+\begin{abstract}
+The small size of fish and the small amount of data that is available making the Detection of endangered animals a difficult problem to tackle. High accuracy are necessity in order to identify the species which are rarely to be found. Conservation wouldn't be possible if model miss to identify the rare species. Hence it's an urgency to achieve a maximum accuracy this applied not only in the conservation of endengared animal but also on other task which require a high accuracy for precise monitoring and
+protection
+
+The experimental results show the model’s exceptional performance, achieving mean
+average precisions of 88.4\% and 87.7\% on the DUO and UTDAC2020 datasets, respectively. Notably, the model
+operates at a rapid detection speed of 156 FPS, fulfilling critical real-time detection needs. With a concise model
+size of 4.4 M and a moderate computational complexity of 11.6 GFLOPs, it is highly suitable for integration into
+underwater detection systems.
+ %
+\end{abstract}%
+
+\sloppy
+
+
+\maketitle
+
+\input{introduction}
+
+\input{materials}
+
+\input{experiments}
+
+\input{results}
+
+\input{conclusion}
+
+\end{document}
