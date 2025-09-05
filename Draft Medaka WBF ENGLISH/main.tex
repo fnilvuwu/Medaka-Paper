@@ -1,0 +1,129 @@
+% \documentclass{elsarticle}
+% %\documentclass[3p,times]{elsarticle}
+
+% \usepackage{graphicx} % Required for inserting images
+% \usepackage{booktabs}
+
+\documentclass[10pt]{article}
+
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage[section]{placeins}
+\usepackage{xcolor}
+\usepackage{breakcites}
+\usepackage{lineno}
+\usepackage{hyphenat}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{tabularx}
+
+\PassOptionsToPackage{hyphens}{url}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+\usepackage{etoolbox}
+\makeatletter
+% \patchcmd\@combinedblfloats{\box\@outputbox}{\unvbox\@outputbox}{}{%
+%   \errmessage{\noexpand\@combinedblfloats could not be patched}%
+% }%
+\makeatother
+
+
+\usepackage{natbib}
+
+
+\renewenvironment{abstract}
+  {{\bfseries\noindent{\abstractname}\par\nobreak}\footnotesize}
+  {\bigskip}
+
+\titlespacing{\section}{0pt}{*3}{*1}
+\titlespacing{\subsection}{0pt}{*2}{*0.5}
+\titlespacing{\subsubsection}{0pt}{*1.5}{0pt}
+
+
+\usepackage{authblk}
+
+
+\usepackage{graphicx}
+\usepackage[space]{grffile}
+\usepackage{latexsym}
+\usepackage{textcomp}
+\usepackage{longtable}
+\usepackage{tabulary}
+\usepackage{booktabs,array,multirow}
+\usepackage{amsfonts,amsmath,amssymb}
+\providecommand\citet{\cite}
+\providecommand\citep{\cite}
+\providecommand\citealt{\cite}
+% You can conditionalize code for latexml or normal latex using this.
+\newif\iflatexml\latexmlfalse
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}%
+
+\AtBeginDocument{\DeclareGraphicsExtensions{.pdf,.PDF,.eps,.EPS,.png,.PNG,.tif,.TIF,.jpg,.JPG,.jpeg,.JPEG}}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+\usepackage{float}
+
+\usepackage{enumitem}
+
+\begin{document}
+
+\title{\bf YOLOv8-WBF: Ensemble Learning for Reliable Detection of Endangered Medaka (Oryzias)}
+
+
+\author[a,b]{Armin Lawi}
+\author[a]{Muhammad Haerul}
+\author[a]{Iman Mustika Ismail}
+\author[a]{Rahmatullah R.}
+\author[c]{Irma Andriani}
+\author[d]{Andi Iqbal Baharuddin}
+
+\affil[a]{Information Systems Study Program, Hasanuddin University, Makassar, Indonesia}
+\affil[b]{B.J. Habibie Institute of Technology, Parepare, Indonesia}
+\affil[c]{Department of Biology, Hasanuddin University, Makassar, Indonesia}
+\affil[d]{Department of Fishery, Hasanuddin University, Makassar, Indonesia}
+
+
+\vspace{-1em}
+
+
+% \date{September 01, 2024}
+
+
+\begingroup
+\let\center\flushleft
+\let\endcenter\endflushleft
+\maketitle
+\endgroup
+
+
+\selectlanguage{english}
+\begin{abstract}
+Reliable detection of Medaka (Oryzias) fish is crucial for ecological monitoring and conservation, particularly for assessing population trends of endangered species. In this study, we evaluate the performance of a state-of-the-art deep learning model (YOLOv8) and an ensemble approach using Weighted Box Fusion (WBF) on a manually annotated dataset of Medaka images collected from online sources. Models were trained and validated using 5-fold cross-validation, and performance was assessed using COCO metrics, including mean Average Precision (mAP), precision, recall, and bounding box regression error. The YOLOv8-WBF ensemble achieved a mAP@0.5:0.95 of 0.578, representing an 8.04\% improvement over the best single model (0.535). It also reduced bounding box localization error (RMSE: 45.41 to 29.93) and improved classification loss, indicating more reliable detection of small and visually challenging fish instances. These accuracy gains came at the expense of computational efficiency, with inference requiring approximately five times more operations than a single YOLOv8 model. While less suited for real-time deployment, the ensemble approach provides more accurate population monitoring in offline ecological workflows, where reliability is often prioritized over speed. By reducing missed detections of small or occluded fish, our findings contribute to more robust biodiversity monitoring and establish a baseline for developing optimized ensemble and lightweight detection models in aquatic conservation domains.
+\end{abstract}%
+
+\sloppy
+
+
+\maketitle
+
+\input{sections/1_introduction}
+
+\input{sections/2_materials}
+
+\input{sections/3_experiments}
+
+\input{sections/4_results}
+
+\input{sections/5_conclusion}
+
+\input{sections/6_reference}
+
+\end{document}

@@ -1,0 +1,145 @@
+\section{Materials and Method}
+
+%%%% Data Sources %%%%
+\subsection{Data Sources}
+
+The data used in building the computational model for detecting and classifying Oryzias fish species consists of a combination of primary and secondary data. These sources are used to enhance dataset diversity and generalization, which is crucial given the limitations of real-world data.
+
+% Placeholder for image of Medaka fish in aquarium setting
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Image of Medaka fish in aquarium setting}}
+    \caption{Example of primary data: Medaka fish in aquarium}
+    \label{fig:medaka_aquarium}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Primary data} was obtained by directly capturing images of Medaka fish in an aquarium using a digital camera. This dataset includes images of two Medaka species: \textit{Oryzias javanicus} and \textit{Oryzias celebensis}.
+    \item \textbf{Secondary data} was collected online via web scraping, including from research websites, aquatic forums, and public databases.
+\end{itemize}
+
+% Placeholder for image of web-scraped fish images
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Screenshot of web-scraped fish images from aquatic forums and databases}}
+    \caption{Example of secondary data: web-scraped images}
+    \label{fig:web_scraped_data}
+\end{figure}
+
+%%%% Research Methodology %%%%
+\subsection{Research Methodology}
+
+The data mining concept is used as the foundation of this research approach, which aims to detect and classify two Medaka fish species: \textit{Oryzias javanicus} and \textit{Oryzias celebensis}. This study employs YOLOv8, a state-of-the-art and efficient object detection algorithm, to enable simultaneous detection and classification.
+
+The research process is divided into three main stages: data preprocessing, data training/modeling, and post-processing/evaluation. The preprocessing stage is critical to ensure data quality and optimal model performance.
+
+% Placeholder for flowchart of research pipeline
+\begin{figure*}[ht]
+    \centering
+    \fbox{\parbox[c][6cm][c]{0.9\linewidth}{\centering Flowchart illustrating research steps: data preprocessing → modeling → evaluation}}
+    \caption{Overview of the Research Pipeline}
+    \label{fig:research_pipeline}
+\end{figure*}
+
+\subsection{Data Preprocessing Stage}
+
+\subsubsection{Problem Understanding}
+
+Medaka fish are endemic species with small and transparent bodies, making them difficult to detect. Images of Medaka fish are also very limited online. Therefore, a combination of primary and secondary data is used in a minimum ratio of 70\% to 30\%, followed by normality tests to ensure that the mixed data do not have significant deviation.
+
+\subsubsection{Mixture Data Sources}
+
+The dataset consists of a normalized combination of primary and secondary data to avoid significant differences. Orientation, size, and image parameters are standardized so that the dataset is suitable for use by the detection model. With variation in lighting and shooting angles, this dataset is designed to train the YOLOv8 model to perform well in general.
+
+% Placeholder for images showing variations in lighting and angle
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Example images showing lighting and angle variations in Medaka fish photos}}
+    \caption{Sample images illustrating variations in lighting and angles}
+    \label{fig:data_variations}
+\end{figure}
+
+\subsubsection{Data Labeling}
+
+The labeling process was carried out using the Roboflow platform. Each image may contain more than one object with different classes. Steps included:
+
+\begin{itemize}
+    \item 792 images placed in a single folder.
+    \item Each image annotated with bounding boxes and class labels.
+    \item Annotation results saved in .txt files named identically to their corresponding images.
+\end{itemize}
+
+% Placeholder for screenshot of annotation tool with bounding boxes
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Screenshot of image annotation with bounding boxes and labels}}
+    \caption{Example of image annotation process}
+    \label{fig:annotation_process}
+\end{figure}
+
+\subsubsection{Splitting Data}
+
+The data was split with a 4:1 ratio between training and testing data. Data splitting also considered the availability of validation data for the model tuning process.
+
+% Placeholder for pie chart of data split
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.5\linewidth}{\centering Pie chart showing training, validation, and test data split ratios}}
+    \caption{Data splitting into training, validation, and test sets}
+    \label{fig:data_split}
+\end{figure}
+
+\subsubsection{Data Understanding}
+
+Data were collected under various lighting conditions and shooting angles to produce a diverse dataset. The dataset consists of Medaka fish images (X) and labels in the form of species classes and bounding box coordinates (Y). These labels are used to train the model to detect and classify objects accurately.
+
+\subsubsection{Data Preparation}
+
+This stage includes:
+
+\begin{enumerate}[label=\alph*.]
+    \item \textbf{Image Restoration:} Enhancing image quality such as sharpening blurred images, increasing contrast, and removing artifacts.
+    \item \textbf{Data Uniformity:} Standardizing aspects such as orientation, image size, contrast, saturation, and blur level.
+    \item \textbf{Data Augmentation:} Adding data variation through horizontal/vertical flipping and rotations of 90°, 180°, and 270°.
+    \item \textbf{Dataset Split:} Data divided into training, validation, and test sets with proportions of 80\%-10\%-10\%. Validation data is used to monitor performance during training.
+\end{enumerate}
+
+\subsection{Data Training or Modeling}
+
+Three main experiments were conducted:
+
+\begin{itemize}
+    \item \textbf{Fine-tuning YOLOv8:} Adapting the pretrained YOLOv8 model to the Medaka fish dataset.
+    
+    % Placeholder for YOLOv8 architecture or detection example
+    \begin{figure}[ht]
+        \centering
+        \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Diagram or sample YOLOv8 detection output images}}
+        \caption{Example of YOLOv8 detection results}
+        \label{fig:yolov8_detection}
+    \end{figure}
+    
+    \item \textbf{5-Fold Cross Validation:} Testing the model on 5 data subsets to evaluate performance consistency.
+    
+    % Placeholder for 5-fold cross-validation illustration
+    \begin{figure}[ht]
+        \centering
+        \fbox{\parbox[c][5cm][c]{0.7\linewidth}{\centering Illustration of 5-fold cross-validation data splits}}
+        \caption{5-Fold Cross Validation scheme}
+        \label{fig:cross_validation}
+    \end{figure}
+    
+    \item \textbf{Ensemble Learning:} Combining multiple YOLOv8 models with different weights to improve classification accuracy.
+\end{itemize}
+
+\subsection{Data Post-processing or Evaluation}
+
+Model evaluation was conducted using loss functions and confusion matrix-based metrics (such as precision, recall, and mAP). The evaluation was performed on test data to measure YOLOv8’s ability to generalize to unseen data.
+
+% Placeholder for confusion matrix and performance charts
+\begin{figure}[ht]
+    \centering
+    \fbox{\parbox[c][5cm][c]{0.8\linewidth}{\centering Confusion matrix and performance metric charts}}
+    \caption{Model evaluation results: confusion matrix and metrics}
+    \label{fig:evaluation_metrics}
+\end{figure}

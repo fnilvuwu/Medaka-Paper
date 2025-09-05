@@ -1,0 +1,664 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \section{Materials and Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dalam penelitian ini, bahan yang digunakan mencakup berbagai alat dan komponen penting untuk pengolahan data dan implementasi sistem dalam mencapai tujuan sistem cerdas.
+
+%\subsection{Materials used in this research include the following essential components :}
+\subsection{Data Sources}
+
+Dataset yang digunakan dalam penelitian ini seluruhnya merupakan data primer yang diambil dari hasil captured citra ikan yang bergerak bebas di dalam akuarium. Seluruh gambar ikan Medaka diperoleh dari sebuah akuarium berisi berbagai jenis ikan air tawar kecil dalam jumlah bervariasi, yang terletak di Laboratorium Bioteknologi, Departemen Biologi, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Hasanuddin. Sebagian gambar yang diambil dengan empat warna latar belakang berbeda ditampilkan pada Gambar~\ref{fig: Oryzias}. Jenis ikan yang diklasifikasikan adalah \textit{O. celebensis} dan \textit{O. javanicus} sebagai nenek moyang seluruh ikan medaka di Indonesia. Kedua spesies ini tergolong terancam punah, sehingga diperlukan upaya konservasi serius untuk mencegah kepunahan ikan langka tersebut. Di depan akuarium, dibangun empat ruang persegi panjang dengan lebar datar sebagai area pengambilan gambar saat ikan melintas, aktif, atau berhenti di ruang tersebut. Ruang-ruang ini diberi latar belakang warna berbeda, yaitu merah, hitam, biru, dan hijau. Di atasnya dipasang lampu yang diatur sedemikian rupa agar ikan medaka dengan ukurannya yang relatif kecil dapat terlihat jelas selama proses pemotretan.
+
+\begin{figure}[h]
+    \includegraphics[width=14cm]{Images/Oryzias.png}
+    \caption{Captured Oryzias in four different background colors.
+    \label{fig: Oryzias}}
+\end{figure}
+
+In this research, the materials used include various tools and components essential for processing data and system implementation.
+
+%\subsection{Materials used in this research include the following essential components :}
+\subsection{Data Sources}
+The dataset used in this study is entirely primary data taken from the results of capturing fish objects moving freely in the aquarium. The classified fish species are Oryzias celebensis and Oryzias javanicus which are the ancestors of all medaka fish in Indonesia. Both fish are endangered and serious conservation efforts are needed to prevent the extinction of this rare fish. In front of the aquarium, four rectangular rooms with flat widths were built as a place to take pictures when the fish passed by, were active, or stopped in the room. The rooms were given different background colors, i.e.,  red, black, blue, and green. Above them were placed lights in such a way that the medaka fish could be clearly seen during the photo shoot even though their size was relatively small. 
+ 
+\subsection{Research Methodology}
+menjelaskan diagram alur penelitian: Image processing, Building Block Architecture (YOLO, MobileNetV2,Tranfer Learning), The Novel YOLO-Medaka
+
+Many researchers have proposed various combinations of Machine Learning and Deep Learning (ML/DL) algorithms to solve the problem of object detection, classification, and identification in digital images. In this paper, the YOLO-Medaka algorithm is introduced to detect and classify digital objects by combining three methods of YOLOv8, MobileNetV2 and ANN-MLP architecture. YOLOv8 is used for object detection because it has a single-stage detection concept, which means detecting objects at one time and has excellent accuracy. As seen in several experiments. for example, after modification, namely YOLOv8-CAB, it succeeds in detecting some objects that are missing detection by YOLOv8 before, also achieves higher accuracy and much better detection confidence. \cite{talib2024yolov8}. Another experiment also conducts object detection, such as analysing vehicle detection under various image conditions. This study utilises the YOLOv8 method to process the images with output the bounding boxes and classes of the detected objects. Additionally, data augmentation is applied to improve the model's ability to recognise vehicles from different directions and viewpoints \cite{panja2024yolov8}.
+
+MobileNetV2 is deployed for mobile devices such as smartphones and tablets, which focus on computational efficiency and smaller model size, since MobileNetV2 is designed for mobile devices and embedded vision applications. As seen in the fruit classification experiment that compared the performance between MobileNetV2 and Inceptionv3, the results show that MobileNetV2 has a better accuracy rate, which means better performance than Inceptionv3. In an experiment with a different case, comparing the performance of MobileNetV2 with DenseNet121 for the classification of coral reefs, the results show that MobileNetV2 is more optimal for devices with limited computing power and is lighter and faster \cite{karnadi2024klasifikasi,utomo2025perbandingan}. In addition, the MobileNetV2 architecture has proven effective in increasing computational efficiency without sacrificing accuracy, which is an important aspect for implementing this model on mobile devices. High computational efficiency is possible for implementation in the real world, where computing resources may be limited \cite{maulana2024deteksi}.
+
+ANN-MLP is tasked with processing the data conducted by the input, hidden and output layers they have, then producing the classification of $\textit{Oryzias celebensis}$ and $\textit{Oryzias javanicus}$. ANN-MLP is one of the algorithms that is widely used because of its ease of implementation in web applications (client/server or full stack programming). Some of its implementations include the classification of marine fish even though they are covered by seaweed or coral, the classification of types of diseases in aquatic plants, and the classification of certain problems or certain cases, both inherent in objects and their environment. This paper specifically focuses on the automatic detection and classification of two small, rare and endangered freshwater fish species in Indonesia, namely, $\textit{Oryzias celebensis}$ and $\textit{Oryzias javanicus}$. The method used to solve this problem consists of 3 stages, namely the data preparation stage based on the model architecture, the model development stage, and the model selection stage through performance evaluation. The illustration of the method is depicted as in Figure ~\ref{fig: diagram-system}
+
+Several researchers have conducted object detection, classification and identification in images using MobileNetV2, or versions modified with various techniques, for applications such as mask detection, rust disease classification in plants, melanoma cancer classification, and classification of Cicer arietinum varieties. In our research case, the main focus is the automatic object detection of \textit{Oryzias celebensis} and \textit{Oryzias javanicus}, particularly endangered species in Indonesia. The methods and techniques we used are further explained below:
+
+\subsection{Image Processing}
+
+\subsubsection{Capturing Method}
+The images were taken with four different background colors: red, black, blue, and green. The aquarium was illuminated from above to make the fish clearly visible.
+
+\subsubsection{Rescaling}
+The captured images of medaka fish will be rescaled to a square size of 224x224 pixels. Two rescaling methods will be applied: Padding and Non-Padding. The Padding method adds a uniform background color to both sides of the image if it's too small. Meanwhile, the Non-Padding method rescales the image directly to fit the square dimensions. All this process can be seen in Figure \ref{fig: padding} 
+
+
+\subsubsection{Normalization}
+Color value normalization is performed on each pixel by dividing it by 255, as shown in Figure \ref{fig: normalization}.
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/normalization.png}
+\caption{Color Value Normalization for Each Pixel.
+\label{fig: normalization}}
+\end{figure}
+
+\subsubsection{Augmentation}
+Ada dua metode augmentasi yang digunakan yaitu: shift dan rotasi. Randomly shift the image left/right by $20\%$ of its width. Randomly shift the image up/down by $20\%$ of its height, as shown in Figure \ref{fig: rotate}.
+
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/rotate.png}
+\caption{Width shift and height shift of 0.2 ($20\%$).
+\label{fig: rotate}}
+\end{figure}
+
+\subsubsection{Image Dataset Splitting}
+There are 661 images of \textit{Oryzias celebensis}, divided into 456 ($70\%$) for training, 146 ($20\%$) for validation, and 59 ($10\%$) for testing. There are 886 images of \textit{Oryzias javanicus}, split into 612 ($70\%$) for training, 177 ($20\%$) for validation, and 97 ($10\%$) for testing. An example image can be seen in Figure \ref{fig: Oryzias}.
+
+\subsection{Building Block Architecture}
+
+\subsubsection{YOLOv8}
+The YOLOv8 architecture is designed to improve speed, accuracy, and ease of use over its predecessors (YOLOv5, YOLOv7). We use YOLOv8 as the main architecture model in this research, some components will be combined with MobileNetv2 and ANN-MLP architecture models. While YOLOv8 has several important components namely:
+
+\begin{itemize}
+    \item Backbone Network. The network serves to extract hierarchical features from the input image, providing a comprehensive representation of the visual information.
+    \item Neck Architecture. The neck structure is responsible for feature fusion, combining multi-scale information and improving the model’s ability to detect objects of varying sizes. 
+    \item YOLO Head. This component generates predictions based on the features extracted by the backbone network and the neck architecture.
+\end{itemize}
+
+\begin{figure}[h]
+% \includegraphics[width=14 cm]{Images/YOLOv8 Architecture.png}
+\caption{YOLOv8 Architecture.
+\label{fig: YOLOv8}}
+\end{figure}
+ 
+\subsubsection{MobileNetV2}
+This architecture will be combined with several components in the backbone component of YOLOv8. This is done to improve the performance of hierarchical image feature extraction. Based on MobileNetv2 architecture and features, let’s looks the component and its steps.
+\begin{itemize}
+    \item Data Preparation. This involves preprocessing the images, splitting the dataset into training and validation sets, and applying data augmentation techniques to improve the model’s generalization ability.
+    \item Transfer Learning. For initializing the model with pre-trained weights, the training process can be accelerated, and the model can benefit from the knowledge learned from the source dataset.
+    \item Fine-tuning. This process Involves training the model on a target dataset while keeping the pre-trained weights fixed for some layers.
+    \item Hyperparameter Tuning. Play a role in optimizing the performance of MobileNetV2. Carefully select parameters such as learning rate and regularization techniques to achieve the best possible results.
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=9 cm]{Images/MobileNetV2 Arcitecture.png}
+\caption{MobileNetV2 Architecture.
+\label{fig: MobileNetV2}}
+\end{figure}
+
+\subsubsection{VGG16}
+Based on the VGG-16 architecture, it is illustrated below in detail:
+\begin{itemize}
+    \item Input Layer. Input dimensions: (224, 224, 3). 
+    \item Convolutional Layers (64 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 64 filters each and a filter size of 3×3. Same padding is applied to maintain spatial dimensions.
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Convolutional Layers (128 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 128 filters each and a filter size of 3×3. 
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Convolutional Layers (256 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 256 filters each and a filter size of 3×3.
+    \item Convolutional Layers (512 filters, 3×3 filters, same padding). Two sets of three consecutive convolutional layers with 512 filters each and a filter size of 3×3.
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Stack of Convolutional Layers and Max Pooling Two additional convolutional layers after the previous stack. Filter size: 3×3.
+    \item Flattening. Flatten the output feature map (7x7x512) into a vector of size 25088.
+    \item Fully Connected Layers. Three fully connected layers with ReLU activation. First layer with input size 25088 and output size 4096. Second layer with input size 4096 and output size 4096. Third layer with input size 4096 and output size 1000, corresponding to the 1000 classes in the ILSVRC challenge. Softmax activation is applied to the output of the third fully connected layer for classification.
+\end{itemize}
+
+\subsubsection{Transfer Learning}
+   \begin{itemize}
+     \item Load MobileNetV2 model.
+     \item Freeze all layers.
+     \item Create a Top Model with the following sequence: 
+     \[ Flatten,Dense^\rightarrow(x_1),Dense^\rightarrow(x_2), Dropout(\rho),SoftMax.\]     
+     \item After constructing the Top Model's output layer, fine-tuning is performed by freezing the first X layers, then fitting the model with these parameters: Total Epochs, Batch Size, and Steps per Epoch.
+    \end{itemize}
+
+\subsection{Computational Environment}
+In this applied research project, the process of forming deep learning and transfer learning models uses the DIKTI AI Center facility which uses NVIDIA technology with a computing capacity of 25 PetaFLOPS. The supercomputer facility consists of five NVIDIA DGX A100 server machine nodes. Each node has a dual AMD Rome CPU with eight graphics processing units (GPUs) with multi-instance GPU (MIG) capabilities: 4 GPU @ 40GB, Processor 8 Core, and RAM 64 GB. 
+Each server node is equipped with 1TB of RAM and 5TB of high-speed NVME storage, with a total processing power of 5 TeraFLOPS per node. The supercomputer nodes are interconnected via a high-speed Mellanox network, with NVLink links between the five units, each of which has 8 Core GPUs. The procurement of the DIKTI AI Center supercomputer facility is used to strengthen the creation of national AI talent through various training and education activities in collaboration with industry. This facility can be used by educational institutions, including Hasanuddin University, to facilitate the development of AI technology innovations to meet the needs of industry and society. The software used is Jupiter Notebook, TensorFlow, Roboflow, and OpenCV cuda version 11.4.
+
+%%%%%%%%
+%%%%%%%%
+\subsection{Pemilihan Arsitektur Model}
+\subsubsection{YOLOv8 untuk Deteksi Objek}
+YOLOv8 (\textit{You Only Look Once version 8}) dipilih karena beberapa keunggulan berikut:
+\begin{itemize}
+    \item \textbf{Kecepatan dan Akurasi Tinggi}: Arsitektur berbasis CNN dengan \textit{backbone} CSPDarknet53 dan \textit{neck} PANet (\textit{Path Aggregation Network}) memungkinkan deteksi objek secara \textit{real-time} dengan presisi tinggi, cocok untuk analisis citra biologi yang memerlukan kecepatan.
+    \item \textbf{Multi-Scale Detection}: Kemampuan deteksi pada berbagai skala melalui \textit{feature pyramids} (FPN) penting untuk ikan \textit{Oryzias} yang mungkin memiliki variasi ukuran dalam citra.
+    \item \textbf{Optimasi Loss Function}: Menggunakan \textit{task-aligned assigner} dan \textit{Distribution Focal Loss} untuk menangani ketidakseimbangan kelas (misalnya, dominasi \textit{background}).
+\end{itemize}
+
+\subsubsection{MLP untuk Klasifikasi}
+Multi-Layered Perceptron (MLP) digunakan sebagai \textit{classifier head} dengan pertimbangan:
+\begin{itemize}
+    \item \textbf{Non-Linearitas Kompleks}: Lapisan tersembunyi (\textit{hidden layers}) dengan aktivasi ReLU/RBF mampu menangkap pola non-linear pada fitur morfologi ikan.
+    \item \textbf{Adaptabilitas}: MLP fleksibel untuk dikombinasikan dengan \textit{feature extractor} YOLOv8 (misalnya, mengambil vektor fitur dari \textit{ROI pooling}).
+    \item \textbf{Interpretabilitas}: Bobot MLP dapat dianalisis untuk memahami kontribusi fitur tertentu dalam klasifikasi.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.8\textwidth]{model_architecture.png}
+    \caption{Diagram arsitektur hybrid YOLOv8 (deteksi) + MLP (klasifikasi).}
+    \label{fig:arch}
+\end{figure}
+
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+\subsection{Evaluasi Kinerja}
+\subsubsection{Confusion Matrix dengan Kronecker Delta}
+Confusion matrix untuk tiga kelas didefinisikan sebagai matriks $C$ berukuran $3 \times 3$, di mana elemen $C_{ij}$ menyatakan jumlah sampel kelas $i$ yang diprediksi sebagai kelas $j$. Untuk menghitung metrik evaluasi, digunakan fungsi Kronecker Delta ($\delta_{ik}$):
+
+\begin{equation}
+    \delta_{ik} = 
+    \begin{cases}
+        1 & \text{jika } i = k, \\
+        0 & \text{lainnya},
+    \end{cases}
+\end{equation}
+
+\begin{itemize}
+    \item \textbf{True Positive (TP)} untuk kelas $k$:
+    \begin{equation}
+        TP_k = \sum_{i=1}^N \delta_{y_i, k} \cdot \delta_{\hat{y}_i, k}, \quad N = \text{total sampel}
+    \end{equation}
+    
+    \item \textbf{False Positive (FP)} untuk kelas $k$:
+    \begin{equation}
+        FP_k = \sum_{i=1}^N (1 - \delta_{y_i, k}) \cdot \delta_{\hat{y}_i, k}
+    \end{equation}
+    
+    \item \textbf{False Negative (FN)} untuk kelas $k$:
+    \begin{equation}
+        FN_k = \sum_{i=1}^N \delta_{y_i, k} \cdot (1 - \delta_{\hat{y}_i, k})
+    \end{equation}
+\end{itemize}
+
+\subsubsection{ROC-AUC: Pemahaman Mendalam}
+Kurva ROC (\textit{Receiver Operating Characteristic}) menggambarkan hubungan antara:
+\begin{itemize}
+    \item \textbf{True Positive Rate (TPR)}: $\frac{TP}{TP + FN}$ (kemampuan model mendeteksi kelas positif).
+    \item \textbf{False Positive Rate (FPR)}: $\frac{FP}{FP + TN}$ (proporsi kesalahan pada kelas negatif).
+\end{itemize}
+
+Untuk masalah multi-kelas, ROC-AUC dihitung dengan strategi \textit{one-vs-rest}:
+\begin{itemize}
+    \item Setiap kelas dianggap sebagai \textit{positive}, sementara lainnya sebagai \textit{negative}.
+    \item AUC dihitung untuk setiap kelas, lalu dirata-ratakan (\textit{macro-average}).
+\end{itemize}
+
+Interpretasi AUC:
+\begin{itemize}
+    \item \textbf{AUC = 1}: Model sempurna membedakan kelas.
+    \item \textbf{AUC = 0.5}: Klasifikasi acak (tidak lebih baik dari tebakan).
+    \item \textbf{AUC < 0.5}: Model memiliki kinerja lebih buruk dari tebakan acak.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.7\textwidth]{roc_auc_multiclass.png}
+    \caption{Kurva ROC untuk tiga kelas (AUC$_a$ = 0.98, AUC$_b$ = 0.95, AUC$_c$ = 0.99).}
+    \label{fig:roc_auc}
+\end{figure}
+
+\section{Hasil dan Pembahasan}
+\subsection{Analisis Confusion Matrix}
+\begin{table}[h]
+    \centering
+    \caption{Confusion Matrix dengan Kronecker Delta}
+    \begin{tabular}{ccccc}
+        \toprule
+        & \textbf{Prediksi a} & \textbf{Prediksi b} & \textbf{Prediksi c} & \textbf{Total} \\
+        \midrule
+        \textbf{Actual a} & 45 ($TP_a$) & 3 ($FN_{a \rightarrow b}$) & 2 ($FN_{a \rightarrow c}$) & 50 \\
+        \textbf{Actual b} & 5 ($FN_{b \rightarrow a}$) & 40 ($TP_b$) & 5 ($FN_{b \rightarrow c}$) & 50 \\
+        \textbf{Actual c} & 1 ($FN_{c \rightarrow a}$) & 4 ($FN_{c \rightarrow b}$) & 95 ($TP_c$) & 100 \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:confusion_matrix_detail}
+\end{table}
+
+\subsection{Analisis ROC-AUC}
+\begin{itemize}
+    \item \textbf{Kelas \textit{a} (AUC = 0.98)}: Hampir sempurna, sedikit kesalahan pada batas dengan kelas \textit{b}.
+    \item \textbf{Kelas \textit{b} (AUC = 0.95)}: Kesalahan utama karena variasi morfologi yang tumpang tindih dengan kelas \textit{a}.
+    \item \textbf{Kelas \textit{c} (AUC = 0.99)}: \textit{Background} mudah dibedakan karena fitur tekstur yang unik.
+\end{itemize}
+
+
+
+%\subsection{Performance Measurements}
+%After the model fitting process, performance evaluation is conducted using two scenarios. Based on the Confusion Matrix.
+
+%   \begin{figure}[h]
+%    \includegraphics[width=6 cm]{Images/Confusion Matrix.png}
+%    \caption{Confusion Matrix.
+%    \label{fig: confusion}}
+%    \end{figure}     
+       
+%     \begin{description}
+%        \item \[Sensitivity \text{ }(recall) = \frac{TP}{TP+FN}\]
+%        \item \[Accuracy = \frac{TP+TN}{TP+FN+FP+FN}\] 
+%        \item \[Precision = \frac{TP}{TP+FP}\]
+%        \item \[F_n-Score = (n+1)\times\frac{Precision \times Recall}{Precision + Recall}\]
+%    \end{description}
+    
+%        Area Under the Curve - Receiver Operating Characteristic (AUC-ROC). 
+%        \begin{figure}[h]
+%            \includegraphics[width=6 cm]{Images/AUC-ROC.png}
+%            \caption{The AUC-ROC curve}
+%            \label{fig: AUC-ROC}
+%        \end{figure}
+%            %\texttt{enumerate} environment
+    
+\subsection{Research Methodology}
+
+Kami mengikuti pendekatan sistematis untuk mengembangkan sistem deteksi dan klasifikasi objek pada gambar, khususnya untuk mengidentifikasi \textit{O. celebensis} dan \textit{O. javanicus}. Proses kami mencakup langkah-langkah kunci seperti \textbf{Image Processing} diawali dengan pra-proses dan peningkatan data gambar mentah untuk meningkatkan pelatihan model mencakup: \textit{Rescaling}, \textit{Normalization}, \textit{Augmentation}, \textit{Image Dataset Splitting}. Selanjutnya \textbf{Building Block Architecture} membangun kerangka kerja yang kokoh dengan mengimplementasikan arsitektur MobileNetV2 yang telah dimodifikasi, dikombinasikan dengan transfer learning untuk meningkatkan efisiensi. Meskipun beberapa peneliti telah menggunakan arsitektur MobileNetV2 dengan berbagai variasi modifikasi dan dikombinasikan dengan teknik tertentu, kemudian diaplikasikan pada deteksi masker, klasifikasi penyakit karat pada tanaman, deteksi kanker melanoma, dan klasifikasi varietas Cicer arietinum. Namun fokus utama kami adalah pada deteksi otomatis \textit{O. celebensis} dan \textit{O. javanicus}. Spesies ini sangat penting karena terancam punah di Indonesia, dan pendekatan yang kami rancang bertujuan untuk mengatasi tantangan unik dalam identifikasi tersebut. 
+
+
+\subsection{Image Processing}
+
+\subsubsection{Rescaling}
+
+Gambar medaka yang telah diambil akan diubah ukurannya menjadi bentuk persegi berukuran 224x224 piksel. Dua metode perubahan ukuran akan diterapkan: Padding dan Non-Padding. Melakukan Padding yaitu dengan menambahkan piksel di sekitar tepi gambar untuk menyesuaikan ukurannya tanpa mengubah konten aslinya. Hal ini bertujuan untuk mempertahankan dimensi gambar, memastikan gambar memiliki ukuran yang seragam dalam batch processing, menghindari penyusutan (shrinkage) gambar setelah filter diterapkan. Sementara itu, metode Non-Padding mengubah ukuran gambar secara langsung agar sesuai dengan dimensi persegi, akan tetapi resolusi objek gambar atau konten aslinya bisa berubah dan dapat menghilangkan informasi pada bagian tepi akan berperngaruh pada proses selanjutnya. Seluruh proses ini dapat dilihat pada Gambar \ref{fig: padding}.
+
+\begin{figure}[h]
+    \includegraphics[width= 11cm]{Images/Padding01.jpg}
+    \caption{Comparison of Non-Padding and Padding Resize mechanisms.
+    \label{fig: padding}}
+\end{figure}
+
+\subsubsection{Normalization}
+Proses Normalisasi akan mengubah nilai piksel gambar agar berada dalam rentang tertentu. Hal ini dilakukan karena normalisasi yang baik akan menghasilkan akurasi yang lebih bagus, memiliki kemampuan generalisasi yang lebih baik, efisiensi komputasi, hasil eksperimen lebih mudah direproduksi serta menghindari error akibat perbedaan skala. Normalisasi nilai warna dilakukan pada setiap piksel dengan membaginya kedalam 255, as shown in Figure \ref{fig: normalization}.
+
+\begin{figure}[h]
+\includegraphics[width=8 cm]{Images/normalization.png}
+\caption{Color Value Normalization for Each Pixel.
+\label{fig: normalization}}
+\end{figure}
+
+\subsubsection{Augmentation}
+Ada dua metode augmentasi yang digunakan yaitu: \textbf{Width shift}, \textbf{Height shift} dan \textbf{Ratate}. Dalam Augmentasi \textbf{Width shift} yaitu menggeser gambar secara horizontal (kiri atau kanan) sebanyak $20\%$, begitu pula dengan \textbf{Height shift} menggeser gambar secara vertikal (atas atau bawah) sebanyak $20\%$. Hal ini bertujuan untuk memperkaya variasi posisi objek agar model tetap dapat mengenali objek meskipun tidak berada pada posisi sebenarnya. Selanjutnya \textbf{Rotate} yaitu memutar gambar hingga mencapai sudut tertentu (dalam derajat). Hal ini bertujuan untuk mengenali object gambar meski berada dalam sudut pandang yang berbeda sehingga menambah kemampuan model dalam mengenali objek dari berbagai variasi sudut pandang. seperti yang ditunjukkan pada Gambar \ref{fig: rotate}.
+
+\begin{figure}[h]
+\includegraphics[width=8 cm]{Images/rotate.png}
+\caption{Width shift and height shift of 0.2 ($20\%$).
+\label{fig: rotate}}
+\end{figure}
+
+\subsubsection{Image Dataset Splitting}
+Untuk pembagian data dalam penelitian ini yaitu: terdapat 661 gambar \textit{O. celebensis}, dibagi menjadi 456 ($70\%$) untuk pelatihan, 146 ($20\%$) untuk validasi, dan 59 ($10\%$) untuk pengujian. Ada 886 gambar \textit{O. javanicus}, dibagi menjadi 612 ($80\%$) untuk pelatihan, 177 ($20\%$) untuk validasi, dan 97 ($10\%$) untuk pengujian. Pembagian data gambar dapat dilihat pada Grafik berikut \ref{fig: splitting}.
+
+\begin{figure}[h]
+\includegraphics[width=8 cm]{Images/images dataset splitting.jpg}
+\caption{Image Dataset Splitting.
+\label{fig: splitting}}
+\end{figure}
+
+
+\subsection{Building Block Architecture}
+ Dalam penelitian ini, kami memecah sistem kedalam blok-blok yang lebih kecil dan biasa kami sebut dengan komponen-komponen sistem yang dapat digabung menjadi sebuah sistem yang utuh, termasuk modifikasi yang kami lakukan dalam beberapa komponen sebagai ciri khas dalam sebuah pengembangan sistem yang kami lakukan atau kebaruan (novelty) yang kami selipkan dalam sistem untuk menyelesaikan identifikasi dan kelasifikasi \textit{O. celebensis} dan \textit{O. javanicus}.
+ 
+\subsubsection{MobileNetV2}
+Arsitektur MobileNetV2 dibangun dari \textit{convolutional neural network (CNN)} yang ringan dan efisien, dirancang khusus untuk perangkat dengan sumber daya terbatas seperti smartphone dan perangkat IoT. Hal ini dilakukan untuk meningkatkan kinerja ekstraksi fitur gambar secara hierarkis. Berdasarkan arsitektur dan fitur MobileNetv2, mari kita lihat komponen-komponennya serta langkah-langkahnya berikut ini:.
+\begin{itemize}
+    \item \textbf{Persiapan Data}. Ini melibatkan pra-pemrosesan gambar, membagi dataset menjadi set pelatihan dan validasi, serta menerapkan teknik augmentasi data untuk meningkatkan kemampuan generalisasi model.
+    \item \textbf{Transfer Learning}. Dengan menginisialisasi model menggunakan bobot yang telah dilatih sebelumnya (pre-trained weights), proses pelatihan dapat dipercepat, dan model dapat memanfaatkan pengetahuan yang telah dipelajari dari dataset sumber.
+    \item \textbf{Fine-tuning}. Proses ini melibatkan pelatihan model pada dataset target sambil mempertahankan bobot yang telah dilatih sebelumnya (pre-trained weights) untuk beberapa lapisan tertentu.
+    \item \textbf{Penyesuaian Hyperparameter}. Berperan dalam mengoptimalkan kinerja MobileNetV2. Parameter seperti learning rate dan teknik regularisasi harus dipilih dengan cermat untuk mencapai hasil terbaik.
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=3 cm]{Images/Main-MobileNetv2-Diagram.jpg}
+\caption{MobileNetV2 Architecture.
+\label{fig: MobileNetV2}}
+\end{figure}
+
+
+\subsubsection{Transfer Learning}
+%Dalam penelitian ini, salah satu teknik \textit{Machine Learning} yang kami implementasikan yaitu \textbf{transfer learning} bertujuan untuk meningkatkan obtimalisasi identifikasi dan kelasifikasi, dalam hal ini, model yang kami bangun telah mempelajari data \textit{O. celebensis} untuk sistem identifikasi, kemudian model yang sama, kami implementasikan kembali pada kasus yang sama namun data yang berbeda yaitu: data \textit{O. javanicus} hal ini untuk mengoptimalkan sumber daya data terbatas, kemudian tidak perlu mengulangi model dari awal untuk mengurangi biaya komputasi. berikut adalah urutan \textit{transfer learning} yang kami implementasikan:    
+%   \begin{itemize}
+%     \item Load MobileNetV2 model.
+%     \item Freeze all layers.
+%     \item Create a Top Model with the following sequence: 
+%     \[ Flatten,Dense(\vec{x_1}),Dense(\vec{x_2}), Dropout(\vec{\rho}),SoftMax.\]     
+%     \item After constructing the Top Model's output layer, fine-tuning is performed by freezing the first X layers, then fitting the model with these parameters: Total Epochs, Batch Size, and Steps per Epoch.
+%    \end{itemize}
+
+Dalam penelitian ini, kami mengimplementasikan salah satu teknik dalam \textit{Machine Learning}, yaitu \textbf{transfer learning}, dengan tujuan utama untuk meningkatkan efektivitas dan efisiensi dalam proses identifikasi serta klasifikasi spesies. Transfer learning memungkinkan pemanfaatan kembali pengetahuan yang telah diperoleh dari pelatihan model pada satu domain ke domain lain yang serupa, sehingga dapat menghemat waktu pelatihan dan sumber daya komputasi, terutama ketika data pelatihan terbatas.
+
+Model dasar yang digunakan dalam studi ini adalah \textbf{MobileNetV2}, sebuah arsitektur \textit{convolutional neural network} (CNN) yang ringan dan efisien, sangat cocok untuk keperluan komputasi terbatas namun tetap memiliki performa representasi fitur yang baik. Model ini pertama-tama dilatih pada dataset \textit{O. celebensis}, di mana model belajar mengekstraksi ciri-ciri penting untuk proses identifikasi.
+Setelah model mencapai performa yang optimal pada data \textit{O. celebensis}, model yang sama kemudian digunakan kembali untuk proses identifikasi spesies lain, yaitu \textit{O. javanicus}. Pendekatan ini dilakukan untuk mengatasi keterbatasan data \textit{O. javanicus} serta menghindari pelatihan model dari awal (training from scratch), yang dapat mengakibatkan pemborosan waktu dan biaya komputasi.
+
+Adapun tahapan implementasi \textit{transfer learning} yang kami terapkan adalah sebagai berikut:
+\begin{itemize}
+\item \textbf{Memuat model dasar (base model):} Model \textit{MobileNetV2} dimuat tanpa lapisan klasifikasi teratas (top classification layers), dengan bobot awal dari pelatihan pada dataset ImageNet.
+\item \textbf{Membekukan seluruh lapisan awal:} Seluruh lapisan dari model dasar dibekukan (\textit{freeze}), sehingga bobotnya tidak berubah selama pelatihan tahap awal. Hal ini bertujuan untuk mempertahankan fitur-fitur umum yang telah dipelajari dari dataset besar seperti ImageNet.
+\item \textbf{Menambahkan \textit{Top Model}:} Di atas model dasar, kami menambahkan beberapa lapisan tambahan untuk klasifikasi spesifik dataset. Susunan lapisan tersebut adalah:
+\[ Flatten,Dense(\vec{x_1}),Dense(\vec{x_2}), Dropout(\vec{\rho}),SoftMax.\]
+
+dengan $\vec{x_1}$ dan $\vec{x_2}$ menunjukkan jumlah unit neuron masing-masing lapisan dense, dan $\vec{\rho}$ menyatakan rasio dropout untuk mengurangi \textit{overfitting}.
+\item \textbf{Fine-tuning:} Setelah pelatihan awal dilakukan dengan top model, kami membuka kembali sejumlah lapisan akhir dari model dasar (misalnya, lapisan setelah ke-$X$, untuk melakukan pelatihan menyeluruh (end-to-end) bersama top model. Proses ini dilakukan agar model dapat menyesuaikan bobot fitur tingkat tinggi terhadap karakteristik spesifik dataset \textit{O. javanicus}. Proses fine-tuning ini dilakukan dengan parameter yang telah ditentukan, yaitu jumlah epoch, ukuran batch, dan jumlah langkah per epoch.
+\end{itemize}
+
+Pendekatan ini terbukti efektif dalam mengoptimalkan kinerja klasifikasi pada dataset target dengan jumlah data terbatas, serta secara signifikan mengurangi beban komputasi dibandingkan dengan pelatihan model dari awal.
+
+\subsubsection{VGG16}
+\textbf{VGG16} merupakan salah satu arsitektur dari \textit{Convolutional Neural Network} (CNN) yang dikembangkan oleh kelompok riset Visual Geometry Group (VGG) di University of Oxford. Arsitektur ini diperkenalkan oleh Karen Simonyan dan Andrew Zisserman pada tahun 2014 melalui makalah berjudul \textit{"Very Deep Convolutional Networks for Large-Scale Image Recognition"}. Angka "16" pada VGG16 mengacu pada jumlah total lapisan dengan bobot yang dapat dilatih, yang terdiri dari 13 lapisan konvolusional dan 3 lapisan fully connected.
+
+Struktur arsitektur VGG16 secara umum dapat dijelaskan sebagai berikut:
+
+\begin{itemize}
+\item \textbf{Lapisan Input:} Ukuran input adalah $(224\times 224\times 3),$ 
+yang merepresentasikan gambar RGB beresolusi $224\times 224$ piksel.
+\item \textbf{Blok Konvolusi 1:} Dua buah lapisan konvolusional dengan 64 filter berukuran \(3 \times 3\), padding 'same', dan fungsi aktivasi ReLU, diikuti oleh lapisan max pooling berukuran \(2 \times 2\) dengan \textit{stride} 2.
+\item \textbf{Blok Konvolusi 2:} Dua buah lapisan konvolusional dengan 128 filter berukuran \(3 \times 3\), padding 'same', ReLU, diikuti oleh max pooling \(2 \times 2\), \textit{stride} 2.
+\item \textbf{Blok Konvolusi 3:} Tiga buah lapisan konvolusional dengan 256 filter berukuran \(3 \times 3\), padding 'same', ReLU, diikuti oleh max pooling \(2 \times 2\), \textit{stride} 2.
+\item \textbf{Blok Konvolusi 4:} Tiga buah lapisan konvolusional dengan 512 filter, ukuran filter \(3 \times 3\), padding 'same', ReLU, diikuti oleh max pooling \(2 \times 2\), \textit{stride} 2.
+\item \textbf{Blok Konvolusi 5:} Tiga buah lapisan konvolusional dengan 512 filter, ukuran \(3 \times 3\), padding 'same', ReLU, diikuti oleh max pooling \(2 \times 2\), \textit{stride} 2.
+\item \textbf{Flatten:} Peta fitur hasil akhir dari blok konvolusi (berukuran \(7 \times 7 \times 512\)) diratakan menjadi vektor 1D dengan panjang 25088.
+\item \textbf{Fully Connected Layers:} 
+\begin{itemize}
+    \item Lapisan pertama: input 25088 neuron, output 4096 neuron, aktivasi ReLU.
+    \item Lapisan kedua: input 4096 neuron, output 4096 neuron, aktivasi ReLU.
+    \item Lapisan ketiga: input 4096 neuron, output 1000 neuron (jumlah kelas pada ILSVRC), aktivasi \textit{softmax}.
+\end{itemize}
+\end{itemize}
+
+%\textbf{VGG16} adalah bagian dari arsitektur \textit{Convolution Neural Network} (CNN) dalam Yang dikembangkan oleh Visual Geometry Group (VGG) dan diperkenalkan oleh Karen Simonyan bersama Andrew Zisserman pada tahun 2014 dalam paper berjudul "\textit{Very Deep Convolutional Networks for Large-Scale Image Recognition}". Sementara angka 16 yaitu: 13 \textit{convolutional layers} dan 3 \textit{fully connected layers}. Berdasarkan arsitektur VGG16, ilustrasinya dijelaskan secara rinci di bawah ini:
+%\begin{itemize}
+%    \item Lapisan input, Dimensi input: (224, 224, 3). 
+%    \item Lapisan Konvolusional (64 filter, ukuran filter 3×3, same padding).
+%    \item Lapisan Max Pooling (2×2, langkah 2).
+%    \item Lapisan Konvolusi (128 filter, ukuran filter 3×3, padding 'same'). 
+%    \item Lapisan Max Pooling (2×2, stride 2). Lapisan max-pooling dengan ukuran pool 2×2 dan stride 2.
+%    \item Lapisan Konvolusi (256 filter, ukuran filter 3×3, padding 'same').
+%    \item Lapisan Max Pooling (2×2, langkah 2).
+%    \item Susunan Lapisan Konvolusional dan Max Pooling: Dua lapisan konvolusional tambahan setelah susunan sebelumnya.
+ %   \item Flattening. Ratakan (flatten) peta fitur output (7x7x512) menjadi sebuah vektor berukuran 25088.
+ %   \item Lapisan Fully Connected. Tiga lapisan fully connected dengan aktivasi ReLU. Lapisan pertama dengan ukuran input 25088 dan output 4096. Lapisan kedua dengan ukuran input 4096 dan output 4096. Lapisan ketiga dengan ukuran input 4096 dan output 1000, sesuai dengan 1000 kelas dalam tantangan ILSVRC. Aktivasi Softmax diaplikasikan pada output lapisan fully connected ketiga untuk klasifikasi.
+%\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=3 cm]{Images/Mind-VGG16-architecture.jpg}
+\caption{Visual Geometry Group (VGG16) Architecture.
+\label{fig: MobileNetV2}}
+\end{figure}
+
+\subsection{Computational Environment}
+Dalam proyek penelitian ini, proses pembentukan model deep learning dan transfer learning menggunakan fasilitas DIKTI AI Center yang memanfaatkan teknologi NVIDIA dengan kapasitas komputasi 25 PetaFLOPS. Fasilitas superkomputer ini terdiri dari lima node mesin server NVIDIA DGX A100. Setiap node dilengkapi dengan dual AMD Rome CPU dan delapan unit pengolah grafis (GPU) yang memiliki kemampuan multi-instance GPU (MIG): 4 GPU @ 40GB, Processor 8 Core, dan RAM 64 GB. Setiap node server juga dilengkapi dengan RAM 1TB dan penyimpanan NVME berkecepatan tinggi 5TB, dengan total daya pemrosesan 5 TeraFLOPS per node. Node-node superkomputer tersebut saling terhubung melalui jaringan berkecepatan tinggi Mellanox, dengan tautan NVLink antara kelima unit, yang masing-masing memiliki 8 Core GPU. Pengadaan fasilitas superkomputer DIKTI AI Center ini bertujuan untuk memperkuat pembentukan talenta AI nasional melalui berbagai pelatihan dan kegiatan pendidikan yang dilakukan bekerja sama dengan industri. Fasilitas ini dapat dimanfaatkan oleh institusi pendidikan, termasuk Universitas Hasanuddin, untuk mempermudah pengembangan inovasi teknologi AI guna memenuhi kebutuhan industri dan masyarakat. Perangkat lunak yang digunakan meliputi Jupiter Notebook, TensorFlow, Roboflow, dan OpenCV versi CUDA 11.4.
+
+
+\subsection{Evaluation Metrics}
+Setelah proses fitting model, kinerja model dievaluasi menggunakan dua skenario berdasarkan \textbf{Confusion Matrix} dan \textit{Receiver Operating Characteristic - Area Under the Curve (ROC-AUC)}. Secara umum untuk mengukur kinerja sistem khususnya pada Machine Learning penggunaan \textbf{Confusion Matrix} menjadi pilihan banyak peneliti karena dapat menyajikan berbagai metrik yang memberikan gambaran yang sangat detail tentang bagaimana model melakukan kelasifikasi, termasuk jenis kesalahan yang dilakukan oleh model. Tabel \textbf{Confusion Matrix} dapat dilihat pada gambar \ref{fig: confusion}.
+
+\begin{figure}[h]
+\includegraphics[width=5 cm]{Images/Confusion Matrix.png}
+\caption{Confusion Matrix.}
+\label{fig: confusion}
+\end{figure}  
+
+\textbf{Confusion Matrix} bekerja dengan cara mengelompokkan hasil prediksi kedalam empat kategori yaitu: 
+TP, TN, FN, FP. Semua nilai tersebut disusun dalam bentuk matriks. Adapun formula secara umum dituliskan sebagai berikut: 
+
+\begin{table}[]
+\begin{tabular}{cccc}
+    &    & \multicolumn{2}{c}{Actual class} \\ \cline{3-4} 
+    &    & +1                           & -1     \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Prediction\\ class\end{tabular}} 
+    & +1 & TP = $\sum_i \delta(+1,+1)$  & FP = $\sum_i \delta(+1,-1)$     \\ \cline{2-4} 
+    & -1 & FN = $\sum_i \delta(-1,+1)$  & TN = $\sum_i \delta(-1,-1)$     \\ \cline{2-4} 
+\end{tabular}
+\end{table}
+%%%%%%
+
+Untuk mengevaluasi performa model klasifikasi, kami menggunakan beberapa metrik evaluasi standar yang dirumuskan menggunakan \textit{fungsi delta Kronecker}, \(\delta_{a,b}\), yang didefinisikan sebagai berikut:
+
+\[
+\delta{(y_i,\hat{y_i})} =
+\begin{cases}
+1, & \text{jika } y_i = \hat{y_i}, \\
+0, & \text{jika } y_i \ne \hat{y_i}.
+\end{cases}
+\]
+dengan 
+\begin{itemize}
+  \item \(y_i\) adalah label sebenarnya untuk sampel ke-\(i\),
+  \item \(\hat{y}_i\) adalah label hasil prediksi model untuk sampel ke-\(i\),
+  \item \(n\) adalah jumlah total sampel, dan
+  \item \( \mathcal{K} = \{1, 2, \dots, k\}\) adalah himpunan label kelas.
+\end{itemize}
+
+\paragraph{1. Accuracy (Akurasi)} mengukur proporsi prediksi label yang benar terhadap seluruh jumlah sampel:
+
+\[
+\text{Accuracy} = \frac{1}{n} \sum_{i=1}^{n} \{ \delta(1,1)+\delta(0,0) \}
+\]
+
+\paragraph{2. Precision (Presisi) per Kelas \(k\)} adalah rasio antara jumlah prediksi benar untuk kelas \(k\) terhadap semua prediksi yang diberikan sebagai kelas \(k\):
+
+\[
+\text{Precision}_k = \frac{\sum_{i=1}^{n} \delta_{y_i, k} \cdot \delta_{\hat{y}_i, k}}{\sum_{i=1}^{n} \delta_{\hat{y}_i, k}}
+\]
+
+\paragraph{3. Recall (Sensitivitas) per Kelas \(k\)} adalah rasio antara jumlah prediksi benar untuk kelas \(k\) terhadap semua sampel yang benar-benar berasal dari kelas \(k\):
+
+\[
+\text{Recall}_k = \frac{\sum_{i=1}^{n} \delta_{y_i, k} \cdot \delta_{\hat{y}_i, k}}{\sum_{i=1}^{n} \delta_{y_i, k}}
+\]
+
+\paragraph{4. F1-Score per Kelas \(k\)} merupakan rata-rata harmonik dari Precision dan Recall:
+
+\[
+\text{F1}_k = 2 \cdot \frac{\text{Precision}_k \cdot \text{Recall}_k}{\text{Precision}_k + \text{Recall}_k}
+\]
+
+\paragraph{5. Macro-Averaged Metrics} digunakan untuk menghitung metrik rata-rata antar kelas:
+
+\[
+\text{Macro-F1} = \frac{1}{K} \sum_{k=1}^{K} \text{F1}_k
+\]
+
+Pendekatan ini memungkinkan perhitungan yang konsisten dan elegan dalam pengukuran performa klasifikasi, serta memberikan fleksibilitas dalam menangani klasifikasi multi-kelas.
+
+
+%%%%%%
+
+
+\[
+\text{Accuracy} = \frac{1}{n} \sum_{i=1}^{n} \delta_{y_i, \hat{y}_i}
+\]
+\[
+\text{Precision}_k = \frac{\sum_{i=1}^{n} \delta_{y_i, k} \cdot \delta_{\hat{y}_i, k}}{\sum_{i=1}^{n} \delta_{\hat{y}_i, k}}, \quad 
+\]
+\[
+\text{Recall}_k = \frac{\sum_{i=1}^{n} \delta_{y_i, k} \cdot \delta_{\hat{y}_i, k}}{\sum_{i=1}^{n} \delta_{y_i, k}}
+\]
+
+\begin{description}
+    \item \[Sensitivity \text{ }(recall) = \frac{TP}{TP+FN}\]
+    \item \[Accuracy = \frac{TP+TN}{TP+FN+FP+FN}\] 
+    \item \[Precision = \frac{TP}{TP+FP}\]
+    \item \[F_n-Score = (n+1)\times\frac{Precision \times Recall}{Precision + Recall}\]
+\end{description}
+
+Formula notation:
+\begin{itemize}
+    \item True Positive \textit{(TP)},$\delta_{1,1}$: Prediksi benar (positif) sesuai data aktual.
+    \item True Negative \textit{(TN)}, $\delta_{0.0}$: Prediksi benar (negatif) sesuai data aktual.
+    \item False Positive \textit{(FP)}, $\delta_{0,1}$: Prediksi salah (positif, padahal aktual negatif).
+    \item False Negative \textit{(FN)}$\delta_{1,0}$: Prediksi salah (negatif, padahal aktual positif).
+\end{itemize}
+
+Selain \textbf{Confusion Matrix} dalam penelitian ini kami juga menggunakan Receiver Operating Characteristic - Area Under the Curve (ROC-AUC). ROC menggambarkan performa model klasifikasi biner (Binery Classifier). Yaitu dengan membandingkan antara \textit{True Positive Rate} (TPR/Recall) dan \textit{False Positive Rate} (FPR). Sementara AUC merangkum kinerja dalam bentuk skala yang bergerak dibawah Curva ROC dengan ranges nilai dari 0 hingga 1. Semakin mendekati nilai 1 maka model semakin bagus. Curva tersebut digambarkan dalam Figure \ref{fig: AUC-ROC}. 
+        
+\begin{figure}[h]
+    \includegraphics[width=6 cm]{Images/AUC-ROC.png}
+    \caption{The AUC-ROC curve}
+    \label{fig: AUC-ROC}
+\end{figure}
+%\texttt{enumerate} environment
+Pada kasus identifikasi dan kelasifikasi \textit{O. celebensis} dan \textit{O. javanicus} performa model yang kami bangun yang diukur dari hasil perbandingan antara \textit{True Positive Rate} (TPR/Recall) dan \textit{False Positive Rate} (FPR) menunjukkan peningkatan yang signifikan, termasuk AUC juga memperlihatkan kurva yang mendekati nilai 1 yang menggambarkan model memiliki performa yang sangat baik, artinya sistem akan memberikan jawaban dengan tingkat akurasi yang sangat baik dalam hal identifikasi dan kelasifikasi.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Dalam rangkaian penelitian ini, beberapa komponen telah kami modifikasi untuk mencapai hasil yang lebih akurat, efisien dan efektive. Setelah melewati pengujian dengan \textbf{Confusion Matrix} dan Receiver Operating Characteristic - Area Under the Curve (ROC-AUC) Model yang kami bangun mengalami peningkatan performa, model tersebut dapat kita lihat pada Figure \ref{fig: diagram-system}. 
+
+\begin{center}
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/Modify-Architecture01.jpg}
+\caption{A pre-trained model using Transfer Learning.}
+\label{fig: TF-pre-trained _model}
+\end{figure}
+\end{center}
+
+Dapat dilihat tahap input atau \textit{Pre-processing} dimana data melewati beberapa proses sebulum masuk proses identifikasi dan kelasifikasi \textit{Transfer Learning} yaitu: \textit{Padding}, \textit{Resize(w,h)}, \textit{Normalization (pixel/255)}, \textit{Height Shift}, \textit{Width Shift}, dan \textit{Rotate} seperti yang telah kami jelaskan sebelumnya, proses ini akan mempermudah kinerja model yang kami bangun, karena data yang melewati proses ini akan disesuikan dengan model pre-trained yang kami bangun dalam transfer learning, sehingga model bekerja lebih ringan semua data dapat trained (dilatih) dengan baik serta menjaga konsistensi dengan meminimalisir kecacatan data dan Transfer Learning akan menghasilkan Pefroma yang sangat baik yang tergambar melalui nilai akurasi yang dihasilkan.
+
+%\begin{figure}[h]
+%\includegraphics[width=7 cm]{Images/Modified-MobileNetV2-Architecture.jpg}
+%\caption{Modified MobileNetV2 Architecture.
+%\label{fig: Modified-MobileNetV2-Architecture}}
+%\end{figure}
+
+\subsection*{Confusion Matrix with Kronecker Delta}
+
+Untuk klasifikasi biner (\(y_i, \hat{y}_i \in \{0,1\}\)), komponen confusion matrix dapat dirumuskan secara formal menggunakan fungsi delta Kronecker \(\delta_{a,b}\), yaitu:
+
+\[
+\delta_{a,b} =
+\begin{cases}
+1, & \text{jika } a = b \\
+0, & \text{jika } a \ne b
+\end{cases}
+\]
+
+Didefinisikan untuk seluruh sampel \(i = 1, 2, \dots, n\), maka:
+
+\begin{align*}
+\text{TP} &= \sum_{i=1}^{n} \delta_{y_i, 1} \cdot \delta_{\hat{y}_i, 1}, \\
+\text{FP} &= \sum_{i=1}^{n} \delta_{y_i, 0} \cdot \delta_{\hat{y}_i, 1}, \\
+\text{FN} &= \sum_{i=1}^{n} \delta_{y_i, 1} \cdot \delta_{\hat{y}_i, 0}, \\
+\text{TN} &= \sum_{i=1}^{n} \delta_{y_i, 0} \cdot \delta_{\hat{y}_i, 0}.
+\end{align*}
+
+Dengan menggunakan komponen tersebut, metrik evaluasi dapat diturunkan sebagai berikut:
+
+\begin{align*}
+\text{Accuracy} &= \frac{\text{TP} + \text{TN}}{n}, \\
+\text{Precision} &= \frac{\text{TP}}{\text{TP} + \text{FP}}, \\
+\text{Recall} &= \frac{\text{TP}}{\text{TP} + \text{FN}}, \\
+\text{F1-Score} &= 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}.
+\end{align*}
+
+\subsection*{Evaluation Metrics using Confusion Matrix with Kronecker Delta for Multi-Class Classification}
+
+Let \( y_i \in \{1, \dots, C\} \) be the ground truth label and \( \hat{y}_i \in \{1, \dots, C\} \) be the predicted label for sample \( i = 1, \dots, n \). Define the Kronecker delta function as:
+
+\[
+\delta_{a,b} =
+\begin{cases}
+1, & \text{if } a = b \\
+0, & \text{otherwise}
+\end{cases}
+\]
+
+The confusion matrix element at row \( j \) and column \( k \) is defined as:
+
+\[
+M_{j,k} = \sum_{i=1}^{n} \delta_{y_i, j} \cdot \delta_{\hat{y}_i, k}
+\]
+
+For each class \( c \in \{1, \dots, C\} \), the evaluation components are:
+
+\begin{align*}
+TP_c &= M_{c,c}, \\
+FP_c &= \sum_{\substack{j=1 \\ j \ne c}}^{C} M_{j,c}, \\
+FN_c &= \sum_{\substack{k=1 \\ k \ne c}}^{C} M_{c,k}, \\
+TN_c &= \sum_{\substack{j=1 \\ j \ne c}}^{C} \sum_{\substack{k=1 \\ k \ne c}}^{C} M_{j,k}
+\end{align*}
+
+The precision, recall, and F1-score for each class \( c \) are:
+
+\begin{align*}
+\text{Precision}_c &= \frac{TP_c}{TP_c + FP_c}, \\
+\text{Recall}_c &= \frac{TP_c}{TP_c + FN_c}, \\
+\text{F1}_c &= 2 \cdot \frac{\text{Precision}_c \cdot \text{Recall}_c}{\text{Precision}_c + \text{Recall}_c}
+\end{align*}
+
+Macro-averaged metrics:
+
+\[
+\text{Macro-Precision} = \frac{1}{C} \sum_{c=1}^{C} \text{Precision}_c,\quad
+\text{Macro-Recall} = \frac{1}{C} \sum_{c=1}^{C} \text{Recall}_c,\quad
+\text{Macro-F1} = \frac{1}{C} \sum_{c=1}^{C} \text{F1}_c
+\]
+
+Micro-averaged metrics:
+
+\begin{align*}
+\text{Micro-Precision} &= \frac{\sum_{c=1}^{C} TP_c}{\sum_{c=1}^{C} (TP_c + FP_c)}, \\
+\text{Micro-Recall} &= \frac{\sum_{c=1}^{C} TP_c}{\sum_{c=1}^{C} (TP_c + FN_c)}, \\
+\text{Micro-F1} &= 2 \cdot \frac{\text{Micro-Precision} \cdot \text{Micro-Recall}}{\text{Micro-Precision} + \text{Micro-Recall}}
+\end{align*}
+
+
+\subsection*{Performance Evaluation Metrics for Multi-Class Classification}
+
+Evaluasi performa dalam masalah klasifikasi multi-kelas biasanya dilakukan menggunakan \textit{confusion matrix}, yang merupakan tabel persegi berdimensi $C \times C$, di mana $C$ adalah jumlah kelas. Setiap elemen $M_{ij}$ dari confusion matrix menyatakan jumlah instance dari kelas $i$ (kelas sebenarnya) yang diklasifikasikan sebagai kelas $j$ (kelas prediksi).
+
+Sebagai contoh, confusion matrix untuk 3 kelas dapat divisualisasikan sebagai berikut:
+
+\begin{center}
+% \includegraphics[width=0.6\textwidth]{matriconfusion_matrix_example.png}
+\end{center}
+
+Untuk mendefinisikan metrik evaluasi seperti \textit{True Positive} (TP), \textit{False Positive} (FP), \textit{False Negative} (FN), dan \textit{True Negative} (TN) dalam konteks multi-kelas, kita dapat menggunakan fungsi Kronecker, $\delta(x, y)$, yang didefinisikan sebagai:
+
+\begin{equation}
+\delta(x, y) = 
+\begin{cases}
+1, & \text{jika } x = y \\
+0, & \text{jika } x \ne y
+\end{cases}    
+\end{equation}
+\[
+\]
+
+Dengan notasi tersebut, maka jumlah True Positive untuk kelas $k$ dapat dihitung sebagai:
+\[
+TP_k = \sum_{i=1}^{N} \delta(y_i, k) \cdot \delta(\hat{y}_i, k)
+\]
+di mana $y_i$ adalah label sebenarnya, dan $\hat{y}_i$ adalah label prediksi untuk sampel ke-$i$.
+
+Sebaliknya, metrik lainnya dapat dituliskan sebagai:
+\begin{align*}
+FP_k &= \sum_{i=1}^{N} (1 - \delta(y_i, k)) \cdot \delta(\hat{y}_i, k) \\
+FN_k &= \sum_{i=1}^{N} \delta(y_i, k) \cdot (1 - \delta(\hat{y}_i, k)) \\
+TN_k &= \sum_{i=1}^{N} (1 - \delta(y_i, k)) \cdot (1 - \delta(\hat{y}_i, k))
+\end{align*}
+
+\subsubsection*{Metrik Evaluasi Turunan}
+Dari komponen-komponen di atas, kita dapat menghitung beberapa metrik performa umum sebagai berikut:
+
+\begin{itemize}
+  \item \textbf{Precision} untuk kelas $k$:
+  \[
+  \text{Precision}_k = \frac{TP_k}{TP_k + FP_k}
+  \]
+  \item \textbf{Recall} untuk kelas $k$:
+  \[
+  \text{Recall}_k = \frac{TP_k}{TP_k + FN_k}
+  \]
+  \item \textbf{F1-Score} untuk kelas $k$:
+  \[
+  \text{F1}_k = 2 \cdot \frac{\text{Precision}_k \cdot \text{Recall}_k}{\text{Precision}_k + \text{Recall}_k}
+  \]
+  \item \textbf{Accuracy} keseluruhan:
+  \[
+  \text{Accuracy} = \frac{1}{N} \sum_{i=1}^{N} \delta(y_i, \hat{y}_i)
+  \]
+\end{itemize}
+
+Metrik-metrik ini kemudian dapat dirata-ratakan dengan pendekatan \textit{macro average} atau \textit{weighted average}, tergantung pada distribusi kelas.
