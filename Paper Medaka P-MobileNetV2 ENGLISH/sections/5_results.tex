@@ -1,0 +1,141 @@
+%\subsection{Captured Images}
+\subsection{Image Pre-processing}
+
+The medaka fish image data that was successfully captured consisted of 661 and 886 images for Oryzias celebensis and Oryzias javanicus, respectively. All the Medaka fish images were taken from an aquarium containing various types of small freshwater fish in varying numbers located in the Biotechnology Laboratory, Department of Biology, Faculty of Mathematics and Natural Sciences, Hasanuddin University. An example of captured images in four different background colors is depicted in Fig.~\ref{fig: Oryzias}.
+
+\begin{figure}[h]
+\includegraphics[width=14cm]{Images/Oryzias.png}
+\caption{Captured Oryzias in four different background colors.
+\label{fig: Oryzias}}
+\end{figure}
+
+%\subsection{Rescaling Images}
+After obtaining the image dataset, each image was padded to achieve a 1:1 aspect ratio by adding pixels to the shorter side using colors similar to the image's edge. This technique is rarely, if ever, used by other researchers, making it a unique approach in this study.
+After adjusting the images to a 1:1 ratio, they were then resized to 224 x 224 pixels. The results can be seen in Figure \ref{fig: padding}.
+
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/Padding.png}
+\caption{Comparison of Non-Padding and Padding Resize mechanisms.
+\label{fig: padding}}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experiment Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The performance comparison of each model on both padded and non-padded datasets is presented in Table \ref{tab: perform}, highlighting the differences in accuracy and effectiveness between the two approaches.
+
+\begin{table}[H]
+\caption{Accuracy padding and non-padding Table.\label{tab: perform}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\newcolumntype{C}{>{\centering\arraybackslash}X}
+		\begin{tabularx}{\fulllength}{CCCCCC}
+			\toprule
+\textbf{Model}& \textbf{Image}& \textbf{Sensitivity}& \textbf{Precision} & \textbf{F1 Score} & \textbf{Accuracy}\\
+			\midrule
+\multirow[m]{1}{*}{MobileNetV2}	& Non-padding& 98.2 & 93.8	& 96 & 96.95\\
+                   \midrule
+\multirow[m]{1}{*}{MobileNetV2}  & padding	& 96.3	& 87.6	& 91.93& 93.9\\
+                   \midrule
+\multirow[m]{1}{*}{P-MobileNetV2} & Non-padding& 79& 98.4	& 87.6	& 89\\
+                  \midrule
+\multirow[m]{1}{*}{P-MobileNetV2} & padding	&98.46 &98.46	&98.46	&98.78\\
+                   \midrule
+\multirow[m]{1}{*}{VGG16} & Non-padding	& 95.3	& 93.5	& 94.5	& 95.7\\
+                   \midrule
+\multirow[m]{1}{*}{VGG16}   & padding	& 97.2	& 96.2	& 81	& 87\\
+                   \midrule
+\multirow[m]{1}{*}{P-VGG16} & Non-padding	& 63.3	& 98.4	& 77	& 76\\
+                   \midrule
+\multirow[m]{1}{*}{P-VGG16} & padding	&92.7 &98.4	&96.3	&96.3\\   
+   \bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+P-MobileNetV2 refers to the model trained using the padded dataset, where images were adjusted to a 1:1 aspect ratio to enhance classification performance and consistency during training.
+
+We have obtained graphical results that compare the ROC accuracy of MobileNetV2 with the modified P-MobileNetV2, along with VGG16 and the modified P-VGG16. These comparisons are clearly shown in the following graph :
+
+\begin{figure}[h]
+\includegraphics[width=12 cm]{Images/Accuracy dan ROC Model MobileNetV2.png}
+\caption{Diagram Accuracy dan ROC Model MobileNetV2.
+\label{fig: diagram Accuracy dan ROC Model MobileNetV2}}
+\end{figure}
+
+The Accuracy and ROC diagrams of the MobileNetV2 model illustrate its performance in classification tasks. The accuracy graph shows the model's learning progress over time, while the ROC (Receiver Operating Characteristic) curve evaluates its ability to distinguish between classes, highlighting its sensitivity and specificity at various thresholds.
+
+
+\begin{figure}[h]
+\includegraphics[width=12 cm]{Images/Accuracy dan ROC Model P-MobileNetV2.png}
+\caption{Diagram Accuracy dan ROC Model P-MobileNetV2.
+\label{fig: diagram Accuracy dan ROC Model P-MobileNetV2}}
+\end{figure}
+
+The "Accuracy and ROC Diagram of P-MobileNetV2 Model" illustrates the model's performance metrics that were modified, including classification accuracy and the Receiver Operating Characteristic (ROC) curve, evaluating its predictive capability.
+
+\begin{figure}[h]
+\includegraphics[width=12 cm]{Images/Accuracy dan ROC Model VGG16.png}
+\caption{Diagram Accuracy dan ROC Model VGG16.
+\label{fig: diagram Accuracy dan ROC Model VGG16}}
+\end{figure}
+
+The diagram presents the accuracy and Receiver Operating Characteristic (ROC) curve of the VGG16 model, illustrating its classification performance and ability to distinguish between classes based on true positive and false positive rates during the evaluation process.
+
+\begin{figure}[h]
+\includegraphics[width=12 cm]{Images/Accuracy dan ROC P-VGG16.png}
+\caption{diagram Accuracy dan ROC Model P-VGG16.
+\label{fig: diagram Accuracy dan ROC P-VGG16}}
+\end{figure}
+
+The diagram displays the accuracy and Receiver Operating Characteristic (ROC) curve of the modified P-VGG16 model, highlighting its improved classification performance and enhanced capability to differentiate between classes based on true positive and false positive rates during the evaluation phase.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this research, we successfully developed a MobileNetV2 architecture model using transfer learning and dataset padding to classify \textit{Oryzias Celebensis} and \textit{Oryzias Javanicus}. We added several layers to the Classification Layer consisting of 5 layers: Flatten, two Dense layers with ReLU activation functions (1024 and 512 neurons respectively), a Dropout layer with 0.2 rate, and a final Dense layer with two neurons using SoftMax activation. This modification allowed us to leverage features learned by MobileNetV2 with ImageNet weights while adapting the model for our specific classification task.
+
+The results demonstrate that this approach effectively enhances classification performance. The additional dense layers serve as feature extraction and classifier layers, mapping the features extracted by MobileNetV2 into the two target classes Oryzias celebensis and Oryzias javanicus. The Dropout layer (rate 0.2) helps prevent overfitting, ensuring the model maintains strong generalisation on new data. The SoftMax activation function in the final dense layer ensures the model's output can be interpreted as class probabilities, simplifying the final result interpretation. This structure improves accuracy while maintaining robustness, making the model reliable for distinguishing between the two fish species.
+
+Further discussion reveals that using MobileNetV2 as the base model offers several advantages. (1) MobileNetV2 is specifically designed for mobile devices, making it lightweight and efficient for deployment in mobile applications or resource-constrained environments. (2) By employing dataset padding and transfer learning, we leveraged the pre-trained knowledge of MobileNetV2 from large-scale datasets, significantly accelerating and simplifying the model training process. This approach allows the model to achieve high accuracy with limited computational resources. Additionally, the added dense layers enhance feature extraction and classification, while the dropout layer ensures robustness against overfitting. The SoftMax activation in the final layer provides interpretable probability outputs for each target class (\textit{Oryzias celebensis} and \textit{Oryzias javanicus}). The complete architecture of the developed model is illustrated in Figure \ref{fig: Modified-MobileNetV2-Architecture}.
+
+\begin{figure}[h]
+\includegraphics[width=6 cm]{Images/Modified-MobileNetV2-Architecture.jpg}
+\caption{Modified MobileNetV2 Architecture.
+\label{fig: Modified-MobileNetV2-Architecture}}
+\end{figure}
+
+We have evaluated the performance of the MobileNetV2 architecture using additional layers configured as described in the system overview, and applied padding to the dataset in order to classify the fish species \textit{Oryzias celebensis} and \textit{Oryzias javanicus} using a limited dataset. The evaluation was conducted using tests based on the confusion matrix and the ROC-AUC curve, utilizing two types of dataset: a nonpadded dataset and a padded dataset. Two model architectures were used for comparison, MobileNetV2 and VGG16. The results show that MobileNetV2 performed better on the padded dataset compared to its performance on the nonpadded dataset, as well as compared to VGG16 on both dataset types.
+
+%In this evaluation, we utilized the Kubeflow Dikti AI platform, which offers computing specifications as detailed in Table \ref{tab: spectab}. This platform provided the necessary environment for efficient model training and testing. For software tools, we employed Python as the main programming language, along with OpenCV for image processing, TensorFlow for building and training deep learning models, and Jupyter Notebook as the development interface. Together, these tools supported the implementation and evaluation of our classification models for \textit{Oryzias celebensis} and \textit{Oryzias javanicus} using both padded and non-padded datasets.
+  
+%\unskip
+
+%\begin{table}[H]
+%\caption{Gap description in building research motivation.\label{tab: spectab}}
+%	\begin{adjustwidth}{-\extralength}{5mm}
+%		\newcolumntype{C}{>{\centering\arraybackslash}X}
+%		\begin{tabularx}{\fulllength}{m{5cm} m{3cm} m{8cm}}
+%			\toprule
+%            \textbf{No.}& \textbf{Item}& \textbf{SubItem}\\
+%			\midrule
+%\multirow[m]{0.5}{*}{1} & Software & 4 x GPU @ 40 GB,
+%                                     Processor 8 Core,
+%                                     Ram 64 GB	\\
+%                   \midrule
+%\multirow[m]{0.5}{*}{2} & Hardware & Python,
+%                                    OpenCV,
+%                                    TensorFlow,
+%                                    Jupiter Notebook \\
+%                     \bottomrule
+%		\end{tabularx}
+%	\end{adjustwidth}
+%\end{table}
+
+
+
+
+
+%Authors should discuss the results and how they can be interpreted from the perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
