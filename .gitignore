@@ -19,7 +19,6 @@
 .auto/
 *.dvi
 *.xdv
-*.pdf
 *.ps
 *.nav
 *.snm
