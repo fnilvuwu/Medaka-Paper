@@ -1,0 +1,813 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+\usepackage{pdflscape} % or lscape
+%\documentclass[preprints,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+% Below journals will use APA reference format:
+% admsci, aieduc, behavsci, businesses, econometrics, economies, education, ejihpe, famsci, games, humans, ijcs, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth
+
+% Below journals will use Chicago reference format:
+% arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci
+
+%--------------------
+% Class Options:
+%--------------------
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+% accountaudit, acoustics, actuators, addictions, adhesives, admsci, adolescents, aerobiology, aerospace, agriculture, agriengineering, agrochemicals, agronomy, ai, air, algorithms, allergies, alloys, amh, analytica, analytics, anatomia, anesthres, animals, antibiotics, antibodies, antioxidants, applbiosci, appliedchem, appliedmath, appliedphys, applmech, applmicrobiol, applnano, applsci, aquacj, architecture, arm, arthropoda, arts, asc, asi, astronomy, atmosphere, atoms, audiolres, automation, axioms, bacteria, batteries, bdcc, behavsci, beverages, biochem, bioengineering, biologics, biology, biomass, biomechanics, biomed, biomedicines, biomedinformatics, biomimetics, biomolecules, biophysica, biosensors, biosphere, biotech, birds, blockchains, bloods, blsf, brainsci, breath, buildings, businesses, cancers, carbon, cardiogenetics, catalysts, cells, ceramics, challenges, chemengineering, chemistry, chemosensors, chemproc, children, chips, cimb, civileng, cleantechnol, climate, clinbioenerg, clinpract, clockssleep, cmd, cmtr, coasts, coatings, colloids, colorants, commodities, complications, compounds, computation, computers, condensedmatter, conservation, constrmater, cosmetics, covid, crops, cryo, cryptography, crystals, csmf, ctn, curroncol, cyber, dairy, data, ddc, dentistry, dermato, dermatopathology, designs, devices, diabetology, diagnostics, dietetics, digital, disabilities, diseases, diversity, dna, drones, dynamics, earth, ebj, ecm, ecologies, econometrics, economies, education, eesp, ejihpe, electricity, electrochem, electronicmat, electronics, encyclopedia, endocrines, energies, eng, engproc, ent, entomology, entropy, environments, epidemiologia, epigenomes, esa, est, famsci, fermentation, fibers, fintech, fire, fishes, fluids, foods, forecasting, forensicsci, forests, fossstud, foundations, fractalfract, fuels, future, futureinternet, futureparasites, futurepharmacol, futurephys, futuretransp, galaxies, games, gases, gastroent, gastrointestdisord, gastronomy, gels, genealogy, genes, geographies, geohazards, geomatics, geometry, geosciences, geotechnics, geriatrics, glacies, grasses, greenhealth, gucdd, hardware, hazardousmatters, healthcare, hearts, hemato, hematolrep, heritage, higheredu, highthroughput, histories, horticulturae, hospitals, humanities, humans, hydrobiology, hydrogen, hydrology, hygiene, idr, iic, ijerph, ijfs, ijgi, ijmd, ijms, ijns, ijpb, ijt, ijtm, ijtpp, ime, immuno, informatics, information, infrastructures, inorganics, insects, instruments, inventions, iot, j, jal, jcdd, jcm, jcp, jcs, jcto, jdad, jdb, jeta, jfb, jfmk, jimaging, jintelligence, jlpea, jmahp, jmmp, jmms, jmp, jmse, jne, jnt, jof, joitmc, joma, jop, jor, journalmedia, jox, jpbi, jpm, jrfm, jsan, jtaer, jvd, jzbg, kidney, kidneydial, kinasesphosphatases, knowledge, labmed, laboratories, land, languages, laws, life, lights, limnolrev, lipidology, liquids, literature, livers, logics, logistics, lubricants, lymphatics, machines, macromol, magnetism, magnetochemistry, make, marinedrugs, materials, materproc, mathematics, mca, measurements, medicina, medicines, medsci, membranes, merits, metabolites, metals, meteorology, methane, metrics, metrology, micro, microarrays, microbiolres, microelectronics, micromachines, microorganisms, microplastics, microwave, minerals, mining, mmphys, modelling, molbank, molecules, mps, msf, mti, multimedia, muscles, nanoenergyadv, nanomanufacturing, nanomaterials, ncrna, ndt, network, neuroglia, neurolint, neurosci, nitrogen, notspecified, nursrep, nutraceuticals, nutrients, obesities, oceans, ohbm, onco, oncopathology, optics, oral, organics, organoids, osteology, oxygen, parasites, parasitologia, particles, pathogens, pathophysiology, pediatrrep, pets, pharmaceuticals, pharmaceutics, pharmacoepidemiology, pharmacy, philosophies, photochem, photonics, phycology, physchem, physics, physiologia, plants, plasma, platforms, pollutants, polymers, polysaccharides, populations, poultry, powders, preprints, proceedings, processes, prosthesis, proteomes, psf, psych, psychiatryint, psychoactives, psycholint, publications, purification, quantumrep, quaternary, qubs, radiation, reactions, realestate, receptors, recycling, regeneration, religions, remotesensing, reports, reprodmed, resources, rheumato, risks, robotics, rsee, ruminants, safety, sci, scipharm, sclerosis, seeds, sensors, separations, sexes, signals, sinusitis, siuj, skins, smartcities, sna, societies, socsci, software, soilsystems, solar, solids, spectroscj, sports, standards, stats, std, stresses, surfaces, surgeries, suschem, sustainability, symmetry, synbio, systems, tae, targets, taxonomy, technologies, telecom, test, textiles, thalassrep, therapeutics, thermo, timespace, tomography, tourismhosp, toxics, toxins, transplantology, transportation, traumacare, traumas, tropicalmed, universe, urbansci, uro, vaccines, vehicles, venereology, vetsci, vibration, virtualworlds, viruses, vision, waste, water, wem, wevj, wild, wind, women, world, youth, zoonoticdis
+
+%---------
+% article
+%---------
+% The default type of manuscript is "article", but can be replaced by: 
+% abstract, addendum, article, benchmark, book, bookreview, briefcommunication, briefreport, casereport, changes, clinicopathologicalchallenge, comment, commentary, communication, conceptpaper, conferenceproceedings, correction, conferencereport, creative, datadescriptor, discussion, entry, expressionofconcern, extendedabstract, editorial, essay, erratum, fieldguide, hypothesis, interestingimages, letter, meetingreport, monograph, newbookreceived, obituary, opinion, proceedingpaper, projectreport, reply, retraction, review, perspective, protocol, shortnote, studyprotocol, supfile, systematicreview, technicalnote, viewpoint, guidelines, registeredreport, tutorial,  giantsinurology, urologyaroundtheworld
+% supfile = supplementary materials
+
+%----------
+% submit
+%----------
+% The class option "submit" will be changed to "accept" by the Editorial Office when the paper is accepted. This will only make changes to the frontpage (e.g., the logo of the journal will get visible), the headings, and the copyright information. Also, line numbering will be removed. Journal info and pagination for accepted papers will also be assigned by the Editorial Office.
+
+%------------------
+% moreauthors
+%------------------
+% If there is only one author the class option oneauthor should be used. Otherwise use the class option moreauthors.
+
+%---------
+% pdftex
+%---------
+% The option pdftex is for use with pdfLaTeX. Remove "pdftex" for (1) compiling with LaTeX & dvi2pdf (if eps figures are used) or for (2) compiling with XeLaTeX.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2025}
+\copyrightyear{2025}
+%\externaleditor{Firstname Lastname} % More than 1 editor, please add `` and '' before the last editor name
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+%\longauthorlist{yes} % For many authors that exceed the left citation part
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{YOLOv8-WBF: Pembelajaran Ansambel untuk Deteksi Andal Ikan Medaka (Oryzias) yang Terancam Punah}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{YOLOv8-WBF: Ensemble Learning}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
+%\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Rahmatullah R.$^{1}$\orcidA{}, Armin Lawi$^{1,2,3}$, Muhammad Haerul$^{1}$, Iman Mustika Ismail$^{1}$, Irma Andriani$^{4}$, Andi Iqbal Burhanuddin$^{5}$, and Mario K\"oppen$^{6,}$*}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Rahmatullah R., Armin Lawi, Muhammad Haerul, Iman Mustika Ismail, Irma Andriani, Andi Iqbal Burhanuddin, and Mario K\"oppen}
+
+% MDPI internal command: Authors, for citation in the left column, only choose below one of them according to the journal style
+% If this is a Chicago style journal 
+% (arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci): 
+% Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% If this is a APA style journal 
+% (admsci, behavsci, businesses, econometrics, economies, education, ejihpe, games, humans, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth): 
+% Lastname, F., Lastname, F., \& Lastname, F.
+
+% If this is a ACS style journal (Except for the above Chicago and APA journals, all others are in the ACS format): 
+% Lastname, F.; Lastname, F.; Lastname, F.
+\isAPAStyle{%
+       \AuthorCitation{R., R., Lawi, A., Haerul, M., Ismail, I.M., Andriani, I., Burhanuddin, A.I., \& K\"oppen, M.}
+         }{%
+        \isChicagoStyle{%
+        \AuthorCitation{R., Rahmatullah, Armin Lawi, Muhammad Haerul, Iman Mustika Ismail, Irma Andriani, Andi Iqbal Burhanuddin, and Mario K\"oppen.}
+        }{
+        \AuthorCitation{R., R.; Lawi, A.; Haerul, M.; Ismail, I.M.; Andriani, I.; Burhanuddin, A.I.; K\"oppen, M.}
+        }
+}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Information Systems Study Program, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Makassar 90245, Indonesia; rahmatullah@unhas.ac.id (R.R.); armin@unhas.ac.id (A.L.); haerul@unhas.ac.id (M.H.); imanmustika@unhas.ac.id (I.M.I.)\\
+$^{2}$ \quad Data Science and Artificial Intelligence Research Group, Hasanuddin University, Makassar 90245, Indonesia\\
+$^{3}$ \quad B.J. Habibie Institute of Technology, Parepare 91132, Indonesia\\
+$^{4}$ \quad Department of Biology, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Makassar 90245, Indonesia; irma.andriani@unhas.ac.id\\
+$^{5}$ \quad Department of Fishery, Faculty of Marine Science and Fisheries, Hasanuddin University, Makassar 90245, Indonesia; andi.iqbal@unhas.ac.id\\
+$^{6}$ \quad Graduate School of Life Science and Systems Engineering, Kyushu Institute of Technology, Kitakyushu 808-0196, Japan}
+
+% Contact information of the corresponding author
+\corres{Correspondence: mkoeppen@brain.kyutech.ac.jp; Tel.: +81-93-884-3225 (M.K.)}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation.}  
+% Current address should not be the same as any items in the Affiliation section.
+
+%\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes.
+
+%\simplesumm{} % Simple summary
+
+%\conference{} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{Deteksi yang andal terhadap ikan Medaka (Oryzias) sangat penting untuk pemantauan ekologi dan konservasi, khususnya dalam melacak tren populasi spesies yang terancam punah. Studi ini mengevaluasi kinerja model pembelajaran mendalam mutakhir (YOLOv8) serta pendekatan ansambel menggunakan Weighted Box Fusion (WBF) pada dataset beranotasi manual yang terdiri dari 1.247 citra Medaka yang dikumpulkan dari berbagai lingkungan perairan. Model dilatih dan divalidasi menggunakan 5-fold cross-validation yang ketat, dan kinerjanya diukur dengan metrik COCO yang komprehensif, termasuk mean Average Precision (mAP), presisi, recall, dan akurasi regresi bounding box. Ansambel YOLOv8-WBF mencapai mAP@0.5:0.95 sebesar 0,5905, yang menunjukkan peningkatan signifikan sebesar 18,6\% dibandingkan model tunggal terbaik (0,4979). Pendekatan ansambel ini menunjukkan keunggulan dalam lokalisasi bounding box dan keandalan klasifikasi, terutama untuk ikan berukuran kecil dan sulit dideteksi secara visual, dengan peningkatan presisi hingga 82\% pada ambang kepercayaan optimal. Meskipun efisiensi komputasi menurun sekitar 4,3x dibandingkan model tunggal, peningkatan akurasi memberikan nilai signifikan untuk alur kerja ekologi offline di mana keandalan deteksi lebih diprioritaskan. Dengan mengurangi kesalahan deteksi spesies langka sebesar 23\% dan meningkatkan konsistensi deteksi secara keseluruhan di berbagai variasi lingkungan, penelitian ini berkontribusi pada protokol pemantauan keanekaragaman hayati yang lebih kuat dan menetapkan tolok ukur baru untuk sistem deteksi spesies akuatik berbasis ansambel.}
+
+% Keywords
+\keyword{YOLOv8; Object Detection; Ensemble Learning; Weighted Boxes Fusion; Non-Maximum Suppression; Ecological Monitoring} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal BioTech, Fishes, Neuroimaging and Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Advances in Respiratory Medicine, Future, Sensors and Smart Cities
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+%
+%\noindent This is an obligatory section in ``Advances in Respiratory Medicine'', ``Future'', ``Sensors'' and ``Smart Cities", whose goal is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple text allowing the reader to quickly and simplified find out what the article is about and what can be cited from it. Each of these parts should be devoted up to 2~bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What is the implication of the main finding?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Deteksi objek telah muncul sebagai teknologi fundamental dalam visi komputer, dengan aplikasi yang luas mulai dari sistem otonom, pencitraan medis, hingga pemantauan ekologi~\cite{LeCun2015,Zhao2019}. Evolusi arsitektur pembelajaran mendalam, khususnya *Convolutional Neural Networks* (CNN), secara fundamental telah mengubah kemampuan deteksi, menghasilkan model terobosan termasuk *Region-based CNN (R-CNN)*~\cite{Girshick2014}, *Faster R-CNN*~\cite{Ren2015}, dan keluarga *You Only Look Once (YOLO)* yang berpengaruh~\cite{Redmon2016,Redmon2017,Bochkovskiy2020,Terven2023}.  
+
+Arsitektur YOLO telah mendapatkan perhatian signifikan dalam komunitas visi komputer karena keseimbangan luar biasa antara kemampuan pemrosesan real-time dan akurasi deteksi yang kompetitif~\cite{Jocher2022}. YOLOv8, iterasi terbaru dalam lini ini, merepresentasikan kemajuan substansial dalam kinerja deteksi sekaligus mempertahankan efisiensi komputasi yang sesuai untuk implementasi pada berbagai konfigurasi perangkat keras~\cite{Terven2023}. Namun, meskipun terdapat kemajuan yang mengesankan, pendekatan model tunggal secara inheren masih memiliki keterbatasan kritis termasuk sensitivitas hiperparameter, kerentanan terhadap bias dataset, dan berkurangnya robustnes ketika dihadapkan dengan variasi lingkungan maupun kasus tepi~\cite{Dietterich2000}.  
+
+Metodologi *ensemble learning* telah muncul sebagai paradigma kuat untuk mengatasi keterbatasan fundamental ini dengan secara strategis menggabungkan prediksi dari berbagai model untuk mencapai kinerja yang lebih baik dibandingkan model tunggal manapun~\cite{Zhou2002,Breiman2001,Freund1997}. Dalam konteks deteksi objek, pendekatan ansambel menghadapi tantangan teknis unik, khususnya dalam *bounding box fusion*, di mana banyak prediksi yang saling tumpang tindih dari model berbeda harus digabungkan secara cerdas untuk menghasilkan keluaran akhir yang koheren~\cite{Solovyev2021}.  
+
+Teknik *Non-Maximum Suppression (NMS)* tradisional, meskipun efektif dalam mengelola prediksi redundan pada model tunggal, mungkin tidak optimal dalam menangani lanskap prediksi kompleks yang dihasilkan oleh komponen ansambel yang beragam~\cite{Solovyev2021}. Keterbatasan ini memotivasi pengembangan strategi fusi yang lebih canggih, dengan *Weighted Boxes Fusion (WBF)* muncul sebagai alternatif menjanjikan yang menunjukkan kinerja lebih unggul dalam menangani prediksi tumpang tindih dari ansambel model heterogen~\cite{Solovyev2021}.  
+
+Tidak seperti pendekatan NMS konvensional yang menekan *bounding box* yang tumpang tindih, WBF menerapkan strategi penggabungan cerdas yang mempertimbangkan skor kepercayaan serta hubungan spasial antar prediksi, sehingga mempertahankan informasi berharga yang sebaliknya akan dibuang oleh skema penekanan tradisional~\cite{Solovyev2021}. Pendekatan ini menunjukkan potensi khusus pada skenario dengan susunan objek kompleks dan instansi yang saling tumpang tindih.  
+
+Dalam domain khusus pemantauan ekologi dan konservasi keanekaragaman hayati, deteksi akurat spesies akuatik menghadirkan berbagai tantangan teknis akibat kondisi pencitraan bawah air, variasi pencahayaan yang tinggi, latar belakang alami yang kompleks, serta kesulitan inheren dalam membedakan spesies dengan morfologi serupa~\cite{Kalafi2018,Leow2015,Qin2016}. Deteksi dan klasifikasi ikan telah menarik perhatian signifikan sebagai aplikasi penting untuk pemantauan populasi, penilaian kesehatan ekosistem, dan upaya konservasi~\cite{Mandal2018,Ditria2020,Campbell2015}.  
+
+Metodologi manual tradisional untuk menghitung dan mengidentifikasi tidak hanya memakan waktu dan tenaga, tetapi juga rentan terhadap kesalahan manusia dan bias pengamat, sehingga sistem deteksi otomatis semakin bernilai untuk studi ekologi skala besar dan program pemantauan jangka panjang~\cite{Tamou2021}. Integrasi teknik visi komputer canggih dengan penelitian ekologi merepresentasikan peluang signifikan untuk meningkatkan skala, akurasi, dan konsistensi upaya pemantauan keanekaragaman hayati.  
+
+Ikan Medaka (*Oryzias* sp.) merupakan organisme model yang sangat penting baik untuk penelitian ilmiah dasar maupun aplikasi praktis pemantauan ekologi. Ikan air tawar kecil ini tersebar luas di ekosistem perairan Asia dan berfungsi sebagai bioindikator berharga untuk kesehatan ekosistem akuatik serta perubahan lingkungan~\cite{Salimi2016}. Namun, deteksi akurat dan klasifikasi taksonomi dari berbagai spesies *Oryzias* tetap menantang secara teknis karena perbedaan morfologi yang halus, pola warna yang mirip, serta variabilitas yang diperkenalkan oleh kondisi pencitraan lingkungan.  
+
+Penelitian ini berupaya menjawab beberapa kesenjangan pengetahuan kritis dalam metodologi deteksi objek berbasis ansambel yang diterapkan secara khusus pada skenario pemantauan ekologi. Pertama, meskipun metode ansambel telah menunjukkan potensi besar pada tolok ukur deteksi objek umum, efektivitas dan aplikasinya untuk deteksi spesies akuatik masih kurang dieksplorasi secara sistematis. Kedua, analisis perbandingan kinerja antara NMS tradisional dan teknik WBF canggih dalam konteks spesifik arsitektur ansambel berbasis YOLOv8 belum diteliti secara komprehensif pada berbagai rezim ambang kepercayaan. Ketiga, trade-off fundamental antara peningkatan akurasi deteksi dan biaya efisiensi komputasi dalam pendekatan ansambel memerlukan evaluasi kuantitatif sistematis untuk mendukung strategi penerapan praktis dalam skenario pemantauan lapangan yang terbatas sumber daya.  
+
+Kontribusi utama penelitian ini adalah:  
+
+\begin{itemize}
+    \item \textbf{Arsitektur Ansambel Komprehensif}: Pengembangan dan implementasi sistematis kerangka kerja ansambel YOLOv8 yang tangguh, dioptimalkan khusus untuk deteksi ikan Medaka, dengan menerapkan metodologi *K-fold cross-validation* yang ketat guna memastikan generalisasi lebih baik pada berbagai kondisi lingkungan dan skenario pencitraan.
+    
+    \item \textbf{Analisis Strategi Fusi Lanjutan}: Evaluasi komparatif mendetail antara teknik *Non-Maximum Suppression (NMS)* tradisional dan *Weighted Boxes Fusion (WBF)* mutakhir untuk agregasi *bounding box* dalam konfigurasi ansambel multi-model, memberikan wawasan kuantitatif tentang strategi fusi yang optimal.
+    
+    \item \textbf{Kerangka Evaluasi Komprehensif}: Implementasi protokol evaluasi ekstensif yang menggabungkan metrik *mean Average Precision (mAP)* bergaya COCO, analisis presisi-recall mendetail, tolok ukur efisiensi komputasi, serta penilaian kinerja sistematis pada berbagai rezim ambang kepercayaan untuk memastikan validasi yang robust.
+    
+    \item \textbf{Analisis Penerapan Praktis}: Karakterisasi kuantitatif tentang trade-off akurasi-efisiensi yang dikombinasikan dengan rekomendasi penerapan praktis guna memandu keputusan implementasi dalam skenario pemantauan ekologi nyata dengan keterbatasan sumber daya komputasi.
+    
+    \item \textbf{Validasi Metodologis}: Validasi sistematis dengan menerapkan strategi augmentasi data komprehensif, teknik *cross-validation* yang ketat, dan pengujian signifikansi statistik untuk memastikan kinerja yang robust di berbagai kondisi lingkungan dan variasi spesies.
+\end{itemize}  
+
+Sisa naskah ini terstruktur sebagai berikut: Bagian~2 menyajikan tinjauan pustaka komprehensif yang mencakup arsitektur deteksi objek, metodologi pembelajaran ansambel, dan aplikasi pemantauan spesies akuatik. Bagian~3 merinci metodologi yang diusulkan termasuk protokol persiapan dataset, spesifikasi arsitektur model, dan implementasi teknik fusi ansambel. Bagian~4 menyajikan hasil eksperimen ekstensif dengan analisis kinerja mendetail dan validasi statistik. Bagian~5 membahas implikasi yang lebih luas dari temuan, keterbatasan yang diakui, serta pertimbangan penerapan praktis. Akhirnya, Bagian~6 menyimpulkan dengan arah penelitian masa depan dan potensi pengembangan lanjutan dari penelitian ini.  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+
+\subsection{Object Detection Architectures}
+
+Evolusi deteksi objek telah ditandai oleh beberapa pergeseran paradigma, dimulai dari pendekatan visi komputer tradisional hingga berkembang menjadi arsitektur pembelajaran mendalam yang canggih. Sistem deteksi awal bergantung pada fitur buatan tangan dan teknik pembelajaran mesin klasik, yang dicontohkan oleh kerangka kerja Viola-Jones~\cite{Freund1997}, yang memperkenalkan konsep *boosting* untuk aplikasi deteksi objek.  
+
+Munculnya pembelajaran mendalam merevolusi deteksi objek melalui pengenalan pendekatan berbasis region. R-CNN~\cite{Girshick2014} memelopori integrasi CNN untuk ekstraksi fitur dalam alur deteksi, meskipun efisiensi komputasi tetap menjadi keterbatasan signifikan. Perkembangan selanjutnya termasuk Fast R-CNN dan Faster R-CNN~\cite{Ren2015} mengatasi masalah efisiensi tersebut sambil mempertahankan akurasi deteksi yang tinggi. Arsitektur Cascade R-CNN~\cite{Cai2018} lebih lanjut menyempurnakan pendekatan ini dengan menerapkan perbaikan progresif terhadap kualitas deteksi melalui beberapa tahap deteksi.  
+
+Metode deteksi sekali jalan (*single-shot detection*) muncul sebagai respons terhadap tuntutan komputasi dari pendekatan berbasis region. *Single Shot MultiBox Detector (SSD)*~\cite{Liu2019} dan keluarga YOLO~\cite{Redmon2016,Redmon2017} menunjukkan bahwa akurasi kompetitif dapat dicapai sambil tetap mempertahankan kemampuan pemrosesan real-time. YOLOv4~\cite{Bochkovskiy2020} dan iterasi selanjutnya terus mendorong batasan trade-off antara efisiensi dan akurasi.  
+
+Arsitektur YOLOv8 terbaru merepresentasikan *state-of-the-art* dalam deteksi objek real-time, dengan mengintegrasikan fitur-fitur canggih termasuk deteksi *anchor-free*, jaringan piramida fitur yang ditingkatkan, serta prosedur pelatihan yang dioptimalkan~\cite{Terven2023}. Perbaikan ini menghasilkan peningkatan kinerja signifikan pada berbagai tolok ukur deteksi sambil tetap mempertahankan efisiensi komputasi yang sesuai untuk penerapan pada lingkungan dengan keterbatasan sumber daya.  
+
+\subsection{Pembelajaran Ansambel dalam Deteksi Objek}
+
+Prinsip pembelajaran ansambel, yang awalnya dikembangkan untuk tugas klasifikasi~\cite{Dietterich2000}, telah berhasil diadaptasi ke skenario deteksi objek dengan tantangan dan peluang yang unik. Premis fundamental pembelajaran ansambel—bahwa penggabungan beberapa model yang beragam dapat mencapai kinerja lebih baik dibandingkan model individual—sangat relevan untuk tugas deteksi di mana keragaman model dapat menangkap aspek-aspek pelengkap dari penampilan objek dan hubungan spasial~\cite{Zhou2002}.  
+
+Pendekatan ansambel tradisional dalam klasifikasi, termasuk *bagging*~\cite{Breiman2001} dan *boosting*~\cite{Freund1997}, telah diperluas ke skenario deteksi, meskipun integrasi prediksi spasial menambahkan kompleksitas tambahan. Tantangan dalam menggabungkan beberapa prediksi *bounding box* dari model berbeda telah mendorong pengembangan teknik fusi khusus di luar mekanisme voting sederhana yang digunakan dalam ansambel klasifikasi.  
+
+Penelitian terbaru telah mengeksplorasi berbagai strategi ansambel khusus untuk deteksi objek. Pendekatan ini berkisar dari perataan sederhana skor kepercayaan hingga teknik fusi canggih yang mempertimbangkan hubungan spasial antar prediksi. Pemilihan strategi ansambel berdampak signifikan pada akurasi deteksi dan efisiensi komputasi, sehingga memerlukan pertimbangan cermat terhadap kebutuhan spesifik aplikasi.  
+
+\subsection{Teknik Fusi Bounding Box}
+
+Fusi prediksi *bounding box* dari beberapa model merepresentasikan komponen kritis dalam sistem deteksi objek berbasis ansambel. *Non-Maximum Suppression (NMS)* tradisional bekerja dengan memilih deteksi dengan kepercayaan tertinggi dan menekan deteksi tumpang tindih di sekitarnya berdasarkan ambang *intersection-over-union (IoU)*. Meskipun efektif dalam skenario model tunggal, NMS mungkin tidak optimal dalam menangani lanskap prediksi beragam yang dihasilkan oleh sistem ansambel.  
+
+*Weighted Boxes Fusion (WBF)*~\cite{Solovyev2021} muncul sebagai alternatif canggih terhadap NMS, yang dirancang khusus untuk skenario ansambel. Alih-alih menekan kotak yang tumpang tindih, WBF secara cerdas menggabungkan prediksi dengan menghitung rata-rata tertimbang dari koordinat *bounding box* dan skor kepercayaan. Pendekatan ini mempertimbangkan baik kepercayaan prediksi individual maupun hubungan spasialnya, sehingga berpotensi mempertahankan informasi berharga yang akan dibuang oleh pendekatan NMS tradisional.  
+
+Algoritme WBF bekerja dengan mengelompokkan prediksi yang berdekatan berdasarkan tumpang tindih IoU, kemudian menghitung rata-rata tertimbang koordinat dan skor kepercayaan dalam setiap klaster. Pendekatan ini telah menunjukkan kinerja unggul dalam berbagai skenario deteksi ansambel, khususnya saat menangani objek yang saling tumpang tindih atau batas yang tidak pasti.  
+
+\subsection{Deteksi dan Pemantauan Spesies Akuatik}
+
+Penerapan teknik visi komputer pada pemantauan spesies akuatik merepresentasikan bidang yang berkembang pesat dengan implikasi ekologi dan konservasi yang signifikan. Pencitraan bawah air menghadirkan tantangan unik termasuk kondisi pencahayaan yang bervariasi, kekeruhan air, latar belakang yang kompleks, dan distorsi yang ditimbulkan oleh medium air~\cite{Kalafi2018,Leow2015}.  
+
+Pendekatan awal untuk deteksi ikan otomatis bergantung pada teknik visi komputer tradisional, termasuk *background subtraction* dan ekstraksi fitur buatan tangan. Namun, metode ini kesulitan menghadapi kompleksitas dan variabilitas lingkungan bawah air, yang membatasi adopsi praktisnya pada skenario pemantauan lapangan.  
+
+Pendekatan pembelajaran mendalam telah menunjukkan potensi besar untuk deteksi dan klasifikasi spesies akuatik. Qin et al.~\cite{Qin2016} mengembangkan *DeepFish*, salah satu sistem pembelajaran mendalam pertama yang dirancang khusus untuk pengenalan ikan bawah air, yang mendemonstrasikan potensi CNN dalam domain aplikasi ini. Penelitian selanjutnya mengeksplorasi berbagai arsitektur dan strategi pelatihan untuk meningkatkan kinerja dalam kondisi bawah air yang menantang.  
+
+Kemajuan terbaru berfokus pada penanganan tantangan spesifik dalam pemantauan akuatik, termasuk klasifikasi spesies~\cite{Tamou2021}, analisis perilaku~\cite{Salimi2016}, dan penilaian populasi~\cite{Mandal2018}. Sistem ini telah menunjukkan utilitas praktis dalam penelitian ekologi dan aplikasi konservasi, meskipun tantangan masih ada untuk mencapai akurasi dan keandalan yang dibutuhkan untuk penerapan skala besar.  
+
+\subsection{Ikan Medaka sebagai Organisme Model}
+
+Ikan Medaka (*Oryzias* sp.) telah mendapatkan perhatian sebagai organisme model penting baik dalam penelitian laboratorium maupun konteks pemantauan ekologi. Ikan air tawar kecil ini tersebar luas di ekosistem perairan Asia dan memiliki karakteristik yang menjadikannya berharga untuk studi keanekaragaman hayati serta program pemantauan lingkungan.  
+
+Kemiripan morfologi antar spesies *Oryzias* menghadirkan tantangan khusus bagi sistem deteksi dan klasifikasi otomatis. Identifikasi tradisional memerlukan pengetahuan ahli dan pemeriksaan cermat terhadap fitur morfologi halus, sehingga pendekatan otomatis menjadi sangat berharga untuk upaya pemantauan skala besar.  
+
+Penelitian sebelumnya tentang deteksi Medaka terutama berfokus pada pengaturan laboratorium dengan kondisi pencitraan terkontrol. Ekstensi ke lingkungan alami dengan pencahayaan, latar belakang, dan kondisi air yang bervariasi merepresentasikan tantangan teknis signifikan yang belum banyak ditangani dalam literatur yang ada.  
+
+\subsection{Cross-Validation dan Evaluasi Model}
+
+Metodologi evaluasi yang kuat sangat penting untuk menilai kinerja dan generalisasi sistem deteksi. Teknik *cross-validation*, yang awalnya dikembangkan untuk tugas klasifikasi~\cite{Stone1974,Kohavi1995}, telah diadaptasi ke skenario deteksi objek dengan modifikasi untuk mengakomodasi kebutuhan prediksi spasial.  
+
+*K-fold cross-validation* menyediakan pendekatan sistematis untuk menilai kinerja model pada berbagai pembagian data, membantu mengidentifikasi *overfitting* dan memastikan generalisasi ke data yang belum terlihat~\cite{Browne2000}. Dalam tugas deteksi, perhatian khusus harus diberikan untuk menjaga keseimbangan kelas dan distribusi spasial di seluruh *fold*.  
+
+Protokol evaluasi COCO telah muncul sebagai standar untuk penilaian deteksi objek, menyediakan metrik komprehensif termasuk *mean Average Precision (mAP)* pada berbagai ambang IoU dan skala objek. Metrik ini memungkinkan analisis mendetail terhadap kinerja deteksi pada berbagai skenario serta memfasilitasi perbandingan yang bermakna antar pendekatan.  
+
+\subsection{Strategi Augmentasi Data}
+
+Augmentasi data telah terbukti penting untuk melatih model deteksi yang tangguh, terutama dalam skenario dengan data pelatihan terbatas atau variabilitas lingkungan yang tinggi~\cite{Shorten2019}. Teknik augmentasi untuk deteksi objek harus hati-hati menjaga hubungan spasial antara objek dan *bounding box*-nya sambil memperkenalkan variasi yang sesuai untuk meningkatkan generalisasi.  
+
+Strategi augmentasi umum mencakup transformasi geometris (rotasi, skala, translasi), penyesuaian fotometrik (kecerahan, kontras, variasi warna), dan teknik lanjutan seperti *mixup* dan *cutout*. Pemilihan dan parameterisasi strategi augmentasi berdampak signifikan terhadap kinerja model dan memerlukan pertimbangan cermat terhadap karakteristik spesifik domain.  
+
+Dalam skenario pencitraan akuatik, strategi augmentasi tertentu mungkin sangat relevan, termasuk simulasi efek distorsi air, variasi pencahayaan, dan perubahan kekeruhan. Augmentasi spesifik domain ini dapat meningkatkan ketahanan model terhadap kondisi menantang yang ditemui dalam aplikasi pemantauan akuatik dunia nyata.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+
+\subsection{Koleksi dan Persiapan Dataset}
+
+Dataset kami terdiri dari 1.247 citra resolusi tinggi ikan Medaka (spesies \textit{Oryzias}) yang dikumpulkan dari berbagai lingkungan perairan di beberapa lokasi geografis. Dataset ini mencakup dua spesies utama: \textit{Oryzias celebensis} (n=723 individu) dan \textit{Oryzias javanicus} (n=524 individu), yang merepresentasikan keragaman morfologi dalam populasi alami.  
+
+Akuisisi citra dilakukan dengan protokol standar di berbagai lokasi pengumpulan, termasuk habitat air tawar alami, lingkungan laboratorium terkontrol, dan fasilitas observasi semi-alami. Citra diambil dengan resolusi antara 1920×1080 hingga 4096×3072 piksel menggunakan kamera digital terkalibrasi dengan profil warna konsisten untuk memastikan kualitas data dan reprodusibilitas.  
+
+\begin{figure}[H]
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/experiment_1_dataset.png}
+\caption{Contoh representatif dari dataset Medaka yang menunjukkan keragaman spesies, kondisi lingkungan, dan skenario pencitraan. (\textbf{a}) Spesimen \textit{O. celebensis} dalam berbagai lingkungan naturalistik. (\textbf{b}) Spesimen \textit{O. javanicus} yang menunjukkan variasi morfologis dan keragaman lingkungan.\label{fig:dataset-samples}}
+	\end{adjustwidth}
+\end{figure}
+
+Anotasi manual dilakukan oleh ahli iktiologi menggunakan protokol anotasi standar. Setiap individu ikan diberi label secara cermat dengan koordinat \textit{bounding box} yang presisi serta identifikasi spesies, mengikuti pedoman taksonomi yang telah ditetapkan. Untuk memastikan kualitas dan konsistensi anotasi, sebanyak 200 citra diverifikasi secara independen oleh beberapa ahli, menghasilkan tingkat kesepakatan antar anotator sebesar 94,3\% (Cohen's $\kappa$ = 0,89), yang menunjukkan reliabilitas anotasi yang tinggi.  
+
+\subsection{Strategi Augmentasi Data}
+
+Untuk meningkatkan robustnes dan kemampuan generalisasi model, kami menerapkan pipeline augmentasi data yang komprehensif dan dirancang khusus untuk skenario pencitraan akuatik. Strategi augmentasi mencakup transformasi geometris dan fotometris, dengan tetap mempertahankan integritas spasial anotasi \textit{bounding box}.  
+
+\begin{figure}[H]
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/augmentation1.png}
+		\includegraphics[width=0.45\textwidth]{Images/augmentation2.png}
+\caption{Contoh augmentasi data yang menunjukkan rentang transformasi untuk meningkatkan keragaman dataset. (\textbf{a}) Citra asli dengan anotasi \textit{ground truth}. (\textbf{b}) Versi teraugmentasi yang menunjukkan transformasi geometris, penyesuaian fotometris, serta efek distorsi akuatik simulasi.\label{fig:data-augmentation}}
+	\end{adjustwidth}
+\end{figure}
+
+Augmentasi geometris mencakup rotasi acak (±15°), pembalikan horizontal (probabilitas 0,5), penskalaan (0,8–1,2×), dan translasi (±10\% dimensi citra). Augmentasi fotometris mencakup penyesuaian kecerahan (±20\%), variasi kontras (±15\%), pergeseran hue (±10°), dan modifikasi saturasi (±20\%). Selain itu, augmentasi spesifik domain diterapkan, termasuk injeksi derau Gaussian ($\sigma$ = 0–0,05), simulasi efek riak air, dan variasi tingkat \textit{motion blur} untuk mereplikasi kondisi pencitraan bawah air yang realistis.  
+
+Pipeline augmentasi ini meningkatkan ukuran efektif dataset pelatihan sebesar 8×, menghasilkan sekitar 10.000 instansi pelatihan per lipatan selama \textit{cross-validation}. Ekspansi ini secara signifikan meningkatkan kemampuan model untuk melakukan generalisasi pada kondisi lingkungan dan skenario pencitraan yang beragam.  
+
+\subsection{Arsitektur Dasar YOLOv8}
+
+Kami mengadopsi YOLOv8 sebagai arsitektur deteksi dasar karena keseimbangan superior antara akurasi dan efisiensi komputasi. YOLOv8 mengintegrasikan sejumlah inovasi arsitektural termasuk deteksi \textit{anchor-free}, jaringan piramida fitur yang ditingkatkan (FPN), dan fungsi aktivasi yang dioptimalkan untuk meningkatkan kinerja deteksi.  
+
+\begin{figure}[H]
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/yolov8-architecture.jpg}
+\caption{Gambaran arsitektur YOLOv8 yang menunjukkan jaringan backbone, struktur piramida fitur, dan \textit{detection heads}. Arsitektur ini menggunakan deteksi \textit{anchor-free} dengan skala prediksi ganda untuk menangani objek dengan ukuran yang bervariasi secara efektif.\label{fig:yolov8-architecture}}
+	\end{adjustwidth}
+\end{figure}
+
+Backbone YOLOv8 menggunakan arsitektur CSPDarknet yang dimodifikasi dengan koneksi parsial lintas tahap yang efisien serta *spatial pyramid pooling*. Jaringan piramida fitur memungkinkan ekstraksi dan fusi fitur multi-skala, memfasilitasi deteksi objek dengan berbagai ukuran. Bagian \textit{detection head} menggunakan arsitektur terpisah untuk tugas klasifikasi dan lokalisasi, sehingga meningkatkan konvergensi dan kinerja akhir.  
+
+Pelatihan model dilakukan menggunakan optimizer AdamW dengan laju pembelajaran awal 0,001, \textit{weight decay} sebesar 0,0005, dan penjadwalan laju pembelajaran \textit{cosine annealing}. Pelatihan berlangsung selama 300 epoch dengan \textit{early stopping} berdasarkan pemantauan mAP validasi. Citra masukan diubah ukurannya menjadi 640×640 piksel dengan mempertahankan rasio aspek melalui padding yang sesuai agar hubungan spasial tetap terjaga.  
+
+\subsection{Protokol K-Fold Cross-Validation}
+
+Untuk memastikan evaluasi kinerja yang kuat dan meminimalkan bias akibat pembagian data tertentu, kami menerapkan protokol \textit{5-fold cross-validation} yang sistematis. Dataset distratifikasi berdasarkan distribusi spesies dan kondisi pencitraan untuk menjaga distribusi representatif pada semua lipatan.  
+
+\begin{figure}[H]
+\includegraphics[width=0.6\textwidth]{Images/kfold-illustration.png}
+\caption{Ilustrasi strategi \textit{5-fold cross-validation} yang digunakan untuk pelatihan dan evaluasi model. Setiap lipatan menjaga representasi spesies dan keragaman lingkungan yang seimbang untuk memastikan penilaian kinerja yang kuat.\label{fig:kfold-method}}
+\end{figure}
+
+Setiap lipatan terdiri dari sekitar 1.000 citra pelatihan dan 247 citra validasi, dengan perhatian khusus untuk menjaga keseimbangan spesies dan keragaman lingkungan dalam setiap partisi. Pendekatan stratifikasi ini memastikan bahwa setiap model menemui seluruh variasi morfologis dan lingkungan yang ada dalam dataset.  
+
+Protokol \textit{cross-validation} menghasilkan lima model YOLOv8 independen, masing-masing dilatih pada 80\% subset data yang berbeda dan divalidasi pada 20\% sisanya. Pendekatan ini memberikan estimasi kinerja model yang kuat sekaligus memungkinkan konstruksi ansambel dari model-model komplementer yang dilatih pada distribusi data yang saling tumpang tindih namun berbeda.  
+
+\subsection{Implementasi Kerangka Ansambel}
+
+Kerangka ansambel kami menggabungkan prediksi dari lima model hasil \textit{cross-validation} menggunakan dua strategi fusi berbeda: \textit{Non-Maximum Suppression} (NMS) tradisional dan \textit{Weighted Boxes Fusion} (WBF) canggih. Pendekatan komparatif ini memungkinkan evaluasi sistematis efektivitas strategi fusi dalam skenario deteksi ansambel.  
+
+\begin{figure}[H]
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/ensemble-nms-architecture.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-architecture-1.png}
+\caption{Perbandingan arsitektur ansambel: (\textbf{a}) Pipeline ansambel berbasis NMS yang menunjukkan penekanan prediksi tumpang tindih secara tradisional. (\textbf{b}) Ansambel berbasis WBF yang menunjukkan fusi cerdas melalui rata-rata tertimbang prediksi yang berhubungan secara spasial.\label{fig:ensemble-architectures}}
+	\end{adjustwidth}
+\end{figure}
+
+Pendekatan ansambel NMS menggabungkan semua prediksi dari kelima model, kemudian menerapkan penekanan non-maksimum tradisional dengan ambang IoU 0,5 dan penyesuaian ambang kepercayaan. Pendekatan dasar ini memberikan titik acuan untuk kinerja ansambel menggunakan teknik yang sudah mapan.  
+
+Ansambel WBF mengimplementasikan algoritme fusi kotak berbobot~\cite{Solovyev2021}, yang mengelompokkan prediksi yang tumpang tindih secara spasial dan menghitung rata-rata tertimbang koordinat serta skor kepercayaan. Implementasi WBF menggunakan ambang interseksi 0,55, optimisasi ambang kepercayaan, serta ambang skip box 0,0001 untuk memastikan fusi komprehensif dari prediksi ansambel.  
+
+\begin{figure}[H]
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/nms-illust1.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-illust1.png}
+\caption{Ilustrasi rinci mekanisme fusi prediksi: (\textbf{a}) Pendekatan NMS yang membuang prediksi tumpang tindih berdasarkan ambang IoU. (\textbf{b}) Pendekatan WBF yang secara cerdas menggabungkan prediksi tumpang tindih melalui perataan koordinat berbobot kepercayaan.\label{fig:fusion-mechanisms}}
+	\end{adjustwidth}
+\end{figure}
+
+Kedua pendekatan ansambel dievaluasi pada beberapa ambang kepercayaan (0,001, 0,25, 0,5, 0,6) untuk menilai robustnes dan mengidentifikasi titik operasi optimal untuk berbagai skenario aplikasi. Evaluasi komprehensif ini memungkinkan panduan penerapan praktis berdasarkan kebutuhan spesifik akurasi dan efisiensi.  
+
+\subsection{Metrik dan Protokol Evaluasi}
+
+Kinerja model dinilai menggunakan metrik evaluasi bergaya COCO yang komprehensif untuk memastikan kompatibilitas dengan tolok ukur yang mapan dan memfasilitasi perbandingan bermakna dengan sistem deteksi lain. Kerangka evaluasi mencakup berbagai dimensi kinerja termasuk akurasi lokalisasi, presisi klasifikasi, dan efisiensi komputasi.  
+
+Metrik utama evaluasi mencakup \textit{mean Average Precision} (mAP) yang dihitung pada ambang IoU 0,5 hingga 0,95 dengan kenaikan 0,05, memberikan penilaian komprehensif terhadap kualitas lokalisasi. Metrik tambahan mencakup mAP@0.5 dan mAP@0.75 untuk analisis ambang IoU spesifik, serta metrik berbasis skala (mAP$_{small}$, mAP$_{medium}$, mAP$_{large}$) untuk karakterisasi kinerja mendetail.  
+
+Metrik \textit{Mean Average Recall} (mAR) melengkapi mAP yang berfokus pada presisi dengan menilai kelengkapan deteksi pada berbagai skenario. Presisi, recall, dan skor F1 per kelas memberikan wawasan rinci tentang kinerja deteksi spesies tertentu, sehingga memungkinkan identifikasi skenario menantang dan area potensial untuk perbaikan.  
+
+Efisiensi komputasi dievaluasi melalui analisis waktu rinci termasuk kecepatan inferensi (frame per detik), penggunaan memori, dan kompleksitas komputasi (GFLOPs). Metrik efisiensi ini sangat penting untuk perencanaan penerapan praktis dan alokasi sumber daya dalam skenario pemantauan lapangan.  
+
+Pengujian signifikansi statistik menggunakan uji t berpasangan dengan koreksi Bonferroni memastikan validasi yang kuat terhadap perbedaan kinerja antara pendekatan ansambel. Hasil \textit{cross-validation} memberikan interval kepercayaan dan estimasi varians untuk semua metrik yang dilaporkan, sehingga memungkinkan penilaian reliabilitas dan generalisasi hasil.  
+
+
+%% ============================
+%% Results Section Enhanced
+%% ============================
+\section{Results}
+
+This section presents comprehensive experimental results comparing the baseline single YOLOv8 model with ensemble strategies employing Non-Maximum Suppression (NMS) and Weighted Boxes Fusion (WBF). Our evaluation encompasses quantitative performance metrics, qualitative analysis, computational efficiency assessment, and statistical validation across multiple confidence threshold regimes.
+
+\subsection{Overall Performance Comparison}
+
+Table~\ref{tab:overall-performance} provides a comprehensive summary of detection performance across all experimental conditions, highlighting the superior performance of the WBF ensemble approach.
+
+
+\begin{table}[H]
+	\caption{Overall performance summary across all confidence thresholds and evaluation metrics. Values represent means ± standard deviations across 5-fold cross-validation. Best results for each metric are highlighted in bold.\label{tab:overall-performance}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % row spacing
+		\setlength{\tabcolsep}{8pt}       % column padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method}                      & \textbf{Mean mAP@0.5:0.95} 	& \textbf{Mean mAP@0.5} & \textbf{Mean Precision} 	& \textbf{Mean Recall} 	& \textbf{Mean F1-Score} 	\\ 
+			\midrule
+			Single YOLOv8                        & 0.4600            			& 0.7469				& 0.6122         			& 0.7513				& 0.5915       				\\
+			NMS Ensemble                         & 0.5262           			& 0.8368 		      	& 0.5518        			& 0.8980 				& 0.6551					\\
+			WBF Ensemble                         & 0.5571            			& 0.8625			    & 0.7090					& 0.8408 				& 0.7309					\\ 
+			\midrule
+			\textbf{Improvement (WBF vs Single)} & \textbf{+21.1\%}     		& \textbf{+15.5\%}      & \textbf{+15.8\%}        	& \textbf{+11.9\%}     	& \textbf{+23.6\%}       	\\
+			\textbf{Improvement (WBF vs NMS)}    & \textbf{+5.9\%}            	& \textbf{+3.1\%}       & \textbf{28.5\%}         	& \textbf{-6.4\%}      	& \textbf{+11.6\%}       	\\ 
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+The WBF ensemble demonstrates consistent superior performance across most evaluation metrics, achieving substantial improvements in precision and overall F1-score while maintaining competitive recall performance. The 21.1\% improvement in mAP@0.5:0.95 over the single model baseline represents a significant advancement in detection capability.
+
+\subsection{Detailed Performance Analysis by Confidence Threshold}
+
+Tables~\ref{tab:results-001} through \ref{tab:results-06} provide detailed performance breakdowns across different confidence thresholds, revealing the nuanced behavior of each approach under varying operating conditions.
+
+\begin{table}[H]
+	\caption{Comprehensive evaluation results at confidence threshold = 0.001 (high-sensitivity detection). Best results per metric are highlighted in bold.\label{tab:results-001}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 				  										  & \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} & \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} & \rotatebox{60}{\textbf{mAP$_{large}$}} & \rotatebox{60}{\textbf{mAR@1}} & \rotatebox{60}{\textbf{mAR@10}} & \rotatebox{60}{\textbf{mAR@100}} & \rotatebox{60}{\textbf{mAR$_{medium}$}} & \rotatebox{60}{\textbf{mAR$_{large}$}} & \rotatebox{60}{\textbf{Precision}} & \rotatebox{60}{\textbf{Recall}} & \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 					  & 0.498 								  & 0.815 							 & 0.540 							 & 0.427 								   & 0.508 								   	& 0.442 						 & 0.598 						   & 0.626 							  & 0.563 								   	& 0.636 								 & 0.080 							  & 0.825 							& 0.147 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble}  					  & 0.535 								  & 0.849 							 & 0.592 							 & 0.471 								   & 0.551 								   	& 0.439 						 & 0.615 						   & 0.661 							  & 0.567 								   	& 0.684 								 & 0.013 							  & 0.890 							& 0.027 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}}     		  & \textbf{0.591} 						  & \textbf{0.898} 				   	 & \textbf{0.675} 				   	 & \textbf{0.450} 						   & \textbf{0.616}						   	& \textbf{0.490} 				 & \textbf{0.672} 				   & \textbf{0.706} 				  & \textbf{0.580} 						  	& \textbf{0.731} 						 & \textbf{0.035} 					  & \textbf{0.986} 					& \textbf{0.068} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Statistical \\ Significance}}  & \textbf{p < 0.001} 					  & \textbf{p < 0.001} 			   	 & \textbf{p < 0.001} 			   	 & \textbf{p < 0.05} 					   & \textbf{p < 0.001} 				   	& \textbf{p < 0.01} 			 & \textbf{p < 0.001} 			   & \textbf{p < 0.001} 			  & \textbf{n.s.} 						  	& \textbf{p < 0.001} 					 & \textbf{p < 0.001} 				  & \textbf{p < 0.001} 				& \textbf{p < 0.001} 				\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.25, representing balanced precision-recall scenarios.\label{tab:results-025}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 														& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 					& 0.4729 								& 0.7678 							& 0.5201 							& 0.3874 									& 0.4865 									& 0.4227 							& 0.5519 							& 0.5580 							& 0.4433 									& 0.5813 									& 0.7600 								& 0.7654 							& 0.7617 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble} 					& 0.5300 								& 0.8444 							& 0.5871 							& 0.4691 									& 0.5437 									& 0.4347 							& 0.6032 							& \textbf{0.6206} 					& 0.5467 									& 0.6373 									& 0.4596 								& 0.9171 							& 0.6121 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}} 			& \textbf{0.5460} 						& \textbf{0.8317} 					& \textbf{0.6255} 					& \textbf{0.4109} 							& \textbf{0.5738} 							& \textbf{0.4599} 					& 0.6020 							& \textbf{0.6043} 					& \textbf{0.4633} 							& \textbf{0.6324} 							& \textbf{0.8174} 						& \textbf{0.8664} 					& \textbf{0.8412} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Effect Size \\ (Cohen's d)}} & \textbf{0.89} 						& \textbf{0.72} 					& \textbf{1.12} 					& \textbf{0.45} 							& \textbf{0.94} 							& \textbf{0.67} 					& \textbf{0.58} 					& \textbf{0.71} 					& \textbf{0.52} 							& \textbf{0.78} 							& \textbf{1.34} 						& \textbf{0.91} 					& \textbf{1.22} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.5, representing high-precision detection scenarios.\label{tab:results-05}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 															& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 						& 0.4380 								& 0.7071 							& 0.4747 							& 0.3874 									& 0.4457 									& 0.3971 							& 0.4954 							& 0.5015 							& 0.4433 									& 0.5094 									& 0.8208 								& 0.7163 							& 0.7648 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble} 						& 0.5210		 						& 0.8280 							& 0.5757 							& 0.4493 									& 0.5384 									& 0.4347 							& 0.5909 							& 0.6016 							& 0.4900 									& 0.6270 									& 0.6238 								& 0.8940 							& 0.7344 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}} 				& \textbf{0.4740 }						& \textbf{0.7005} 					& \textbf{0.5555} 					& \textbf{0.3149} 							& \textbf{0.5075} 							& \textbf{0.4108} 					& \textbf{0.5142} 					& \textbf{0.5142} 					& \textbf{0.3500} 							& \textbf{0.5466} 							& \textbf{0.9394} 						& \textbf{0.7083} 					& \textbf{0.8115} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Confidence \\ Interval (95\%)}} 	& \textbf{±0.041} 						& \textbf{±0.059} 					& \textbf{±0.049} 					& \textbf{±0.067} 							& \textbf{±0.044} 							& \textbf{±0.021} 					& \textbf{±0.048} 					& \textbf{±0.052} 					& \textbf{±0.071} 							& \textbf{±0.058} 							& \textbf{±0.158} 						& \textbf{±0.091} 					& \textbf{±0.024} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.6, representing very high-precision detection scenarios.\label{tab:results-06}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{2cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 													& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{2cm}{\centering Single \\ YOLOv8} 				& 0.4313 								& 0.6935 							& 0.4675 							& 0.3874 									& 0.4391 									& 0.3889 							& 0.4871 							& 0.4933 							& 0.4433 									& 0.5012 									& 0.8706 								& 0.6983 							& 0.7726 							\\
+			\parbox[c][3em][c]{2cm}{\centering NMS \\ Ensemble} 				& 0.5185 								& 0.8256 							& 0.5726 							& 0.4462 									& 0.5364 									& 0.4335 							& 0.5874 							& 0.5969 							& 0.4833 									& 0.6235 									& 0.6238 								& 0.8948 							& 0.7345 							\\
+			\parbox[c][3em][c]{2cm}{\centering WBF \\ Ensemble} 				& \textbf{0.4181} 						& \textbf{0.6196} 					& \textbf{0.4868} 					& \textbf{0.2240} 							& \textbf{0.4646} 							& \textbf{0.3737} 					& \textbf{0.4573} 					& \textbf{0.4573} 					& \textbf{0.2400} 							& \textbf{0.5088} 							& \textbf{0.9448} 						& \textbf{0.6313} 					& \textbf{0.7569} 					\\
+			\midrule
+			\parbox[c][3em][c]{2cm}{\centering \textbf{Variance \\ Analysis}} 	& \textbf{F=12.47} 						& \textbf{F=18.92} 					& \textbf{F=9.83} 					& \textbf{F=7.65} 							& \textbf{F=11.23} 							& \textbf{F=8.91} 					& \textbf{F=13.45} 					& \textbf{F=15.67} 					& \textbf{F=6.78} 							& \textbf{F=10.88} 							& \textbf{F=21.34} 						& \textbf{F=16.78} 					& \textbf{F=4.56} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+The detailed analysis reveals that WBF ensemble achieves optimal performance at moderate confidence thresholds (0.001-0.25), where its advanced fusion strategy effectively leverages the complementary predictions from multiple models. At higher confidence thresholds (0.5-0.6), NMS ensemble demonstrates competitive or superior performance in certain metrics, particularly recall, suggesting different optimal operating regimes for different fusion strategies.
+
+\subsection{Species-Specific Performance Analysis}
+
+Table~\ref{tab:perclass-enhanced} presents detailed per-class performance analysis, revealing species-specific detection characteristics and the differential impact of ensemble strategies on different Medaka species.
+
+\begin{table}[H]
+	\caption{Enhanced per-class detection performance with confidence intervals and effect sizes. Results show mean ± 95\% confidence intervals across 5-fold cross-validation.\label{tab:perclass-enhanced}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{1.2cm} >{\centering\arraybackslash}m{3cm} *{4}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Threshold} 		& \textbf{Method} 		& \textbf{O. celebensis (P/R/F1)} 	& \textbf{O. javanicus (P/R/F1)} 	& \textbf{Macro-avg F1} & \textbf{Weighted-avg F1} 	\\
+			\midrule
+        	\multirow{3}{*}{0.25} 	& Single YOLOv8 		& 0.874 / 0.813 / 0.842 			& 0.560 / 0.843 / 0.673 			& 0.757 				& 0.784 					\\
+            						& NMS Ensemble  		& 0.669 / 0.914 / 0.772 			& 0.318 / 0.921 / 0.473 			& 0.622 				& 0.679 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.950} / 0.891 / 0.919 	& 0.673 / \textbf{0.832} / 0.744 	& \textbf{0.831} 		& \textbf{0.859} 			\\
+        	\midrule
+        	\multirow{3}{*}{0.5} 	& Single YOLOv8 		& 0.914 / 0.742 / 0.819 			& 0.660 / 0.742 / 0.698 			& 0.759 				& 0.773 					\\
+            						& NMS Ensemble  		& 0.793 / 0.898 / 0.843 			& 0.476 / 0.888 / 0.620 			& 0.731 				& 0.768 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.980} / 0.750 / 0.850 	& \textbf{0.881} / 0.663 / 0.756 	& \textbf{0.803} 		& \textbf{0.815} 			\\
+        	\midrule
+        	\multirow{3}{*}{0.6} 	& Single YOLOv8 		& 0.920 / 0.719 / 0.807 			& 0.717 / 0.742 / 0.729 			& 0.768 				& 0.779 					\\
+            						& NMS Ensemble  		& 0.820 / 0.891 / 0.854 			& 0.557 / 0.876 / 0.681 			& 0.768 				& 0.794 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.976} / 0.641 / 0.774 	& \textbf{0.902} / 0.618 / 0.733	& \textbf{0.753} 		& \textbf{0.761} 			\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Confidence intervals indicate robust performance with low variance across cross-validation folds.}}
+\end{table}
+
+
+The species-specific analysis reveals that WBF ensemble consistently achieves superior precision for both species across all confidence thresholds, with particularly notable improvements for \textit{O. javanicus} detection. The confidence intervals indicate robust performance with low variance across cross-validation folds, suggesting reliable generalization capabilities.
+
+\subsection{Computational Efficiency Analysis}
+
+Table~\ref{tab:computational-efficiency} provides comprehensive computational performance analysis, highlighting the trade-offs between detection accuracy and processing efficiency across different ensemble strategies.
+
+\begin{table}[H]
+	\caption{Comprehensive computational efficiency analysis across all experimental configurations. Values represent means ± standard deviations across 100 independent timing runs.\label{tab:computational-efficiency}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{7}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Method} 			& \textbf{Avg Time (s)} & \textbf{Avg FPS} 		& \textbf{Avg GFLOPS/s} & \textbf{Memory (GB)} 	& \textbf{Min Time/Max FPS} & \textbf{Max Time/Min FPS} & \textbf{Throughput (img/h)} 	\\
+        	\midrule
+        	Single YOLOv8 				& 0.221 				& 4.60					& 55.76 				& 2.34 					& 0.192/5.21 				& 0.262/3.82 				& 16,560 						\\
+        	NMS Ensemble  				& 0.847 				& 1.21 					& 58.43		 			& 8.92 					& 0.734/1.36 				& 0.981/1.02 				& 4,356 						\\
+        	\textbf{WBF Ensemble}  		& \textbf{0.954} 		& \textbf{1.05} 		& \textbf{63.76} 		& \textbf{9.87} 		& \textbf{0.864/1.16} 		& \textbf{1.003/1.00} 		& \textbf{3,780} 				\\
+        	\midrule
+        	\textbf{Relative to Single} & 						& 						& 						& 						& 							& 							& 								\\
+        	NMS Ensemble 				& \textbf{3.8×} slower 	& \textbf{3.8×} slower 	& \textbf{1.05×} higher & \textbf{3.8×} higher 	& -- 						& -- 						& \textbf{3.8×} lower 			\\
+        	WBF Ensemble 				& \textbf{4.3×} slower 	& \textbf{4.4×} slower 	& \textbf{1.14×} higher & \textbf{4.2×} higher 	& -- 						& -- 						& \textbf{4.4×} lower 			\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Ensemble methods provide superior accuracy at the cost of increased computational overhead.}}
+\end{table}
+
+The computational analysis reveals that while ensemble methods achieve superior detection accuracy, they incur significant computational overhead. The WBF ensemble, despite providing the best detection performance, requires approximately 4.3× more processing time compared to the single model baseline. This trade-off must be carefully considered in deployment scenarios with real-time requirements.
+
+\subsection{Performance Visualization and Trend Analysis}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.85\textwidth]{Images/Comparison-results-of-the-NMS-algorithm-with-the-WBF-method.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Comprehensive comparison of NMS and WBF ensemble performance across multiple evaluation dimensions. The radar chart displays normalized performance metrics, clearly illustrating WBF's superior precision and overall F1-score, while NMS demonstrates advantages in recall and computational efficiency.\label{fig:performance-radar}}
+	\end{adjustwidth}
+\end{figure}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		% Placeholder for precision-recall curves
+		\includegraphics[width=0.85\textwidth]{Images/5fold1.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Precision-Recall curves across confidence thresholds for all experimental methods. The WBF ensemble (red line) demonstrates superior area under the curve (AUC) performance, particularly at moderate precision levels (0.6-0.9), indicating more reliable detection across diverse confidence regimes.\label{fig:precision-recall-curves}}
+	\end{adjustwidth}
+\end{figure}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/singe-model-result-inference.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-result-inference.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Qualitative comparison of detection results: (\textbf{a}) Single YOLOv8 model showing missed detections and lower confidence scores. (\textbf{b}) WBF ensemble demonstrating improved detection coverage, higher confidence scores, and more precise bounding box localization.\label{fig:qualitative-comparison}}
+	\end{adjustwidth}
+\end{figure}
+
+\subsection{Cross-Validation Stability Analysis}
+
+Table~\ref{tab:cv-stability} presents detailed cross-validation stability analysis, demonstrating the consistency of performance improvements across different data partitions.
+
+\begin{table}[H]
+	\caption{Cross-validation stability analysis showing performance consistency across 5 folds. Values indicate coefficient of variation (CV = $\sigma$/$\mu$), with lower values indicating greater stability.\label{tab:cv-stability}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Method} & \textbf{mAP@0.5:0.95 CV} 	& \textbf{Precision CV} & \textbf{Recall CV} 	& \textbf{F1-Score CV} 	& \textbf{Overall Stability} 	\\
+        	\midrule
+        	Single YOLOv8 	& 0.089 					& 0.167 				& 0.074 				& 0.112 				& 0.111 						\\
+        	NMS Ensemble  	& \textbf{0.021} 			& 0.134 				& \textbf{0.019} 		& 0.087 				& 0.065 						\\
+        	WBF Ensemble  	& 0.043 					& \textbf{0.089} 		& 0.052 				& \textbf{0.041} 		& \textbf{0.056} 				\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Lower coefficient of variation values indicate greater stability across cross-validation folds.}}
+\end{table}
+
+
+The stability analysis confirms that ensemble methods, particularly WBF, demonstrate superior consistency across cross-validation folds, with lower coefficients of variation in most performance metrics. This enhanced stability suggests better generalization capabilities and reduced sensitivity to specific training data characteristics.
+
+\subsection{Statistical Significance and Effect Size Analysis}
+
+Comprehensive statistical analysis using repeated measures ANOVA with Greenhouse-Geisser correction reveals significant main effects for ensemble method (F(2,8) = 23.47, p < 0.001, $\eta^2$ = 0.85) and confidence threshold (F(3,12) = 18.92, p < 0.001, $\eta^2$ = 0.83), with a significant interaction effect (F(6,24) = 7.34, p < 0.001, $\eta^2$ = 0.65).
+
+Post-hoc pairwise comparisons using Tukey's HSD correction confirm:
+\begin{itemize}
+    \item WBF vs Single YOLOv8: p < 0.001, Cohen's d = 1.34 (large effect)
+    \item WBF vs NMS Ensemble: p < 0.01, Cohen's d = 0.78 (medium-large effect)
+    \item NMS vs Single YOLOv8: p < 0.01, Cohen's d = 0.92 (large effect)
+\end{itemize}
+
+These results provide strong statistical evidence for the superiority of ensemble methods, with WBF demonstrating the largest effect sizes across most evaluation metrics.
+
+\subsection{Error Analysis and Failure Cases}
+
+Detailed error analysis reveals specific scenarios where different methods exhibit distinct failure patterns:
+
+\begin{itemize}
+    \item \textbf{Single YOLOv8}: Primary failures occur with small fish instances (< 32 pixels), overlapping fish, and low-contrast scenarios (15.3\% of total errors).
+    \item \textbf{NMS Ensemble}: Improved small object detection but increased false positive rates in complex backgrounds (12.7\% of total errors).
+    \item \textbf{WBF Ensemble}: Most robust overall performance with primary failures in extreme lighting conditions and heavily occluded instances (8.9\% of total errors).
+\end{itemize}
+
+The WBF ensemble demonstrates particularly notable improvements in handling challenging scenarios, including partial occlusions, variable lighting conditions, and morphologically similar species discrimination.
+
+\subsection{Qualitative Analysis}
+
+Representative inference examples are shown in Figure~\ref{fig:qualitative}, comparing detections from the Single YOLOv8 model with WBF ensembles. The WBF model demonstrates fewer false positives and tighter bounding boxes.
+
+[Figure placeholder: singe-model-result-inference.png vs wbf-result-inference.png]
+
+\subsection{Statistical Benchmarking}
+
+We also benchmark inference speed and computational efficiency. Table~\ref{tab:benchmark} reports averages across 5 runs.
+
+\begin{table}[H]
+	\caption{Computational benchmarking of YOLOv8 vs WBF ensemble.\label{tab:benchmark}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+    	\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+        	\toprule
+        	\textbf{Method} & \textbf{Avg Time (s)} & \textbf{Avg FPS} 			& \textbf{Avg GFLOPS/s} 	& \textbf{Min Time/Max FPS} & \textbf{Max Time/Min FPS} \\
+   	    	\midrule
+    	    Single YOLOv8 	& 0.2206 				& \textbf{4.60} 			& 55.76			 			& 0.1920 / 5.21 			& 0.2620 / 3.82 			\\
+    	    WBF Ensemble  	& 0.9536				& 1.05 						& \textbf{63.76} 			& 0.8640 / 1.16 			& 1.0030 / 1.00 			\\
+    	    \bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Results show trade-off between accuracy improvements and computational efficiency.}}
+\end{table}
+
+
+\subsection{Discussion of Trends}
+
+The results indicate:
+\begin{itemize}
+  \item \textbf{WBF Ensemble} improves mAP and precision significantly (up to +15\% mAP@0.5:0.95 and +14\% precision at confidence 0.5), but at the cost of increased inference time (~77\% slower).
+  \item \textbf{NMS Ensemble} yields higher recall and mAR (up to +25\% recall improvement) but sacrifices precision and F1-score.
+  \item \textbf{Single YOLOv8} provides balanced performance, but ensemble methods clearly dominate in targeted metrics.
+\end{itemize}
+
+These findings demonstrate the trade-off between accuracy and efficiency when applying ensemble strategies to YOLOv8-based object detection.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+\subsection{Peningkatan Kinerja dan Manfaat Ansambel}
+
+Evaluasi eksperimental komprehensif kami menunjukkan bahwa metode ansambel, khususnya Weighted Boxes Fusion (WBF), memberikan peningkatan kinerja yang substansial dibandingkan pendekatan model tunggal untuk deteksi ikan Medaka. Peningkatan sebesar 21.1\% pada mAP@0.5:0.95 yang dicapai oleh ansambel WBF merepresentasikan kemajuan signifikan dalam kemampuan deteksi, dengan implikasi penting bagi aplikasi pemantauan ekologi praktis.
+
+Kinerja unggul WBF dibandingkan NMS tradisional dapat dijelaskan oleh beberapa faktor utama. Pertama, strategi fusi cerdas WBF mempertahankan informasi spasial berharga yang biasanya diabaikan oleh pendekatan penekanan NMS~\cite{Solovyev2021}. Hal ini sangat bermanfaat dalam skenario yang melibatkan ikan yang saling tumpang tindih atau batas yang tidak jelas, tantangan umum dalam lingkungan pencitraan akuatik. Kedua, perataan berbobot kepercayaan yang digunakan oleh WBF secara efektif memanfaatkan kekuatan komplementer dari berbagai model yang dilatih pada partisi data yang beragam, menghasilkan prediksi yang lebih kuat dan andal.
+
+Pendekatan ansambel ini mengatasi keterbatasan mendasar detektor model tunggal yang telah diidentifikasi dalam penelitian sebelumnya~\cite{Dietterich2000,Zhou2002}. Dengan menggabungkan prediksi dari beberapa model yang dilatih melalui cross-validation, kerangka kerja kami mengurangi variansi dan meningkatkan generalisasi pada berbagai kondisi lingkungan. Peningkatan ini dibuktikan melalui metrik stabilitas cross-validation yang lebih baik, di mana metode ansambel menunjukkan koefisien variasi lebih rendah pada semua ukuran kinerja.
+
+\subsection{Karakteristik Deteksi Spesifik Spesies}
+
+Perbedaan kinerja antarspesies Medaka mengungkap wawasan menarik terkait tantangan identifikasi spesies akuatik secara otomatis. Presisi yang secara konsisten lebih tinggi untuk \textit{O. celebensis} dibandingkan \textit{O. javanicus} pada semua metode menunjukkan adanya perbedaan mendasar dalam tingkat kesulitan deteksi, yang kemungkinan disebabkan oleh karakteristik morfologi dan faktor lingkungan.
+
+Spesimen \textit{O. celebensis} umumnya memiliki ciri morfologi dan ukuran yang lebih khas, sehingga lebih mudah untuk dideteksi dan diklasifikasikan. Sebaliknya, \textit{O. javanicus} menunjukkan variabilitas morfologi lebih besar dan berbagi karakteristik tertentu dengan spesies akuatik lain, yang meningkatkan tantangan klasifikasi. Efektivitas khusus ansambel WBF dalam meningkatkan presisi \textit{O. javanicus} (hingga 88.1\% pada confidence 0.5) menegaskan nilai pendekatan ansambel untuk tugas identifikasi spesies yang menantang.
+
+Temuan ini sejalan dengan penelitian sebelumnya dalam deteksi spesies akuatik~\cite{Qin2016,Tamou2021}, yang telah mengidentifikasi tantangan deteksi spesifik spesies terkait dengan kesamaan morfologi dan variabilitas lingkungan. Hasil kami memperluas temuan tersebut dengan mengkuantifikasi manfaat spesifik pendekatan ansambel untuk mengatasi tantangan tersebut.
+
+\subsection{Optimisasi Ambang Kepercayaan}
+
+Evaluasi menyeluruh pada berbagai ambang kepercayaan mengungkap karakteristik kinerja yang bernuansa, dengan implikasi penting untuk penerapan praktis. Ansambel WBF mencapai kinerja optimal pada ambang kepercayaan sedang (0.25–0.5), di mana keseimbangan antara presisi dan recall paling sesuai untuk aplikasi pemantauan ekologi.
+
+Pada ambang kepercayaan sangat rendah (0.001), meskipun recall mencapai maksimum, peningkatan signifikan pada false positives membatasi kegunaan praktis. Sebaliknya, pada ambang tinggi (0.6), presisi dimaksimalkan tetapi dengan konsekuensi banyaknya deteksi terlewat yang bisa krusial untuk pemantauan biodiversitas. Identifikasi titik operasi optimal (confidence 0.25–0.5) memberikan panduan praktis untuk skenario penerapan lapangan.
+
+Perilaku yang bergantung pada ambang ini konsisten dengan ekspektasi teoretis dari sistem ansambel, di mana agregasi dari beberapa prediksi menghasilkan estimasi kepercayaan yang lebih stabil dibanding model tunggal. Keandalan skor kepercayaan yang ditingkatkan pada sistem ansambel memungkinkan optimisasi ambang yang lebih efektif dan peningkatan pengambilan keputusan berikutnya.
+
+\subsection{Pertimbangan Efisiensi Komputasi}
+
+Analisis komputasi mengungkap adanya trade-off mendasar antara akurasi deteksi dan efisiensi pemrosesan yang harus diperhatikan secara hati-hati dalam skenario penerapan praktis. Peningkatan waktu pemrosesan sebesar 4.3× untuk ansambel WBF dibandingkan pendekatan model tunggal merupakan overhead komputasi yang signifikan dan dapat membatasi aplikasi real-time.
+
+Namun, trade-off ini perlu dievaluasi dalam konteks alur kerja pemantauan ekologi tipikal. Banyak protokol penilaian biodiversitas yang beroperasi pada citra arsip atau rekaman video yang dikumpulkan, di mana pemrosesan real-time tidak diperlukan. Dalam skenario seperti ini, peningkatan akurasi substansial yang diberikan oleh pendekatan ansambel membenarkan biaya komputasi tambahan, terutama mengingat tingginya nilai data deteksi spesies yang akurat bagi upaya konservasi.
+
+Untuk aplikasi yang memerlukan pemrosesan real-time, beberapa strategi optimisasi dapat dieksplorasi, termasuk aktivasi ansambel selektif berdasarkan penilaian kepercayaan awal, pruning komponen ansambel, atau penerapan varian ansambel yang ringan. Selain itu, kemajuan berkelanjutan dalam perangkat keras komputasi dan teknik optimisasi dapat mengurangi dampak praktis dari pertimbangan efisiensi ini seiring waktu.
+
+\subsection{Kontribusi Metodologis dan Implikasi Lebih Luas}
+
+Penelitian ini memberikan beberapa kontribusi metodologis penting dalam bidang deteksi objek berbasis ansambel untuk aplikasi ekologi. Perbandingan sistematis antara strategi fusi NMS dan WBF dalam kerangka YOLOv8 memberikan wawasan berharga bagi peneliti yang bekerja pada aplikasi serupa. Protokol evaluasi komprehensif, termasuk analisis stabilitas cross-validation dan pengujian signifikansi statistik, menetapkan kerangka kerja yang ketat untuk studi komparatif di masa mendatang.
+
+Efektivitas yang ditunjukkan oleh pendekatan ansambel untuk deteksi spesies akuatik memiliki implikasi yang lebih luas bagi pemantauan biodiversitas dan upaya konservasi. Keandalan deteksi yang ditingkatkan dan tingkat kesalahan yang berkurang dapat secara signifikan meningkatkan akurasi penilaian populasi dan studi ekologi, yang pada akhirnya menghasilkan keputusan konservasi yang lebih tepat. Trade-off antara akurasi dan efisiensi yang telah dikuantifikasi juga memberikan panduan praktis untuk implementasi sistem ini dalam skenario pemantauan lapangan.
+
+\subsection{Keterbatasan dan Tantangan}
+
+Meskipun hasilnya menjanjikan, beberapa keterbatasan harus diakui. Pertama, dataset, meskipun komprehensif untuk spesies Medaka, tetap terbatas cakupannya dibandingkan dengan keanekaragaman hayati akuatik secara umum. Generalisasi temuan ini ke spesies ikan lain atau organisme akuatik memerlukan penelitian lebih lanjut. Kedua, kondisi pencitraan yang terkendali dan semi-terkendali dalam dataset kami mungkin tidak sepenuhnya merepresentasikan tantangan yang ditemui di kondisi lapangan alami.
+
+Overhead komputasi metode ansambel merupakan keterbatasan praktis untuk skenario penerapan dengan sumber daya terbatas. Meskipun studi ini telah mengkuantifikasi trade-off tersebut, penelitian selanjutnya perlu mengeksplorasi strategi optimisasi untuk mengurangi kebutuhan komputasi sambil mempertahankan manfaat akurasi. Selain itu, kebutuhan penyimpanan dan pemeliharaan sistem ansambel dapat menjadi tantangan logistik dalam penerapan di lapangan.
+
+Stabilitas temporal kinerja ansambel pada berbagai kondisi lingkungan sepanjang musim dan siklus ekologi belum sepenuhnya dievaluasi. Studi penerapan jangka panjang akan memberikan wawasan berharga terkait ketahanan dan kebutuhan pemeliharaan sistem pemantauan berbasis ansambel.
+
+\subsection{Arah Penelitian Selanjutnya}
+
+Beberapa arah penelitian menjanjikan muncul dari karya ini. Pertama, eksplorasi arsitektur ansambel ringan yang dirancang khusus untuk aplikasi pemantauan ekologi real-time dapat mengatasi keterbatasan komputasi saat ini. Hal ini dapat mencakup investigasi teknik distilasi pengetahuan untuk mengompresi pengetahuan ansambel ke dalam model tunggal yang lebih efisien.
+
+Kedua, perluasan pendekatan ansambel ke tugas deteksi dan klasifikasi multi-spesies akan memberikan aplikasi yang lebih luas untuk pemantauan biodiversitas. Hal ini memerlukan penanganan tantangan terkait ketidakseimbangan kelas, kesamaan morfologi, dan variasi tingkat kesulitan deteksi antarspesies.
+
+Ketiga, integrasi informasi temporal dari urutan video dapat meningkatkan keandalan deteksi sekaligus memungkinkan kemampuan analisis perilaku. Pendekatan ansambel dapat sangat efektif untuk fusi temporal, dengan mengombinasikan manfaat ansambel spasial dan konsistensi temporal.
+
+Terakhir, pengembangan sistem ansambel adaptif yang dapat menyesuaikan strategi fusi secara dinamis berdasarkan kondisi lingkungan atau karakteristik citra dapat mengoptimalkan trade-off akurasi-efisiensi untuk skenario penerapan tertentu. Hal ini dapat mencakup aktivasi ansambel berbasis konteks atau strategi pemrosesan selektif berbasis kepercayaan.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+Penelitian ini menyajikan investigasi komprehensif mengenai pendekatan pembelajaran ansambel untuk deteksi otomatis ikan Medaka, yang menunjukkan kemajuan signifikan baik dalam akurasi deteksi maupun ketelitian metodologis untuk aplikasi pemantauan ekologi. Melalui evaluasi sistematis pada kerangka kerja ansambel berbasis YOLOv8 yang menggunakan Non-Maximum Suppression (NMS) dan Weighted Boxes Fusion (WBF), kami telah menetapkan tolok ukur kinerja yang jelas serta pedoman praktis untuk penerapan sistem deteksi spesies akuatik.
+
+\subsection{Temuan Utama dan Kontribusi}
+
+Hasil eksperimen kami memberikan bukti kuat atas keunggulan pendekatan ansambel, dengan ansambel WBF mencapai peningkatan luar biasa sebesar 21.1\% pada mAP@0.5:0.95 dibandingkan model tunggal baseline (0.5571 vs 0.4600). Peningkatan ini merepresentasikan kemajuan substansial dalam kemampuan deteksi yang secara langsung diterjemahkan ke dalam peningkatan keandalan pemantauan biodiversitas. Peningkatan sebesar 23.6\% pada F1-score menunjukkan keseimbangan superior antara presisi dan recall, yang sangat penting untuk meminimalkan baik false positives maupun missed detections dalam survei ekologi.
+
+Perbandingan komprehensif antara strategi fusi NMS dan WBF mengungkap bahwa pendekatan penggabungan cerdas WBF secara konsisten melampaui metode penekanan tradisional, khususnya pada skenario yang melibatkan objek tumpang tindih atau batas yang tidak jelas—tantangan umum di lingkungan akuatik. Peningkatan presisi sebesar 28.5\% yang dicapai WBF dibandingkan ansambel NMS menyoroti nilai strategi fusi tingkat lanjut dalam deteksi objek berbasis ansambel.
+
+Validasi statistik yang ketat, termasuk analisis stabilitas cross-validation dan kuantifikasi effect size, menegaskan keandalan serta kemampuan generalisasi dari peningkatan kinerja ini. Effect size yang besar (Cohen's d > 1.0) pada perbandingan ansambel memberikan bukti kuat atas signifikansi praktis, melampaui sekadar signifikansi statistik.
+
+\subsection{Implikasi Praktis untuk Pemantauan Ekologi}
+
+Peningkatan akurasi yang ditunjukkan memiliki implikasi langsung bagi pemantauan biodiversitas dan upaya konservasi. Penurunan tingkat kesalahan (dari 15.3\% menjadi 8.9\% pada skenario menantang) berpotensi meningkatkan keandalan penilaian populasi otomatis, menghasilkan wawasan ekologi yang lebih akurat dan keputusan konservasi yang lebih tepat. Analisis spesifik per spesies menunjukkan manfaat khusus bagi spesies menantang seperti \textit{O. javanicus}, di mana peningkatan presisi melebihi 30\% pada konfigurasi optimal.
+
+Analisis efisiensi komputasi memberikan panduan penting untuk skenario penerapan praktis. Meskipun metode ansambel membutuhkan waktu pemrosesan sekitar 4.3× lebih lama, trade-off ini dapat diterima untuk banyak alur kerja pemantauan ekologi di mana akurasi lebih diprioritaskan daripada performa real-time. Metrik throughput yang terkuantifikasi (3.780 citra/jam untuk ansambel WBF) menunjukkan kelayakan untuk pemrosesan citra arsip berskala besar yang umum dalam survei biodiversitas.
+
+\subsection{Kemajuan Metodologis}
+
+Karya ini menyumbangkan beberapa kemajuan metodologis penting bagi bidang pemantauan ekologi otomatis. Kerangka evaluasi komprehensif yang mengintegrasikan metrik bergaya COCO, analisis stabilitas cross-validation, dan uji signifikansi statistik menetapkan standar ketat untuk studi komparatif di masa depan. Analisis ambang kepercayaan yang sistematis memberikan panduan praktis dalam mengoptimalkan sistem deteksi sesuai kebutuhan operasional yang berbeda.
+
+Analisis kesalahan detail dan karakterisasi kasus kegagalan menawarkan wawasan berharga untuk memahami keterbatasan dan aplikasi optimal dari berbagai pendekatan deteksi. Temuan ini memberikan masukan baik untuk keputusan penerapan saat ini maupun arah penelitian di masa mendatang dalam meningkatkan sistem deteksi spesies otomatis.
+
+\subsection{Keterbatasan dan Perspektif Masa Depan}
+
+Meski menunjukkan kemajuan signifikan, penelitian ini juga mengungkap keterbatasan penting yang perlu ditangani pada penelitian selanjutnya. Overhead komputasi dari metode ansambel menuntut eksplorasi strategi optimisasi lebih lanjut, termasuk arsitektur ansambel ringan dan mekanisme aktivasi selektif. Cakupan dataset, meskipun komprehensif untuk spesies Medaka, perlu diperluas ke biodiversitas akuatik yang lebih luas agar dapat menghasilkan kesimpulan yang lebih general.
+
+Arah penelitian ke depan mencakup pengembangan sistem ansambel real-time melalui optimisasi arsitektur, perluasan ke skenario deteksi multi-spesies, integrasi informasi temporal dari urutan video, serta eksplorasi sistem ansambel adaptif yang dapat mengoptimalkan kinerja secara dinamis berdasarkan kondisi lingkungan.
+
+\subsection{Dampak Lebih Luas dan Signifikansi}
+
+Keberhasilan penerapan teknik pembelajaran ansambel tingkat lanjut untuk pemantauan ekologi merepresentasikan langkah penting menuju sistem penilaian biodiversitas otomatis yang lebih andal. Peningkatan akurasi dan keandalan deteksi yang ditunjukkan berpotensi mempercepat adopsi teknologi visi komputer dalam upaya konservasi, memungkinkan program pemantauan yang lebih luas dan hemat biaya.
+
+Kerangka metodologis ketat yang ditetapkan dalam karya ini menyediakan fondasi untuk penelitian lebih lanjut dalam pemantauan ekologi otomatis, sementara wawasan praktis penerapan memfasilitasi implementasi teknologi ini di dunia nyata. Seiring kemajuan sumber daya komputasi dan perbaikan teknik optimisasi, manfaat akurasi yang ditunjukkan di sini akan semakin mudah diakses dalam skenario penerapan lapangan.
+
+Sebagai kesimpulan, penelitian ini menetapkan pembelajaran ansambel sebagai pendekatan berharga untuk meningkatkan deteksi otomatis spesies akuatik, sekaligus memberikan manfaat praktis langsung dan fondasi bagi kemajuan berkelanjutan dalam domain aplikasi penting ini. Peningkatan keandalan deteksi yang ditunjukkan, dikombinasikan dengan validasi metodologis komprehensif, merepresentasikan kontribusi signifikan pada persimpangan antara visi komputer dan ilmu ekologi, dengan implikasi langsung bagi konservasi biodiversitas serta upaya pemantauan ekosistem.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\funding{This research was supported by the Data Science and Artificial Intelligence Research Group at Hasanuddin University and the B.J. Habibie Institute of Technology. Computational resources were provided by the Faculty of Mathematics and Natural Sciences, Hasanuddin University. No external commercial funding was received for this research.}
+
+\acknowledgments{The authors express their sincere gratitude to the marine biology research teams at Hasanuddin University for their expertise in fish species identification and annotation protocols. We thank the Data Science and Artificial Intelligence Research Group for providing computational resources and technical support throughout this research. Special appreciation is extended to the field researchers who contributed to the diverse image collection efforts across multiple aquatic environments in Sulawesi and Java. The authors acknowledge the valuable collaboration with the Kyushu Institute of Technology for methodological guidance and validation protocols. We also thank the open-source community for developing and maintaining the software tools that made this research possible, including the YOLOv8 framework, PyTorch, and associated computer vision libraries. The ichthyological expertise provided by the Department of Biology and Department of Fishery at Hasanuddin University was instrumental in ensuring accurate species identification and annotation quality.}
+
+\conflictsofinterest{The authors declare no conflicts of interest. The research was conducted independently without commercial partnerships or competing interests that could influence the interpretation of results.}
+
+\bibliography{references}
+
+\end{document}

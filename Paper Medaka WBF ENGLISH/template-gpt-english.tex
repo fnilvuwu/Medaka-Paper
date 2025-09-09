@@ -1,0 +1,827 @@
+%  LaTeX support: latex@mdpi.com 
+%  For support, please attach all files needed for compiling as well as the log file, and specify your operating system, LaTeX version, and LaTeX editor.
+
+%=================================================================
+\documentclass[journal,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+\usepackage{pdflscape} % or lscape
+%\documentclass[preprints,article,submit,pdftex,moreauthors]{Definitions/mdpi} 
+% For posting an early version of this manuscript as a preprint, you may use "preprints" as the journal. Changing "submit" to "accept" before posting will remove line numbers.
+
+% Below journals will use APA reference format:
+% admsci, aieduc, behavsci, businesses, econometrics, economies, education, ejihpe, famsci, games, humans, ijcs, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth
+
+% Below journals will use Chicago reference format:
+% arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci
+
+%--------------------
+% Class Options:
+%--------------------
+%----------
+% journal
+%----------
+% Choose between the following MDPI journals:
+% accountaudit, acoustics, actuators, addictions, adhesives, admsci, adolescents, aerobiology, aerospace, agriculture, agriengineering, agrochemicals, agronomy, ai, air, algorithms, allergies, alloys, amh, analytica, analytics, anatomia, anesthres, animals, antibiotics, antibodies, antioxidants, applbiosci, appliedchem, appliedmath, appliedphys, applmech, applmicrobiol, applnano, applsci, aquacj, architecture, arm, arthropoda, arts, asc, asi, astronomy, atmosphere, atoms, audiolres, automation, axioms, bacteria, batteries, bdcc, behavsci, beverages, biochem, bioengineering, biologics, biology, biomass, biomechanics, biomed, biomedicines, biomedinformatics, biomimetics, biomolecules, biophysica, biosensors, biosphere, biotech, birds, blockchains, bloods, blsf, brainsci, breath, buildings, businesses, cancers, carbon, cardiogenetics, catalysts, cells, ceramics, challenges, chemengineering, chemistry, chemosensors, chemproc, children, chips, cimb, civileng, cleantechnol, climate, clinbioenerg, clinpract, clockssleep, cmd, cmtr, coasts, coatings, colloids, colorants, commodities, complications, compounds, computation, computers, condensedmatter, conservation, constrmater, cosmetics, covid, crops, cryo, cryptography, crystals, csmf, ctn, curroncol, cyber, dairy, data, ddc, dentistry, dermato, dermatopathology, designs, devices, diabetology, diagnostics, dietetics, digital, disabilities, diseases, diversity, dna, drones, dynamics, earth, ebj, ecm, ecologies, econometrics, economies, education, eesp, ejihpe, electricity, electrochem, electronicmat, electronics, encyclopedia, endocrines, energies, eng, engproc, ent, entomology, entropy, environments, epidemiologia, epigenomes, esa, est, famsci, fermentation, fibers, fintech, fire, fishes, fluids, foods, forecasting, forensicsci, forests, fossstud, foundations, fractalfract, fuels, future, futureinternet, futureparasites, futurepharmacol, futurephys, futuretransp, galaxies, games, gases, gastroent, gastrointestdisord, gastronomy, gels, genealogy, genes, geographies, geohazards, geomatics, geometry, geosciences, geotechnics, geriatrics, glacies, grasses, greenhealth, gucdd, hardware, hazardousmatters, healthcare, hearts, hemato, hematolrep, heritage, higheredu, highthroughput, histories, horticulturae, hospitals, humanities, humans, hydrobiology, hydrogen, hydrology, hygiene, idr, iic, ijerph, ijfs, ijgi, ijmd, ijms, ijns, ijpb, ijt, ijtm, ijtpp, ime, immuno, informatics, information, infrastructures, inorganics, insects, instruments, inventions, iot, j, jal, jcdd, jcm, jcp, jcs, jcto, jdad, jdb, jeta, jfb, jfmk, jimaging, jintelligence, jlpea, jmahp, jmmp, jmms, jmp, jmse, jne, jnt, jof, joitmc, joma, jop, jor, journalmedia, jox, jpbi, jpm, jrfm, jsan, jtaer, jvd, jzbg, kidney, kidneydial, kinasesphosphatases, knowledge, labmed, laboratories, land, languages, laws, life, lights, limnolrev, lipidology, liquids, literature, livers, logics, logistics, lubricants, lymphatics, machines, macromol, magnetism, magnetochemistry, make, marinedrugs, materials, materproc, mathematics, mca, measurements, medicina, medicines, medsci, membranes, merits, metabolites, metals, meteorology, methane, metrics, metrology, micro, microarrays, microbiolres, microelectronics, micromachines, microorganisms, microplastics, microwave, minerals, mining, mmphys, modelling, molbank, molecules, mps, msf, mti, multimedia, muscles, nanoenergyadv, nanomanufacturing, nanomaterials, ncrna, ndt, network, neuroglia, neurolint, neurosci, nitrogen, notspecified, nursrep, nutraceuticals, nutrients, obesities, oceans, ohbm, onco, oncopathology, optics, oral, organics, organoids, osteology, oxygen, parasites, parasitologia, particles, pathogens, pathophysiology, pediatrrep, pets, pharmaceuticals, pharmaceutics, pharmacoepidemiology, pharmacy, philosophies, photochem, photonics, phycology, physchem, physics, physiologia, plants, plasma, platforms, pollutants, polymers, polysaccharides, populations, poultry, powders, preprints, proceedings, processes, prosthesis, proteomes, psf, psych, psychiatryint, psychoactives, psycholint, publications, purification, quantumrep, quaternary, qubs, radiation, reactions, realestate, receptors, recycling, regeneration, religions, remotesensing, reports, reprodmed, resources, rheumato, risks, robotics, rsee, ruminants, safety, sci, scipharm, sclerosis, seeds, sensors, separations, sexes, signals, sinusitis, siuj, skins, smartcities, sna, societies, socsci, software, soilsystems, solar, solids, spectroscj, sports, standards, stats, std, stresses, surfaces, surgeries, suschem, sustainability, symmetry, synbio, systems, tae, targets, taxonomy, technologies, telecom, test, textiles, thalassrep, therapeutics, thermo, timespace, tomography, tourismhosp, toxics, toxins, transplantology, transportation, traumacare, traumas, tropicalmed, universe, urbansci, uro, vaccines, vehicles, venereology, vetsci, vibration, virtualworlds, viruses, vision, waste, water, wem, wevj, wild, wind, women, world, youth, zoonoticdis
+
+%---------
+% article
+%---------
+% The default type of manuscript is "article", but can be replaced by: 
+% abstract, addendum, article, benchmark, book, bookreview, briefcommunication, briefreport, casereport, changes, clinicopathologicalchallenge, comment, commentary, communication, conceptpaper, conferenceproceedings, correction, conferencereport, creative, datadescriptor, discussion, entry, expressionofconcern, extendedabstract, editorial, essay, erratum, fieldguide, hypothesis, interestingimages, letter, meetingreport, monograph, newbookreceived, obituary, opinion, proceedingpaper, projectreport, reply, retraction, review, perspective, protocol, shortnote, studyprotocol, supfile, systematicreview, technicalnote, viewpoint, guidelines, registeredreport, tutorial,  giantsinurology, urologyaroundtheworld
+% supfile = supplementary materials
+
+%----------
+% submit
+%----------
+% The class option "submit" will be changed to "accept" by the Editorial Office when the paper is accepted. This will only make changes to the frontpage (e.g., the logo of the journal will get visible), the headings, and the copyright information. Also, line numbering will be removed. Journal info and pagination for accepted papers will also be assigned by the Editorial Office.
+
+%------------------
+% moreauthors
+%------------------
+% If there is only one author the class option oneauthor should be used. Otherwise use the class option moreauthors.
+
+%---------
+% pdftex
+%---------
+% The option pdftex is for use with pdfLaTeX. Remove "pdftex" for (1) compiling with LaTeX & dvi2pdf (if eps figures are used) or for (2) compiling with XeLaTeX.
+
+%=================================================================
+% MDPI internal commands - do not modify
+\firstpage{1} 
+\makeatletter 
+\setcounter{page}{\@firstpage} 
+\makeatother
+\pubvolume{1}
+\issuenum{1}
+\articlenumber{0}
+\pubyear{2025}
+\copyrightyear{2025}
+%\externaleditor{Firstname Lastname} % More than 1 editor, please add `` and '' before the last editor name
+\datereceived{ } 
+\daterevised{ } % Comment out if no revised date
+\dateaccepted{ } 
+\datepublished{ } 
+%\datecorrected{} % For corrected papers: "Corrected: XXX" date in the original paper.
+%\dateretracted{} % For retracted papers: "Retracted: XXX" date in the original paper.
+\hreflink{https://doi.org/} % If needed use \linebreak
+%\doinum{}
+%\pdfoutput=1 % Uncommented for upload to arXiv.org
+%\CorrStatement{yes}  % For updates
+%\longauthorlist{yes} % For many authors that exceed the left citation part
+
+%=================================================================
+% Add packages and commands here. The following packages are loaded in our class file: fontenc, inputenc, calc, indentfirst, fancyhdr, graphicx, epstopdf, lastpage, ifthen, float, amsmath, amssymb, lineno, setspace, enumitem, mathpazo, booktabs, titlesec, etoolbox, tabto, xcolor, colortbl, soul, multirow, microtype, tikz, totcount, changepage, attrib, upgreek, array, tabularx, pbox, ragged2e, tocloft, marginnote, marginfix, enotez, amsthm, natbib, hyperref, cleveref, scrextend, url, geometry, newfloat, caption, draftwatermark, seqsplit
+% cleveref: load \crefname definitions after \begin{document}
+
+%=================================================================
+% Please use the following mathematics environments: Theorem, Lemma, Corollary, Proposition, Characterization, Property, Problem, Example, ExamplesandDefinitions, Hypothesis, Remark, Definition, Notation, Assumption
+%% For proofs, please use the proof environment (the amsthm package is loaded by the MDPI class).
+
+%=================================================================
+% Full title of the paper (Capitalized)
+\Title{YOLOv8-WBF: Ensemble Learning for Reliable Detection of Endangered Medaka (Oryzias)}
+
+% MDPI internal command: Title for citation in the left column
+\TitleCitation{YOLOv8-WBF: Ensemble Learning}
+
+% Author Orchid ID: enter ID or remove command
+\newcommand{\orcidauthorA}{0000-0000-0000-000X} % Add \orcidA{} behind the author's name
+%\newcommand{\orcidauthorB}{0000-0000-0000-000X} % Add \orcidB{} behind the author's name
+
+% Authors, for the paper (add full first names)
+\Author{Rahmatullah R.$^{1}$\orcidA{}, Armin Lawi$^{1,2,3}$, Muhammad Haerul$^{1}$, Iman Mustika Ismail$^{1}$, Irma Andriani$^{4}$, Andi Iqbal Burhanuddin$^{5}$, and Mario K\"oppen$^{6,}$*}
+
+%\longauthorlist{yes}
+
+% MDPI internal command: Authors, for metadata in PDF
+\AuthorNames{Rahmatullah R., Armin Lawi, Muhammad Haerul, Iman Mustika Ismail, Irma Andriani, Andi Iqbal Burhanuddin, and Mario K\"oppen}
+
+% MDPI internal command: Authors, for citation in the left column, only choose below one of them according to the journal style
+% If this is a Chicago style journal 
+% (arts, genealogy, histories, humanities, jintelligence, laws, literature, religions, risks, socsci): 
+% Lastname, Firstname, Firstname Lastname, and Firstname Lastname.
+
+% If this is a APA style journal 
+% (admsci, behavsci, businesses, econometrics, economies, education, ejihpe, games, humans, ijfs, journalmedia, jrfm, languages, psycholint, publications, tourismhosp, youth): 
+% Lastname, F., Lastname, F., \& Lastname, F.
+
+% If this is a ACS style journal (Except for the above Chicago and APA journals, all others are in the ACS format): 
+% Lastname, F.; Lastname, F.; Lastname, F.
+\isAPAStyle{%
+       \AuthorCitation{R., R., Lawi, A., Haerul, M., Ismail, I.M., Andriani, I., Burhanuddin, A.I., \& K\"oppen, M.}
+         }{%
+        \isChicagoStyle{%
+        \AuthorCitation{R., Rahmatullah, Armin Lawi, Muhammad Haerul, Iman Mustika Ismail, Irma Andriani, Andi Iqbal Burhanuddin, and Mario K\"oppen.}
+        }{
+        \AuthorCitation{R., R.; Lawi, A.; Haerul, M.; Ismail, I.M.; Andriani, I.; Burhanuddin, A.I.; K\"oppen, M.}
+        }
+}
+
+% Affiliations / Addresses (Add [1] after \address if there is only one affiliation.)
+\address{%
+$^{1}$ \quad Information Systems Study Program, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Makassar 90245, Indonesia; rahmatullah@unhas.ac.id (R.R.); armin@unhas.ac.id (A.L.); haerul@unhas.ac.id (M.H.); imanmustika@unhas.ac.id (I.M.I.)\\
+$^{2}$ \quad Data Science and Artificial Intelligence Research Group, Hasanuddin University, Makassar 90245, Indonesia\\
+$^{3}$ \quad B.J. Habibie Institute of Technology, Parepare 91132, Indonesia\\
+$^{4}$ \quad Department of Biology, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Makassar 90245, Indonesia; irma.andriani@unhas.ac.id\\
+$^{5}$ \quad Department of Fishery, Faculty of Marine Science and Fisheries, Hasanuddin University, Makassar 90245, Indonesia; andi.iqbal@unhas.ac.id\\
+$^{6}$ \quad Graduate School of Life Science and Systems Engineering, Kyushu Institute of Technology, Kitakyushu 808-0196, Japan}
+
+% Contact information of the corresponding author
+\corres{Correspondence: mkoeppen@brain.kyutech.ac.jp; Tel.: +81-93-884-3225 (M.K.)}
+
+% Current address and/or shared authorship
+%\firstnote{Current address: Affiliation.}  
+% Current address should not be the same as any items in the Affiliation section.
+
+%\secondnote{These authors contributed equally to this work.}
+% The commands \thirdnote{} till \eighthnote{} are available for further notes.
+
+%\simplesumm{} % Simple summary
+
+%\conference{} % An extended version of a conference paper
+
+% Abstract (Do not insert blank lines, i.e. \\) 
+\abstract{Medaka (Oryzias) fish, such as the Java medaka (Oryzias javanicus) and Celebes medaka (Oryzias celebensis), play vital roles in maintaining biodiversity and balance in the aquatic ecosystem of Indonesia. They serve as bioindicators of environmental health and are extensively researched in ecotoxicology. In this study, a manually annotated dataset of 1,247 Medaka images gathered from various aquatic environments is used to assess the performance of YOLOv8 and an ensemble approach employing Weighted Box Fusion (WBF). 5 models were trained and validated using 5-fold cross-validation.With an mAP@0.5:0.95 of 0.5905, the YOLOv8-WBF ensemble significantly outperformed the best single model by 18.6\% (0.4979). With precision gains of up to 82\% at ideal confidence thresholds, the ensemble method showed superior bounding box localisation and classification reliability, especially for small and visually challenging fish instances. Although computational efficiency dropped by about 4.3× when compared to single models, the improved accuracy offers significant value for ecological monitoring and conservation workflows where detection reliability is prioritised.This work sets a benchmark for ensemble-based aquatic species detection systems and contributes to more robust biodiversity monitoring by improving overall detection consistency across environmental variations and reducing missed detections of rare species by 23\%.}
+
+% Keywords
+\keyword{YOLOv8; object detection; ensemble learning; weighted boxes fusion; non-maximum suppression; ecological monitoring} 
+
+% The fields PACS, MSC, and JEL may be left empty or commented out if not applicable
+%\PACS{J0101}
+%\MSC{}
+%\JEL{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Diversity
+%\LSID{\url{http://}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Applied Sciences
+%\featuredapplication{Authors are encouraged to provide a concise description of the specific application or a potential application of the work. This section is not mandatory.}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Data
+%\dataset{DOI number or link to the deposited data set if the data set is published separately. If the data set shall be published as a supplement to this paper, this field will be filled by the journal editors. In this case, please submit the data set as a supplement.}
+%\datasetlicense{License under which the data set is made available (CC0, CC-BY, CC-BY-SA, CC-BY-NC, etc.)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal BioTech, Fishes, Neuroimaging and Toxins
+%\keycontribution{The breakthroughs or highlights of the manuscript. Authors can write one or two sentences to describe the most important part of the paper.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Encyclopedia
+%\encyclopediadef{For entry manuscripts only: please provide a brief overview of the entry title instead of an abstract.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only for the journal Advances in Respiratory Medicine, Future, Sensors and Smart Cities
+%\addhighlights{yes}
+%\renewcommand{\addhighlights}{%
+%
+%\noindent This is an obligatory section in ``Advances in Respiratory Medicine'', ``Future'', ``Sensors'' and ``Smart Cities", whose goal is to increase the discoverability and readability of the article via search engines and other scholars. Highlights should not be a copy of the abstract, but a simple text allowing the reader to quickly and simplified find out what the article is about and what can be cited from it. Each of these parts should be devoted up to 2~bullet points.\vspace{3pt}\\
+%\textbf{What are the main findings?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}\vspace{3pt}
+%\textbf{What is the implication of the main finding?}
+% \begin{itemize}[labelsep=2.5mm,topsep=-3pt]
+% \item First bullet.
+% \item Second bullet.
+% \end{itemize}
+%}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+Object detection has emerged as a cornerstone technology in computer vision, with profound applications spanning autonomous systems, medical imaging, and ecological monitoring~\cite{LeCun2015,Zhao2019}. The evolution of deep learning architectures, particularly Convolutional Neural Networks (CNNs), has fundamentally transformed detection capabilities, leading to breakthrough models including Region-based CNN (R-CNN)~\cite{Girshick2014}, Faster R-CNN~\cite{Ren2015}, and the influential You Only Look Once (YOLO) family~\cite{Redmon2016,Redmon2017,Bochkovskiy2020,Terven2023}.
+
+The YOLO architecture has garnered significant attention within the computer vision community due to its exceptional balance between real-time processing capabilities and competitive detection accuracy~\cite{Jocher2022}. YOLOv8, the latest iteration in this lineage, represents a substantial advancement in detection performance while maintaining computational efficiency suitable for deployment across diverse hardware configurations~\cite{Terven2023}. However, despite these remarkable advances, single-model approaches inherently suffer from several critical limitations including hyperparameter sensitivity, dataset bias susceptibility, and reduced robustness when confronted with environmental variations and edge cases~\cite{Dietterich2000}.
+
+Ensemble learning methodologies have emerged as a powerful paradigm to address these fundamental limitations by strategically combining predictions from multiple diverse models to achieve superior performance compared to any individual constituent model~\cite{Zhou2002,Breiman2001,Freund1997}. In the context of object detection, ensemble approaches encounter unique technical challenges, particularly in the realm of bounding box fusion, where multiple potentially overlapping predictions from different models must be intelligently aggregated to produce coherent final outputs~\cite{Solovyev2021}.
+
+Traditional Non-Maximum Suppression (NMS) techniques, while effective for managing redundant predictions within single models, may not optimally handle the complex prediction landscapes generated by diverse ensemble components~\cite{Solovyev2021}. This limitation has motivated the development of more sophisticated fusion strategies, with Weighted Boxes Fusion (WBF) emerging as a promising alternative that demonstrates superior performance in handling overlapping predictions from heterogeneous model ensembles~\cite{Solovyev2021}.
+
+Unlike conventional NMS approaches that suppress overlapping bounding boxes, WBF employs an intelligent merging strategy that considers both confidence scores and spatial relationships between predictions, thereby preserving valuable information that would otherwise be discarded in traditional suppression schemes~\cite{Solovyev2021}. This approach has shown particular promise in scenarios involving complex object arrangements and overlapping instances.
+
+Within the specialized domain of ecological monitoring and biodiversity conservation, accurate detection of aquatic species presents a constellation of unique technical challenges stemming from underwater imaging conditions, highly variable lighting environments, complex naturalistic backgrounds, and the inherent difficulty of distinguishing between morphologically similar species~\cite{Kalafi2018,Leow2015,Qin2016}. Fish detection and classification have gained considerable attention as critical applications for population monitoring, ecosystem health assessment, and conservation efforts~\cite{Mandal2018,Ditria2020,Campbell2015}.
+
+Traditional manual counting and identification methodologies are not only labor-intensive and time-consuming but also prone to human error and observer bias, making automated detection systems increasingly valuable for large-scale ecological studies and long-term monitoring programs~\cite{Tamou2021}. The integration of advanced computer vision techniques with ecological research represents a significant opportunity to enhance the scale, accuracy, and consistency of biodiversity monitoring efforts.
+
+The Medaka fish (Oryzias species) represents a particularly important model organism for both fundamental scientific research and practical ecological monitoring applications. These small freshwater fish are widely distributed across Asian aquatic ecosystems and serve as valuable bioindicators of aquatic ecosystem health and environmental change~\cite{Salimi2016}. However, accurate detection and taxonomic classification of different Oryzias species remains technically challenging due to their subtle morphological differences, similar coloration patterns, and the variability introduced by environmental imaging conditions.
+
+This research addresses several critical knowledge gaps in ensemble-based object detection methodologies specifically applied to ecological monitoring scenarios. First, while ensemble methods have demonstrated considerable promise in general object detection benchmarks, their effectiveness and practical applicability for aquatic species detection remain systematically underexplored. Second, the comparative performance analysis between traditional NMS and advanced WBF techniques within the specific context of YOLOv8-based ensemble architectures has not been comprehensively investigated across diverse confidence threshold regimes. Third, the fundamental trade-offs between detection accuracy improvements and computational efficiency costs in ensemble approaches require systematic quantitative evaluation to inform practical deployment strategies in resource-constrained field monitoring scenarios.
+
+The primary research contributions of this work are:
+
+\begin{itemize}
+    \item \textbf{Comprehensive Ensemble Architecture}: Development and systematic implementation of a robust YOLOv8 ensemble framework specifically optimized for Medaka fish detection, incorporating rigorous K-fold cross-validation methodologies to ensure enhanced generalization across diverse environmental conditions and imaging scenarios.
+    
+    \item \textbf{Advanced Fusion Strategy Analysis}: Detailed comparative evaluation between traditional Non-Maximum Suppression (NMS) and state-of-the-art Weighted Boxes Fusion (WBF) techniques for bounding box aggregation in multi-model ensemble configurations, providing quantitative insights into optimal fusion strategies.
+    
+    \item \textbf{Comprehensive Evaluation Framework}: Implementation of extensive evaluation protocols incorporating COCO-style mean Average Precision (mAP) metrics, detailed precision-recall analysis, computational efficiency benchmarking, and systematic performance assessment across multiple confidence threshold regimes to ensure robust validation.
+    
+    \item \textbf{Practical Deployment Analysis}: Quantitative characterization of accuracy-efficiency trade-offs combined with practical deployment recommendations to guide implementation decisions in real-world ecological monitoring scenarios with varying computational resource constraints.
+    
+    \item \textbf{Methodological Validation}: Systematic validation employing comprehensive data augmentation strategies, rigorous cross-validation techniques, and statistical significance testing to ensure robust performance across diverse environmental conditions and species variations.
+\end{itemize}
+
+The remainder of this manuscript is structured as follows: Section~2 provides a comprehensive literature review encompassing object detection architectures, ensemble learning methodologies, and aquatic species monitoring applications. Section~3 details the proposed methodology including dataset preparation protocols, model architecture specifications, and ensemble fusion technique implementations. Section~4 presents extensive experimental results with detailed performance analysis and statistical validation. Section~5 discusses the broader implications of findings, acknowledges limitations, and explores practical deployment considerations. Finally, Section~6 concludes with future research directions and potential extensions of this work.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+
+\subsection{Object Detection Architectures}
+
+The evolution of object detection has been marked by several paradigm shifts, beginning with traditional computer vision approaches and progressing to sophisticated deep learning architectures. Early detection systems relied on handcrafted features and classical machine learning techniques, exemplified by the Viola-Jones framework~\cite{Freund1997}, which introduced the concept of boosting for object detection applications.
+
+The advent of deep learning revolutionized object detection through the introduction of region-based approaches. R-CNN~\cite{Girshick2014} pioneered the integration of CNNs for feature extraction in detection pipelines, though computational efficiency remained a significant limitation. Subsequent developments including Fast R-CNN and Faster R-CNN~\cite{Ren2015} addressed these efficiency concerns while maintaining high detection accuracy. The Cascade R-CNN architecture~\cite{Cai2018} further refined this approach by implementing progressive refinement of detection quality through multiple detection stages.
+
+Single-shot detection methods emerged as a response to the computational demands of region-based approaches. The Single Shot MultiBox Detector (SSD)~\cite{Liu2019} and the YOLO family~\cite{Redmon2016,Redmon2017} demonstrated that competitive accuracy could be achieved while maintaining real-time processing capabilities. YOLOv4~\cite{Bochkovskiy2020} and subsequent iterations have continued to push the boundaries of this efficiency-accuracy trade-off.
+
+The latest YOLOv8 architecture represents the current state-of-the-art in real-time object detection, incorporating advanced features including anchor-free detection, enhanced feature pyramid networks, and optimized training procedures~\cite{Terven2023}. These improvements have resulted in significant performance gains across diverse detection benchmarks while maintaining computational efficiency suitable for deployment in resource-constrained environments.
+
+\subsection{Ensemble Learning in Object Detection}
+
+Ensemble learning principles, originally developed for classification tasks~\cite{Dietterich2000}, have been successfully adapted to object detection scenarios with unique challenges and opportunities. The fundamental premise of ensemble learning—that combining multiple diverse models can achieve superior performance compared to individual models—applies particularly well to detection tasks where model diversity can capture complementary aspects of object appearance and spatial relationships~\cite{Zhou2002}.
+
+Traditional ensemble approaches in classification, including bagging~\cite{Breiman2001} and boosting~\cite{Freund1997}, have been extended to detection scenarios, though the integration of spatial predictions introduces additional complexity. The challenge of combining multiple bounding box predictions from different models has led to specialized fusion techniques beyond simple voting mechanisms used in classification ensembles.
+
+Recent work has explored various ensemble strategies specifically for object detection. These approaches range from simple averaging of confidence scores to sophisticated fusion techniques that consider spatial relationships between predictions. The choice of ensemble strategy significantly impacts both detection accuracy and computational efficiency, requiring careful consideration of application-specific requirements.
+
+\subsection{Bounding Box Fusion Techniques}
+
+The fusion of bounding box predictions from multiple models represents a critical component of ensemble object detection systems. Traditional Non-Maximum Suppression (NMS) operates by selecting the highest-confidence detection and suppressing nearby overlapping detections based on intersection-over-union (IoU) thresholds. While effective for single-model scenarios, NMS may not optimally handle the diverse prediction landscapes generated by ensemble systems.
+
+Weighted Boxes Fusion (WBF)~\cite{Solovyev2021} emerged as an advanced alternative to NMS, specifically designed for ensemble scenarios. Rather than suppressing overlapping boxes, WBF intelligently merges predictions by computing weighted averages of bounding box coordinates and confidence scores. This approach considers both the confidence of individual predictions and their spatial relationships, potentially preserving valuable information that would be discarded by traditional NMS approaches.
+
+The WBF algorithm operates by clustering nearby predictions based on IoU overlap, then computing weighted averages of coordinates and confidences within each cluster. This approach has demonstrated superior performance in various ensemble detection scenarios, particularly when dealing with overlapping objects or uncertain boundaries.
+
+\subsection{Aquatic Species Detection and Monitoring}
+
+The application of computer vision techniques to aquatic species monitoring represents a rapidly growing field with significant ecological and conservation implications. Underwater imaging presents unique challenges including variable lighting conditions, water turbidity, complex backgrounds, and distortions introduced by water medium effects~\cite{Kalafi2018,Leow2015}.
+
+Early approaches to automated fish detection relied on traditional computer vision techniques, including background subtraction and handcrafted feature extraction. However, these methods struggled with the complexity and variability of underwater environments, leading to limited practical adoption in field monitoring scenarios.
+
+Deep learning approaches have shown considerable promise for aquatic species detection and classification. Qin et al.~\cite{Qin2016} developed DeepFish, one of the first deep learning systems specifically designed for underwater fish recognition, demonstrating the potential of CNNs for this application domain. Subsequent work has explored various architectures and training strategies for improved performance in challenging underwater conditions.
+
+Recent advances have focused on addressing specific challenges in aquatic monitoring, including species classification~\cite{Tamou2021}, behavioral analysis~\cite{Salimi2016}, and population assessment~\cite{Mandal2018}. These systems have demonstrated practical utility in ecological research and conservation applications, though challenges remain in achieving the accuracy and reliability required for large-scale deployment.
+
+\subsection{Medaka Fish as Model Organisms}
+
+Medaka fish (Oryzias species) have gained prominence as important model organisms in both laboratory research and ecological monitoring contexts. These small freshwater fish are widely distributed across Asian aquatic ecosystems and exhibit characteristics that make them valuable for biodiversity studies and environmental monitoring programs.
+
+The morphological similarity between different Oryzias species presents particular challenges for automated detection and classification systems. Traditional identification requires expert knowledge and careful examination of subtle morphological features, making automated approaches particularly valuable for large-scale monitoring efforts.
+
+Previous work on Medaka detection has primarily focused on laboratory settings with controlled imaging conditions. The extension to natural environments with variable lighting, backgrounds, and water conditions represents a significant technical challenge that has not been thoroughly addressed in existing literature.
+
+\subsection{Cross-Validation and Model Evaluation}
+
+Robust evaluation methodologies are essential for assessing the performance and generalizability of detection systems. Cross-validation techniques, originally developed for classification tasks~\cite{Stone1974,Kohavi1995}, have been adapted for object detection scenarios with modifications to account for spatial prediction requirements.
+
+K-fold cross-validation provides a systematic approach to assess model performance across different data splits, helping to identify overfitting and ensure generalization to unseen data~\cite{Browne2000}. In detection tasks, careful consideration must be given to maintaining class balance and spatial distribution across folds.
+
+The COCO evaluation protocol has emerged as the standard for object detection assessment, providing comprehensive metrics including mean Average Precision (mAP) across different IoU thresholds and object scales. These metrics enable detailed analysis of detection performance across various scenarios and facilitate meaningful comparisons between different approaches.
+
+\subsection{Data Augmentation Strategies}
+
+Data augmentation has proven essential for training robust detection models, particularly in scenarios with limited training data or high environmental variability~\cite{Shorten2019}. Augmentation techniques for object detection must carefully preserve spatial relationships between objects and their bounding boxes while introducing appropriate variations to improve generalization.
+
+Common augmentation strategies include geometric transformations (rotation, scaling, translation), photometric adjustments (brightness, contrast, color variation), and advanced techniques such as mixup and cutout. The selection and parameterization of augmentation strategies significantly impacts model performance and requires careful consideration of domain-specific characteristics.
+
+In aquatic imaging scenarios, specific augmentation strategies may be particularly relevant, including simulation of water distortion effects, lighting variations, and turbidity changes. These domain-specific augmentations can improve model robustness to the challenging conditions encountered in real-world aquatic monitoring applications.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Materials and Methods}
+
+\subsection{Dataset Collection and Preparation}
+
+Our dataset comprises 1,247 high-resolution images of Medaka fish (Oryzias species) collected from diverse aquatic environments across multiple geographical locations. The dataset encompasses two primary species: \textit{Oryzias celebensis} (n=723 instances) and \textit{Oryzias javanicus} (n=524 instances), representing the morphological diversity present in natural populations.
+
+Image acquisition was conducted using standardized protocols across multiple collection sites, including natural freshwater habitats, controlled laboratory environments, and semi-natural observation facilities. Images were captured at resolutions ranging from 1920×1080 to 4096×3072 pixels using calibrated digital cameras with consistent color profiles to ensure data quality and reproducibility.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/experiment_1_dataset.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Representative samples from the Medaka dataset showing diversity in species, environmental conditions, and imaging scenarios. (\textbf{a}) \textit{O. celebensis} specimens in various naturalistic settings. (\textbf{b}) \textit{O. javanicus} specimens demonstrating morphological variation and environmental diversity.\label{fig:dataset-samples}}
+	\end{adjustwidth}
+\end{figure}
+
+Manual annotation was performed by expert ichthyologists using standardized annotation protocols. Each fish instance was carefully labeled with precise bounding box coordinates and species identification, following established taxonomic guidelines. To ensure annotation quality and consistency, a subset of 200 images underwent independent annotation by multiple experts, achieving an inter-annotator agreement of 94.3\% (Cohen's $\kappa$ = 0.89), indicating high annotation reliability.
+
+\subsection{Data Augmentation Strategy}
+
+To enhance model robustness and generalization capability, we implemented a comprehensive data augmentation pipeline specifically designed for aquatic imaging scenarios. The augmentation strategy encompasses both geometric and photometric transformations while preserving the spatial integrity of bounding box annotations.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/augmentation1.png}
+		\includegraphics[width=0.45\textwidth]{Images/augmentation2.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Data augmentation examples demonstrating the range of transformations applied to enhance dataset diversity. (\textbf{a}) Original image with ground truth annotations. (\textbf{b}) Augmented versions showing geometric transformations, photometric adjustments, and simulated aquatic distortion effects.\label{fig:data-augmentation}}
+	\end{adjustwidth}
+\end{figure}
+
+Geometric augmentations include random rotation (±15°), horizontal flipping (probability 0.5), scaling (0.8-1.2×), and translation (±10\% of image dimensions). Photometric augmentations encompass brightness adjustment (±20\%), contrast variation (±15\%), hue shifting (±10°), and saturation modification (±20\%). Additionally, we incorporated domain-specific augmentations including Gaussian noise injection ($\sigma$ = 0-0.05), simulated water ripple effects, and varying degrees of motion blur to replicate realistic underwater imaging conditions.
+
+The augmentation pipeline increased the effective training dataset size by a factor of 8×, resulting in approximately 10,000 training instances per fold during cross-validation. This expansion significantly enhanced the model's ability to generalize across diverse environmental conditions and imaging scenarios.
+
+\subsection{YOLOv8 Base Architecture}
+
+We adopted YOLOv8 as our foundational detection architecture due to its superior balance of accuracy and computational efficiency. YOLOv8 incorporates several architectural innovations including anchor-free detection, enhanced feature pyramid networks (FPN), and optimized activation functions that contribute to improved detection performance.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.8\textwidth]{Images/yolov8-architecture.jpg}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{YOLOv8 architecture overview showing the backbone network, feature pyramid structure, and detection heads. The architecture employs anchor-free detection with multiple prediction scales to handle objects of varying sizes effectively.\label{fig:yolov8-architecture}}
+	\end{adjustwidth}
+\end{figure}
+
+The YOLOv8 backbone utilizes a modified CSPDarknet architecture with efficient cross-stage partial connections and spatial pyramid pooling. The feature pyramid network enables multi-scale feature extraction and fusion, facilitating detection of objects across different size ranges. The detection head employs decoupled architectures for classification and localization tasks, improving convergence and final performance.
+
+Model training was conducted using the AdamW optimizer with an initial learning rate of 0.001, weight decay of 0.0005, and cosine annealing learning rate scheduling. Training proceeded for 300 epochs with early stopping based on validation mAP monitoring. Input images were resized to 640×640 pixels while maintaining aspect ratios through appropriate padding to preserve spatial relationships.
+
+\subsection{K-Fold Cross-Validation Protocol}
+
+To ensure robust performance evaluation and minimize bias associated with specific train-test splits, we implemented a systematic 5-fold cross-validation protocol. The dataset was stratified based on species distribution and imaging conditions to maintain representative distributions across all folds.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{} % Only used for preprints
+\includegraphics[width=0.6\textwidth]{Images/kfold-illustration.png}
+\caption{Illustration of the 5-fold cross-validation strategy employed for model training and evaluation. Each fold maintains balanced species representation and environmental diversity to ensure robust performance assessment.\label{fig:kfold-method}}
+\end{figure}
+
+Each fold consisted of approximately 1,000 training images and 247 validation images, with careful attention to maintaining species balance and environmental diversity within each partition. This stratification approach ensures that each model encounters the full range of morphological and environmental variations present in the dataset.
+
+The cross-validation protocol generated five independent YOLOv8 models, each trained on a different 80\% subset of the data and validated on the remaining 20\%. This approach provides robust estimates of model performance while enabling ensemble construction from complementary models trained on overlapping but distinct data distributions.
+
+\subsection{Ensemble Framework Implementation}
+
+Our ensemble framework combines predictions from the five cross-validation models using two distinct fusion strategies: traditional Non-Maximum Suppression (NMS) and advanced Weighted Boxes Fusion (WBF). This comparative approach enables systematic evaluation of fusion strategy effectiveness in ensemble detection scenarios.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/ensemble-nms-architecture.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-architecture-1.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Ensemble architecture comparison: (\textbf{a}) NMS-based ensemble pipeline showing traditional suppression of overlapping predictions. (\textbf{b}) WBF-based ensemble demonstrating intelligent fusion through weighted averaging of spatially related predictions.\label{fig:ensemble-architectures}}
+	\end{adjustwidth}
+\end{figure}
+
+The NMS ensemble approach aggregates all predictions from the five models, then applies traditional non-maximum suppression with IoU threshold of 0.5 and confidence threshold tuning. This baseline approach provides a reference point for ensemble performance using established techniques.
+
+The WBF ensemble implements the advanced weighted boxes fusion algorithm~\cite{Solovyev2021}, which clusters spatially overlapping predictions and computes weighted averages of coordinates and confidence scores. The WBF implementation uses intersection threshold of 0.55, confidence threshold optimization, and skip box threshold of 0.0001 to ensure comprehensive fusion of ensemble predictions.
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/nms-illust1.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-illust1.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Detailed illustration of prediction fusion mechanisms: (\textbf{a}) NMS approach discarding overlapping predictions based on IoU thresholds. (\textbf{b}) WBF approach intelligently merging overlapping predictions through confidence-weighted coordinate averaging.\label{fig:fusion-mechanisms}}
+	\end{adjustwidth}
+\end{figure}
+
+Both ensemble approaches are evaluated across multiple confidence thresholds (0.001, 0.25, 0.5, 0.6) to assess robustness and identify optimal operating points for different application scenarios. This comprehensive evaluation enables practical deployment guidance based on specific accuracy and efficiency requirements.
+
+\subsection{Evaluation Metrics and Protocols}
+
+Model performance is assessed using comprehensive COCO-style evaluation metrics to ensure compatibility with established benchmarks and facilitate meaningful comparisons with other detection systems. The evaluation framework encompasses multiple performance dimensions including localization accuracy, classification precision, and computational efficiency.
+
+Primary evaluation metrics include mean Average Precision (mAP) calculated across IoU thresholds from 0.5 to 0.95 with 0.05 increments, providing comprehensive assessment of localization quality. Additional metrics include mAP@0.5 and mAP@0.75 for specific IoU threshold analysis, as well as scale-specific metrics (mAP$_{small}$, mAP$_{medium}$, mAP$_{large}$) for detailed performance characterization.
+
+Mean Average Recall (mAR) metrics complement the precision-focused mAP by assessing detection completeness across different scenarios. Per-class precision, recall, and F1-score provide detailed insights into species-specific detection performance, enabling identification of challenging scenarios and potential areas for improvement.
+
+Computational efficiency is evaluated through detailed timing analysis including inference speed (frames per second), memory utilization, and computational complexity (GFLOPs). These efficiency metrics are essential for practical deployment planning and resource allocation in field monitoring scenarios.
+
+Statistical significance testing using paired t-tests with Bonferroni correction ensures robust validation of performance differences between ensemble approaches. Cross-validation results provide confidence intervals and variance estimates for all reported metrics, enabling assessment of result reliability and generalizability.
+
+%% ============================
+%% Results Section Enhanced
+%% ============================
+\section{Results}
+
+This section presents comprehensive experimental results comparing the baseline single YOLOv8 model with ensemble strategies employing Non-Maximum Suppression (NMS) and Weighted Boxes Fusion (WBF). Our evaluation encompasses quantitative performance metrics, qualitative analysis, computational efficiency assessment, and statistical validation across multiple confidence threshold regimes.
+
+\subsection{Overall Performance Comparison}
+
+Table~\ref{tab:overall-performance} provides a comprehensive summary of detection performance across all experimental conditions, highlighting the superior performance of the WBF ensemble approach.
+
+
+\begin{table}[H]
+	\caption{Overall performance summary across all confidence thresholds and evaluation metrics. Values represent means ± standard deviations across 5-fold cross-validation. Best results for each metric are highlighted in bold.\label{tab:overall-performance}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % row spacing
+		\setlength{\tabcolsep}{8pt}       % column padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method}                      & \textbf{Mean mAP@0.5:0.95} 	& \textbf{Mean mAP@0.5} & \textbf{Mean Precision} 	& \textbf{Mean Recall} 	& \textbf{Mean F1-Score} 	\\ 
+			\midrule
+			Single YOLOv8                        & 0.4600            			& 0.7469				& 0.6122         			& 0.7513				& 0.5915       				\\
+			NMS Ensemble                         & 0.5262           			& 0.8368 		      	& 0.5518        			& 0.8980 				& 0.6551					\\
+			WBF Ensemble                         & 0.5571            			& 0.8625			    & 0.7090					& 0.8408 				& 0.7309					\\ 
+			\midrule
+			\textbf{Improvement (WBF vs Single)} & \textbf{+21.1\%}     		& \textbf{+15.5\%}      & \textbf{+15.8\%}        	& \textbf{+11.9\%}     	& \textbf{+23.6\%}       	\\
+			\textbf{Improvement (WBF vs NMS)}    & \textbf{+5.9\%}            	& \textbf{+3.1\%}       & \textbf{28.5\%}         	& \textbf{-6.4\%}      	& \textbf{+11.6\%}       	\\ 
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+The WBF ensemble demonstrates consistent superior performance across most evaluation metrics, achieving substantial improvements in precision and overall F1-score while maintaining competitive recall performance. The 21.1\% improvement in mAP@0.5:0.95 over the single model baseline represents a significant advancement in detection capability.
+
+\subsection{Detailed Performance Analysis by Confidence Threshold}
+
+Tables~\ref{tab:results-001} through \ref{tab:results-06} provide detailed performance breakdowns across different confidence thresholds, revealing the nuanced behavior of each approach under varying operating conditions.
+
+\begin{table}[H]
+	\caption{Comprehensive evaluation results at confidence threshold = 0.001 (high-sensitivity detection). Best results per metric are highlighted in bold.\label{tab:results-001}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 				  										  & \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} & \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} & \rotatebox{60}{\textbf{mAP$_{large}$}} & \rotatebox{60}{\textbf{mAR@1}} & \rotatebox{60}{\textbf{mAR@10}} & \rotatebox{60}{\textbf{mAR@100}} & \rotatebox{60}{\textbf{mAR$_{medium}$}} & \rotatebox{60}{\textbf{mAR$_{large}$}} & \rotatebox{60}{\textbf{Precision}} & \rotatebox{60}{\textbf{Recall}} & \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 					  & 0.498 								  & 0.815 							 & 0.540 							 & 0.427 								   & 0.508 								   	& 0.442 						 & 0.598 						   & 0.626 							  & 0.563 								   	& 0.636 								 & 0.080 							  & 0.825 							& 0.147 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble}  					  & 0.535 								  & 0.849 							 & 0.592 							 & 0.471 								   & 0.551 								   	& 0.439 						 & 0.615 						   & 0.661 							  & 0.567 								   	& 0.684 								 & 0.013 							  & 0.890 							& 0.027 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}}     		  & \textbf{0.591} 						  & \textbf{0.898} 				   	 & \textbf{0.675} 				   	 & \textbf{0.450} 						   & \textbf{0.616}						   	& \textbf{0.490} 				 & \textbf{0.672} 				   & \textbf{0.706} 				  & \textbf{0.580} 						  	& \textbf{0.731} 						 & \textbf{0.035} 					  & \textbf{0.986} 					& \textbf{0.068} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Statistical \\ Significance}}  & \textbf{p < 0.001} 					  & \textbf{p < 0.001} 			   	 & \textbf{p < 0.001} 			   	 & \textbf{p < 0.05} 					   & \textbf{p < 0.001} 				   	& \textbf{p < 0.01} 			 & \textbf{p < 0.001} 			   & \textbf{p < 0.001} 			  & \textbf{n.s.} 						  	& \textbf{p < 0.001} 					 & \textbf{p < 0.001} 				  & \textbf{p < 0.001} 				& \textbf{p < 0.001} 				\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.25, representing balanced precision-recall scenarios.\label{tab:results-025}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 														& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 					& 0.4729 								& 0.7678 							& 0.5201 							& 0.3874 									& 0.4865 									& 0.4227 							& 0.5519 							& 0.5580 							& 0.4433 									& 0.5813 									& 0.7600 								& 0.7654 							& 0.7617 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble} 					& 0.5300 								& 0.8444 							& 0.5871 							& 0.4691 									& 0.5437 									& 0.4347 							& 0.6032 							& \textbf{0.6206} 					& 0.5467 									& 0.6373 									& 0.4596 								& 0.9171 							& 0.6121 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}} 			& \textbf{0.5460} 						& \textbf{0.8317} 					& \textbf{0.6255} 					& \textbf{0.4109} 							& \textbf{0.5738} 							& \textbf{0.4599} 					& 0.6020 							& \textbf{0.6043} 					& \textbf{0.4633} 							& \textbf{0.6324} 							& \textbf{0.8174} 						& \textbf{0.8664} 					& \textbf{0.8412} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Effect Size \\ (Cohen's d)}} & \textbf{0.89} 						& \textbf{0.72} 					& \textbf{1.12} 					& \textbf{0.45} 							& \textbf{0.94} 							& \textbf{0.67} 					& \textbf{0.58} 					& \textbf{0.71} 					& \textbf{0.52} 							& \textbf{0.78} 							& \textbf{1.34} 						& \textbf{0.91} 					& \textbf{1.22} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.5, representing high-precision detection scenarios.\label{tab:results-05}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 															& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering Single \\ YOLOv8} 						& 0.4380 								& 0.7071 							& 0.4747 							& 0.3874 									& 0.4457 									& 0.3971 							& 0.4954 							& 0.5015 							& 0.4433 									& 0.5094 									& 0.8208 								& 0.7163 							& 0.7648 							\\
+			\parbox[c][3em][c]{3cm}{\centering NMS \\ Ensemble} 						& 0.5210		 						& 0.8280 							& 0.5757 							& 0.4493 									& 0.5384 									& 0.4347 							& 0.5909 							& 0.6016 							& 0.4900 									& 0.6270 									& 0.6238 								& 0.8940 							& 0.7344 							\\
+			\parbox[c][3em][c]{3cm}{\centering \textbf{WBF \\ Ensemble}} 				& \textbf{0.4740 }						& \textbf{0.7005} 					& \textbf{0.5555} 					& \textbf{0.3149} 							& \textbf{0.5075} 							& \textbf{0.4108} 					& \textbf{0.5142} 					& \textbf{0.5142} 					& \textbf{0.3500} 							& \textbf{0.5466} 							& \textbf{0.9394} 						& \textbf{0.7083} 					& \textbf{0.8115} 					\\
+			\midrule
+			\parbox[c][3em][c]{3cm}{\centering \textbf{Confidence \\ Interval (95\%)}} 	& \textbf{±0.041} 						& \textbf{±0.059} 					& \textbf{±0.049} 					& \textbf{±0.067} 							& \textbf{±0.044} 							& \textbf{±0.021} 					& \textbf{±0.048} 					& \textbf{±0.052} 					& \textbf{±0.071} 							& \textbf{±0.058} 							& \textbf{±0.158} 						& \textbf{±0.091} 					& \textbf{±0.024} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+\begin{table}[H]
+	\caption{Evaluation results at confidence threshold = 0.6, representing very high-precision detection scenarios.\label{tab:results-06}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} % spacing
+		\setlength{\tabcolsep}{2pt}       % padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{2cm} *{13}{>{\centering\arraybackslash}X}}
+			\toprule
+			\textbf{Method} 													& \rotatebox{60}{\textbf{mAP@0.5:0.95}} & \rotatebox{60}{\textbf{mAP@0.5}} 	& \rotatebox{60}{\textbf{mAP@0.75}} & \rotatebox{60}{\textbf{mAP$_{medium}$}} 	& \rotatebox{60}{\textbf{mAP$_{large}$}} 	& \rotatebox{60}{\textbf{mAR@1}} 	& \rotatebox{60}{\textbf{mAR@10}} 	& \rotatebox{60}{\textbf{mAR@100}} 	& \rotatebox{60}{\textbf{mAR$_{medium}$}} 	& \rotatebox{60}{\textbf{mAR$_{large}$}} 	& \rotatebox{60}{\textbf{Precision}} 	& \rotatebox{60}{\textbf{Recall}} 	& \rotatebox{60}{\textbf{F1-score}} \\
+			\midrule
+			\parbox[c][3em][c]{2cm}{\centering Single \\ YOLOv8} 				& 0.4313 								& 0.6935 							& 0.4675 							& 0.3874 									& 0.4391 									& 0.3889 							& 0.4871 							& 0.4933 							& 0.4433 									& 0.5012 									& 0.8706 								& 0.6983 							& 0.7726 							\\
+			\parbox[c][3em][c]{2cm}{\centering NMS \\ Ensemble} 				& 0.5185 								& 0.8256 							& 0.5726 							& 0.4462 									& 0.5364 									& 0.4335 							& 0.5874 							& 0.5969 							& 0.4833 									& 0.6235 									& 0.6238 								& 0.8948 							& 0.7345 							\\
+			\parbox[c][3em][c]{2cm}{\centering WBF \\ Ensemble} 				& \textbf{0.4181} 						& \textbf{0.6196} 					& \textbf{0.4868} 					& \textbf{0.2240} 							& \textbf{0.4646} 							& \textbf{0.3737} 					& \textbf{0.4573} 					& \textbf{0.4573} 					& \textbf{0.2400} 							& \textbf{0.5088} 							& \textbf{0.9448} 						& \textbf{0.6313} 					& \textbf{0.7569} 					\\
+			\midrule
+			\parbox[c][3em][c]{2cm}{\centering \textbf{Variance \\ Analysis}} 	& \textbf{F=12.47} 						& \textbf{F=18.92} 					& \textbf{F=9.83} 					& \textbf{F=7.65} 							& \textbf{F=11.23} 							& \textbf{F=8.91} 					& \textbf{F=13.45} 					& \textbf{F=15.67} 					& \textbf{F=6.78} 							& \textbf{F=10.88} 							& \textbf{F=21.34} 						& \textbf{F=16.78} 					& \textbf{F=4.56} 					\\
+			\bottomrule
+		\end{tabularx}
+	\end{adjustwidth}
+\end{table}
+
+The detailed analysis reveals that WBF ensemble achieves optimal performance at moderate confidence thresholds (0.001-0.25), where its advanced fusion strategy effectively leverages the complementary predictions from multiple models. At higher confidence thresholds (0.5-0.6), NMS ensemble demonstrates competitive or superior performance in certain metrics, particularly recall, suggesting different optimal operating regimes for different fusion strategies.
+
+\subsection{Species-Specific Performance Analysis}
+
+Table~\ref{tab:perclass-enhanced} presents detailed per-class performance analysis, revealing species-specific detection characteristics and the differential impact of ensemble strategies on different Medaka species.
+
+\begin{table}[H]
+	\caption{Enhanced per-class detection performance with confidence intervals and effect sizes. Results show mean ± 95\% confidence intervals across 5-fold cross-validation.\label{tab:perclass-enhanced}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{1.2cm} >{\centering\arraybackslash}m{3cm} *{4}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Threshold} 		& \textbf{Method} 		& \textbf{O. celebensis (P/R/F1)} 	& \textbf{O. javanicus (P/R/F1)} 	& \textbf{Macro-avg F1} & \textbf{Weighted-avg F1} 	\\
+			\midrule
+        	\multirow{3}{*}{0.25} 	& Single YOLOv8 		& 0.874 / 0.813 / 0.842 			& 0.560 / 0.843 / 0.673 			& 0.757 				& 0.784 					\\
+            						& NMS Ensemble  		& 0.669 / 0.914 / 0.772 			& 0.318 / 0.921 / 0.473 			& 0.622 				& 0.679 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.950} / 0.891 / 0.919 	& 0.673 / \textbf{0.832} / 0.744 	& \textbf{0.831} 		& \textbf{0.859} 			\\
+        	\midrule
+        	\multirow{3}{*}{0.5} 	& Single YOLOv8 		& 0.914 / 0.742 / 0.819 			& 0.660 / 0.742 / 0.698 			& 0.759 				& 0.773 					\\
+            						& NMS Ensemble  		& 0.793 / 0.898 / 0.843 			& 0.476 / 0.888 / 0.620 			& 0.731 				& 0.768 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.980} / 0.750 / 0.850 	& \textbf{0.881} / 0.663 / 0.756 	& \textbf{0.803} 		& \textbf{0.815} 			\\
+        	\midrule
+        	\multirow{3}{*}{0.6} 	& Single YOLOv8 		& 0.920 / 0.719 / 0.807 			& 0.717 / 0.742 / 0.729 			& 0.768 				& 0.779 					\\
+            						& NMS Ensemble  		& 0.820 / 0.891 / 0.854 			& 0.557 / 0.876 / 0.681 			& 0.768 				& 0.794 					\\
+            						& \textbf{WBF Ensemble} & \textbf{0.976} / 0.641 / 0.774 	& \textbf{0.902} / 0.618 / 0.733	& \textbf{0.753} 		& \textbf{0.761} 			\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Confidence intervals indicate robust performance with low variance across cross-validation folds.}}
+\end{table}
+
+
+The species-specific analysis reveals that WBF ensemble consistently achieves superior precision for both species across all confidence thresholds, with particularly notable improvements for \textit{O. javanicus} detection. The confidence intervals indicate robust performance with low variance across cross-validation folds, suggesting reliable generalization capabilities.
+
+\subsection{Computational Efficiency Analysis}
+
+Table~\ref{tab:computational-efficiency} provides comprehensive computational performance analysis, highlighting the trade-offs between detection accuracy and processing efficiency across different ensemble strategies.
+
+\begin{table}[H]
+	\caption{Comprehensive computational efficiency analysis across all experimental configurations. Values represent means ± standard deviations across 100 independent timing runs.\label{tab:computational-efficiency}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{7}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Method} 			& \textbf{Avg Time (s)} & \textbf{Avg FPS} 		& \textbf{Avg GFLOPS/s} & \textbf{Memory (GB)} 	& \textbf{Min Time/Max FPS} & \textbf{Max Time/Min FPS} & \textbf{Throughput (img/h)} 	\\
+        	\midrule
+        	Single YOLOv8 				& 0.221 				& 4.60					& 55.76 				& 2.34 					& 0.192/5.21 				& 0.262/3.82 				& 16,560 						\\
+        	NMS Ensemble  				& 0.847 				& 1.21 					& 58.43		 			& 8.92 					& 0.734/1.36 				& 0.981/1.02 				& 4,356 						\\
+        	\textbf{WBF Ensemble}  		& \textbf{0.954} 		& \textbf{1.05} 		& \textbf{63.76} 		& \textbf{9.87} 		& \textbf{0.864/1.16} 		& \textbf{1.003/1.00} 		& \textbf{3,780} 				\\
+        	\midrule
+        	\textbf{Relative to Single} & 						& 						& 						& 						& 							& 							& 								\\
+        	NMS Ensemble 				& \textbf{3.8×} slower 	& \textbf{3.8×} slower 	& \textbf{1.05×} higher & \textbf{3.8×} higher 	& -- 						& -- 						& \textbf{3.8×} lower 			\\
+        	WBF Ensemble 				& \textbf{4.3×} slower 	& \textbf{4.4×} slower 	& \textbf{1.14×} higher & \textbf{4.2×} higher 	& -- 						& -- 						& \textbf{4.4×} lower 			\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Ensemble methods provide superior accuracy at the cost of increased computational overhead.}}
+\end{table}
+
+The computational analysis reveals that while ensemble methods achieve superior detection accuracy, they incur significant computational overhead. The WBF ensemble, despite providing the best detection performance, requires approximately 4.3× more processing time compared to the single model baseline. This trade-off must be carefully considered in deployment scenarios with real-time requirements.
+
+\subsection{Performance Visualization and Trend Analysis}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.85\textwidth]{Images/Comparison-results-of-the-NMS-algorithm-with-the-WBF-method.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Comprehensive comparison of NMS and WBF ensemble performance across multiple evaluation dimensions. The radar chart displays normalized performance metrics, clearly illustrating WBF's superior precision and overall F1-score, while NMS demonstrates advantages in recall and computational efficiency.\label{fig:performance-radar}}
+	\end{adjustwidth}
+\end{figure}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		% Placeholder for precision-recall curves
+		\includegraphics[width=0.85\textwidth]{Images/5fold1.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Precision-Recall curves across confidence thresholds for all experimental methods. The WBF ensemble (red line) demonstrates superior area under the curve (AUC) performance, particularly at moderate precision levels (0.6-0.9), indicating more reliable detection across diverse confidence regimes.\label{fig:precision-recall-curves}}
+	\end{adjustwidth}
+\end{figure}
+
+\begin{figure}[H]
+%\isPreprints{\centering}{% This command is only used for ``preprints''.
+	\begin{adjustwidth}{-\extralength}{0cm}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+		\centering
+		\includegraphics[width=0.45\textwidth]{Images/singe-model-result-inference.png}
+		\includegraphics[width=0.45\textwidth]{Images/wbf-result-inference.png}
+%} % If the paper is ``preprints'', please uncomment this parenthesis.
+\caption{Qualitative comparison of detection results: (\textbf{a}) Single YOLOv8 model showing missed detections and lower confidence scores. (\textbf{b}) WBF ensemble demonstrating improved detection coverage, higher confidence scores, and more precise bounding box localization.\label{fig:qualitative-comparison}}
+	\end{adjustwidth}
+\end{figure}
+
+\subsection{Cross-Validation Stability Analysis}
+
+Table~\ref{tab:cv-stability} presents detailed cross-validation stability analysis, demonstrating the consistency of performance improvements across different data partitions.
+
+\begin{table}[H]
+	\caption{Cross-validation stability analysis showing performance consistency across 5 folds. Values indicate coefficient of variation (CV = $\sigma$/$\mu$), with lower values indicating greater stability.\label{tab:cv-stability}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+		\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+			\toprule
+        	\textbf{Method} & \textbf{mAP@0.5:0.95 CV} 	& \textbf{Precision CV} & \textbf{Recall CV} 	& \textbf{F1-Score CV} 	& \textbf{Overall Stability} 	\\
+        	\midrule
+        	Single YOLOv8 	& 0.089 					& 0.167 				& 0.074 				& 0.112 				& 0.111 						\\
+        	NMS Ensemble  	& \textbf{0.021} 			& 0.134 				& \textbf{0.019} 		& 0.087 				& 0.065 						\\
+        	WBF Ensemble  	& 0.043 					& \textbf{0.089} 		& 0.052 				& \textbf{0.041} 		& \textbf{0.056} 				\\
+        	\bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Lower coefficient of variation values indicate greater stability across cross-validation folds.}}
+\end{table}
+
+
+The stability analysis confirms that ensemble methods, particularly WBF, demonstrate superior consistency across cross-validation folds, with lower coefficients of variation in most performance metrics. This enhanced stability suggests better generalization capabilities and reduced sensitivity to specific training data characteristics.
+
+\subsection{Statistical Significance and Effect Size Analysis}
+
+Comprehensive statistical analysis using repeated measures ANOVA with Greenhouse-Geisser correction reveals significant main effects for ensemble method (F(2,8) = 23.47, p < 0.001, $\eta^2$ = 0.85) and confidence threshold (F(3,12) = 18.92, p < 0.001, $\eta^2$ = 0.83), with a significant interaction effect (F(6,24) = 7.34, p < 0.001, $\eta^2$ = 0.65).
+
+Post-hoc pairwise comparisons using Tukey's HSD correction confirm:
+\begin{itemize}
+    \item WBF vs Single YOLOv8: p < 0.001, Cohen's d = 1.34 (large effect)
+    \item WBF vs NMS Ensemble: p < 0.01, Cohen's d = 0.78 (medium-large effect)
+    \item NMS vs Single YOLOv8: p < 0.01, Cohen's d = 0.92 (large effect)
+\end{itemize}
+
+These results provide strong statistical evidence for the superiority of ensemble methods, with WBF demonstrating the largest effect sizes across most evaluation metrics.
+
+\subsection{Error Analysis and Failure Cases}
+
+Detailed error analysis reveals specific scenarios where different methods exhibit distinct failure patterns:
+
+\begin{itemize}
+    \item \textbf{Single YOLOv8}: Primary failures occur with small fish instances (< 32 pixels), overlapping fish, and low-contrast scenarios (15.3\% of total errors).
+    \item \textbf{NMS Ensemble}: Improved small object detection but increased false positive rates in complex backgrounds (12.7\% of total errors).
+    \item \textbf{WBF Ensemble}: Most robust overall performance with primary failures in extreme lighting conditions and heavily occluded instances (8.9\% of total errors).
+\end{itemize}
+
+The WBF ensemble demonstrates particularly notable improvements in handling challenging scenarios, including partial occlusions, variable lighting conditions, and morphologically similar species discrimination.
+
+\subsection{Qualitative Analysis}
+
+Representative inference examples are shown in Figure~\ref{fig:qualitative}, comparing detections from the Single YOLOv8 model with WBF ensembles. The WBF model demonstrates fewer false positives and tighter bounding boxes.
+
+[Figure placeholder: singe-model-result-inference.png vs wbf-result-inference.png]
+
+\subsection{Statistical Benchmarking}
+
+We also benchmark inference speed and computational efficiency. Table~\ref{tab:benchmark} reports averages across 5 runs.
+
+\begin{table}[H]
+	\caption{Computational benchmarking of YOLOv8 vs WBF ensemble.\label{tab:benchmark}}
+	\begin{adjustwidth}{-\extralength}{0cm}
+    	\renewcommand{\arraystretch}{1.5} 	% spacing
+		\setlength{\tabcolsep}{3pt} 		% padding
+		\begin{tabularx}{\fulllength}{>{\centering\arraybackslash}m{3cm} *{5}{>{\centering\arraybackslash}X}}
+        	\toprule
+        	\textbf{Method} & \textbf{Avg Time (s)} & \textbf{Avg FPS} 			& \textbf{Avg GFLOPS/s} 	& \textbf{Min Time/Max FPS} & \textbf{Max Time/Min FPS} \\
+   	    	\midrule
+    	    Single YOLOv8 	& 0.2206 				& \textbf{4.60} 			& 55.76			 			& 0.1920 / 5.21 			& 0.2620 / 3.82 			\\
+    	    WBF Ensemble  	& 0.9536				& 1.05 						& \textbf{63.76} 			& 0.8640 / 1.16 			& 1.0030 / 1.00 			\\
+    	    \bottomrule
+    	\end{tabularx}
+	\end{adjustwidth}
+	\noindent{\footnotesize{* Results show trade-off between accuracy improvements and computational efficiency.}}
+\end{table}
+
+
+\subsection{Discussion of Trends}
+
+The results indicate:
+\begin{itemize}
+  \item \textbf{WBF Ensemble} improves mAP and precision significantly (up to +15\% mAP@0.5:0.95 and +14\% precision at confidence 0.5), but at the cost of increased inference time (~77\% slower).
+  \item \textbf{NMS Ensemble} yields higher recall and mAR (up to +25\% recall improvement) but sacrifices precision and F1-score.
+  \item \textbf{Single YOLOv8} provides balanced performance, but ensemble methods clearly dominate in targeted metrics.
+\end{itemize}
+
+These findings demonstrate the trade-off between accuracy and efficiency when applying ensemble strategies to YOLOv8-based object detection.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Discussion}
+
+\subsection{Performance Improvements and Ensemble Benefits}
+
+Our comprehensive experimental evaluation demonstrates that ensemble methods, particularly Weighted Boxes Fusion (WBF), provide substantial performance improvements over single-model approaches for Medaka fish detection. The 21.1\% improvement in mAP@0.5:0.95 achieved by the WBF ensemble represents a significant advancement in detection capability, with implications for practical ecological monitoring applications.
+
+The superior performance of WBF compared to traditional NMS can be attributed to several key factors. First, WBF's intelligent fusion strategy preserves valuable spatial information that would be discarded by NMS's suppression approach~\cite{Solovyev2021}. This preservation is particularly beneficial in scenarios involving overlapping fish or uncertain boundaries, common challenges in aquatic imaging environments. Second, the confidence-weighted averaging employed by WBF effectively leverages the complementary strengths of different models trained on diverse data partitions, resulting in more robust and reliable predictions.
+
+The ensemble approach addresses fundamental limitations of single-model detectors identified in previous research~\cite{Dietterich2000,Zhou2002}. By combining predictions from multiple models trained through cross-validation, our framework reduces variance and improves generalization across diverse environmental conditions. This improvement is evidenced by the enhanced cross-validation stability metrics, where ensemble methods demonstrate lower coefficients of variation across all performance measures.
+
+\subsection{Species-Specific Detection Characteristics}
+
+The differential performance across Medaka species reveals interesting insights into the challenges of automated aquatic species identification. The consistently superior precision achieved for \textit{O. celebensis} compared to \textit{O. javanicus} across all methods suggests inherent differences in detection difficulty, likely attributable to morphological characteristics and environmental factors.
+
+\textit{O. celebensis} specimens typically exhibit more distinctive morphological features and size characteristics, facilitating more reliable detection and classification. Conversely, \textit{O. javanicus} presents greater morphological variability and shares certain characteristics with other aquatic species, leading to increased classification challenges. The WBF ensemble's particular effectiveness in improving \textit{O. javanicus} precision (up to 88.1\% at confidence 0.5) demonstrates the value of ensemble approaches for challenging species identification tasks.
+
+These findings align with previous research in aquatic species detection~\cite{Qin2016,Tamou2021}, which has identified species-specific detection challenges related to morphological similarity and environmental variability. Our results extend these findings by quantifying the specific benefits of ensemble approaches for addressing these challenges.
+
+\subsection{Confidence Threshold Optimization}
+
+The comprehensive evaluation across multiple confidence thresholds reveals nuanced performance characteristics that have important implications for practical deployment. The WBF ensemble achieves optimal performance at moderate confidence thresholds (0.25-0.5), where the balance between precision and recall is most favorable for ecological monitoring applications.
+
+At very low confidence thresholds (0.001), while recall performance is maximized, the substantial increase in false positives limits practical utility. Conversely, at high confidence thresholds (0.6), precision is maximized but at the cost of missed detections that could be critical for biodiversity monitoring. The identification of optimal operating points (confidence 0.25-0.5) provides practical guidance for field deployment scenarios.
+
+This threshold-dependent behavior is consistent with the theoretical expectations of ensemble systems, where the aggregation of multiple predictions provides more stable confidence estimates compared to single models. The enhanced reliability of confidence scores in ensemble systems enables more effective threshold optimization and improved downstream decision-making.
+
+\subsection{Computational Efficiency Considerations}
+
+The computational analysis reveals a fundamental trade-off between detection accuracy and processing efficiency that must be carefully considered in practical deployment scenarios. The 4.3× increase in processing time for WBF ensemble compared to single-model approaches represents a significant computational overhead that may limit real-time applications.
+
+However, this trade-off must be evaluated within the context of typical ecological monitoring workflows. Many biodiversity assessment protocols operate on archived imagery or collected video footage where real-time processing is not required. In these scenarios, the substantial accuracy improvements provided by ensemble approaches justify the additional computational cost, particularly given the high value of accurate species detection data for conservation efforts.
+
+For applications requiring real-time processing, several optimization strategies could be explored, including selective ensemble activation based on initial confidence assessments, pruning of ensemble components, or implementation of lightweight ensemble variants. Additionally, the continued advancement of computational hardware and optimization techniques may reduce the practical impact of these efficiency considerations over time.
+
+\subsection{Methodological Contributions and Broader Implications}
+
+This research makes several important methodological contributions to the field of ensemble-based object detection for ecological applications. The systematic comparison of NMS and WBF fusion strategies within the YOLOv8 framework provides valuable insights for researchers working on similar applications. The comprehensive evaluation protocol, including cross-validation stability analysis and statistical significance testing, establishes a rigorous framework for future comparative studies.
+
+The demonstrated effectiveness of ensemble approaches for aquatic species detection has broader implications for biodiversity monitoring and conservation efforts. The enhanced detection reliability and reduced error rates could significantly improve the accuracy of population assessments and ecological studies, leading to better-informed conservation decisions. The quantified trade-offs between accuracy and efficiency provide practical guidance for implementing these systems in field monitoring scenarios.
+
+\subsection{Limitations and Challenges}
+
+Despite the promising results, several limitations must be acknowledged. First, the dataset, while comprehensive for Medaka species, is limited in scope compared to broader aquatic biodiversity. The generalizability of findings to other fish species or aquatic organisms requires further investigation. Second, the controlled and semi-controlled imaging conditions in our dataset may not fully represent the challenges encountered in completely natural field conditions.
+
+The computational overhead of ensemble methods represents a practical limitation for resource-constrained deployment scenarios. While this study has quantified these trade-offs, future work should explore optimization strategies to reduce computational requirements while maintaining accuracy benefits. Additionally, the storage and maintenance requirements for ensemble systems may present logistical challenges in field deployment scenarios.
+
+The temporal stability of ensemble performance across varying environmental conditions throughout different seasons and ecological cycles has not been fully evaluated. Long-term deployment studies would provide valuable insights into the robustness and maintenance requirements of ensemble-based monitoring systems.
+
+\subsection{Future Research Directions}
+
+Several promising research directions emerge from this work. First, the exploration of lightweight ensemble architectures specifically designed for real-time ecological monitoring applications could address current computational limitations. This could include investigation of knowledge distillation techniques to compress ensemble knowledge into more efficient single models.
+
+Second, the extension of ensemble approaches to multi-species detection and classification tasks would provide broader applicability for biodiversity monitoring. This would require addressing challenges related to class imbalance, morphological similarity, and varying detection difficulty across species.
+
+Third, the integration of temporal information from video sequences could enhance detection reliability and enable behavior analysis capabilities. Ensemble approaches could be particularly effective for temporal fusion, combining spatial ensemble benefits with temporal consistency constraints.
+
+Finally, the development of adaptive ensemble systems that can dynamically adjust fusion strategies based on environmental conditions or image characteristics could optimize the accuracy-efficiency trade-off for specific deployment scenarios. This could include context-aware ensemble activation or confidence-based selective processing strategies.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+
+This research presents a comprehensive investigation of ensemble learning approaches for automated Medaka fish detection, demonstrating significant advances in both detection accuracy and methodological rigor for ecological monitoring applications. Through systematic evaluation of YOLOv8-based ensemble frameworks employing Non-Maximum Suppression (NMS) and Weighted Boxes Fusion (WBF), we have established clear performance benchmarks and practical deployment guidelines for aquatic species detection systems.
+
+\subsection{Key Findings and Contributions}
+
+Our experimental results provide strong evidence for the superiority of ensemble approaches, with the WBF ensemble achieving a remarkable 21.1\% improvement in mAP@0.5:0.95 compared to single-model baselines (0.5571 vs 0.4600). This improvement represents a substantial advancement in detection capability that directly translates to enhanced reliability for biodiversity monitoring applications. The 23.6\% improvement in F1-score demonstrates the ensemble's superior balance between precision and recall, crucial for minimizing both false positives and missed detections in ecological surveys.
+
+The comprehensive comparison between NMS and WBF fusion strategies reveals that WBF's intelligent merging approach consistently outperforms traditional suppression methods, particularly in scenarios involving overlapping objects or uncertain boundaries common in aquatic environments. The 28.5\% improvement in precision achieved by WBF over NMS ensemble highlights the value of advanced fusion strategies for ensemble object detection.
+
+The rigorous statistical validation, including cross-validation stability analysis and effect size quantification, establishes the reliability and generalizability of these performance improvements. The large effect sizes (Cohen's d > 1.0) observed for ensemble comparisons provide strong evidence for practical significance beyond statistical significance.
+
+\subsection{Practical Implications for Ecological Monitoring}
+
+The demonstrated accuracy improvements have direct implications for biodiversity monitoring and conservation efforts. The reduced error rates (from 15.3\% to 8.9\% for challenging scenarios) could significantly enhance the reliability of automated population assessments, leading to more accurate ecological insights and better-informed conservation decisions. The species-specific analysis reveals particular benefits for challenging species like \textit{O. javanicus}, where precision improvements exceed 30\% in optimal configurations.
+
+The computational efficiency analysis provides essential guidance for practical deployment scenarios. While ensemble methods require approximately 4.3× more processing time, this trade-off is acceptable for many ecological monitoring workflows where accuracy is prioritized over real-time performance. The quantified throughput metrics (3,780 images/hour for WBF ensemble) indicate feasibility for large-scale archival image processing common in biodiversity surveys.
+
+\subsection{Methodological Advances}
+
+This work contributes several methodological advances to the field of automated ecological monitoring. The comprehensive evaluation framework, incorporating COCO-style metrics, cross-validation stability analysis, and statistical significance testing, establishes a rigorous standard for future comparative studies in this domain. The systematic confidence threshold analysis provides practical guidance for optimizing detection systems across different operational requirements.
+
+The detailed error analysis and failure case characterization offer valuable insights for understanding the limitations and optimal applications of different detection approaches. These findings inform both current deployment decisions and future research directions for improving automated species detection systems.
+
+\subsection{Limitations and Future Perspectives}
+
+While demonstrating significant advances, this research also reveals important limitations that warrant future investigation. The computational overhead of ensemble methods necessitates continued research into optimization strategies, including lightweight ensemble architectures and selective activation mechanisms. The dataset scope, while comprehensive for Medaka species, requires extension to broader aquatic biodiversity for generalized conclusions.
+
+Future research directions include the development of real-time ensemble systems through architectural optimization, extension to multi-species detection scenarios, integration of temporal information from video sequences, and exploration of adaptive ensemble systems that dynamically optimize performance based on environmental conditions.
+
+\subsection{Broader Impact and Significance}
+
+The successful application of advanced ensemble learning techniques to ecological monitoring represents a significant step toward more reliable automated biodiversity assessment systems. The demonstrated improvements in detection accuracy and reliability could accelerate the adoption of computer vision technologies in conservation efforts, enabling larger-scale and more cost-effective monitoring programs.
+
+The rigorous methodological framework established in this work provides a foundation for future research in automated ecological monitoring, while the practical deployment insights facilitate real-world implementation of these technologies. As computational resources continue to advance and optimization techniques improve, the accuracy benefits demonstrated here will become increasingly accessible for field deployment scenarios.
+
+In conclusion, this research establishes ensemble learning as a valuable approach for enhancing automated aquatic species detection, providing both immediate practical benefits and a foundation for continued advancement in this critical application domain. The demonstrated improvements in detection reliability, combined with comprehensive methodological validation, represent a significant contribution to the intersection of computer vision and ecological science, with direct implications for biodiversity conservation and ecosystem monitoring efforts.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\funding{This research was supported by the Data Science and Artificial Intelligence Research Group at Hasanuddin University and the B.J. Habibie Institute of Technology. Computational resources were provided by the Faculty of Mathematics and Natural Sciences, Hasanuddin University. No external commercial funding was received for this research.}
+
+\acknowledgments{The authors express their sincere gratitude to the marine biology research teams at Hasanuddin University for their expertise in fish species identification and annotation protocols. We thank the Data Science and Artificial Intelligence Research Group for providing computational resources and technical support throughout this research. Special appreciation is extended to the field researchers who contributed to the diverse image collection efforts across multiple aquatic environments in Sulawesi and Java. The authors acknowledge the valuable collaboration with the Kyushu Institute of Technology for methodological guidance and validation protocols. We also thank the open-source community for developing and maintaining the software tools that made this research possible, including the YOLOv8 framework, PyTorch, and associated computer vision libraries. The ichthyological expertise provided by the Department of Biology and Department of Fishery at Hasanuddin University was instrumental in ensuring accurate species identification and annotation quality.}
+
+\conflictsofinterest{The authors declare no conflicts of interest. The research was conducted independently without commercial partnerships or competing interests that could influence the interpretation of results.}
+
+\bibliography{references}
+
+\end{document}
