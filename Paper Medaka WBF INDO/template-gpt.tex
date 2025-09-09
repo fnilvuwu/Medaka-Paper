@@ -77,7 +77,7 @@
 
 %=================================================================
 % Full title of the paper (Capitalized)
-\Title{YOLOv8-WBF: Ensemble Learning for Reliable Detection of Endangered Medaka (Oryzias)}
+\Title{YOLOv8-WBF: Pembelajaran Ansambel untuk Deteksi Andal Ikan Medaka (Oryzias) yang Terancam Punah}
 
 % MDPI internal command: Title for citation in the left column
 \TitleCitation{YOLOv8-WBF: Ensemble Learning}
@@ -139,7 +139,7 @@ $^{6}$ \quad Graduate School of Life Science and Systems Engineering, Kyushu Ins
 %\conference{} % An extended version of a conference paper
 
 % Abstract (Do not insert blank lines, i.e. \\) 
-\abstract{Reliable detection of Medaka (Oryzias) fish is essential for ecological monitoring and conservation, particularly for tracking population trends of endangered species. This study evaluates the performance of a state-of-the-art deep learning model (YOLOv8) and an ensemble approach using Weighted Box Fusion (WBF) on a manually annotated dataset of 1,247 Medaka images collected from diverse aquatic environments. Models were trained and validated using rigorous 5-fold cross-validation, and performance was assessed using comprehensive COCO metrics, including mean Average Precision (mAP), precision, recall, and bounding box regression accuracy. The YOLOv8-WBF ensemble achieved a mAP@0.5:0.95 of 0.5905, representing a significant 18.6\% improvement over the best single model (0.4979). The ensemble approach demonstrated superior bounding box localization and classification reliability, particularly for small and visually challenging fish instances, with precision improvements of up to 82\% at optimal confidence thresholds. While computational efficiency decreased by approximately 4.3× compared to single models, the enhanced accuracy provides substantial value for offline ecological workflows where detection reliability is prioritized. By reducing missed detections of rare species by 23\% and improving overall detection consistency across environmental variations, this work contributes to more robust biodiversity monitoring protocols and establishes a benchmark for ensemble-based aquatic species detection systems.}
+\abstract{Deteksi yang andal terhadap ikan Medaka (Oryzias) sangat penting untuk pemantauan ekologi dan konservasi, khususnya dalam melacak tren populasi spesies yang terancam punah. Studi ini mengevaluasi kinerja model pembelajaran mendalam mutakhir (YOLOv8) serta pendekatan ansambel menggunakan Weighted Box Fusion (WBF) pada dataset beranotasi manual yang terdiri dari 1.247 citra Medaka yang dikumpulkan dari berbagai lingkungan perairan. Model dilatih dan divalidasi menggunakan 5-fold cross-validation yang ketat, dan kinerjanya diukur dengan metrik COCO yang komprehensif, termasuk mean Average Precision (mAP), presisi, recall, dan akurasi regresi bounding box. Ansambel YOLOv8-WBF mencapai mAP@0.5:0.95 sebesar 0,5905, yang menunjukkan peningkatan signifikan sebesar 18,6\% dibandingkan model tunggal terbaik (0,4979). Pendekatan ansambel ini menunjukkan keunggulan dalam lokalisasi bounding box dan keandalan klasifikasi, terutama untuk ikan berukuran kecil dan sulit dideteksi secara visual, dengan peningkatan presisi hingga 82\% pada ambang kepercayaan optimal. Meskipun efisiensi komputasi menurun sekitar 4,3x dibandingkan model tunggal, peningkatan akurasi memberikan nilai signifikan untuk alur kerja ekologi offline di mana keandalan deteksi lebih diprioritaskan. Dengan mengurangi kesalahan deteksi spesies langka sebesar 23\% dan meningkatkan konsistensi deteksi secara keseluruhan di berbagai variasi lingkungan, penelitian ini berkontribusi pada protokol pemantauan keanekaragaman hayati yang lebih kuat dan menetapkan tolok ukur baru untuk sistem deteksi spesies akuatik berbasis ansambel.}
 
 % Keywords
 \keyword{YOLOv8; Object Detection; Ensemble Learning; Weighted Boxes Fusion; Non-Maximum Suppression; Ecological Monitoring} 
@@ -195,223 +195,208 @@ $^{6}$ \quad Graduate School of Life Science and Systems Engineering, Kyushu Ins
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Object detection has emerged as a cornerstone technology in computer vision, with profound applications spanning autonomous systems, medical imaging, and ecological monitoring~\cite{LeCun2015,Zhao2019}. The evolution of deep learning architectures, particularly Convolutional Neural Networks (CNNs), has fundamentally transformed detection capabilities, leading to breakthrough models including Region-based CNN (R-CNN)~\cite{Girshick2014}, Faster R-CNN~\cite{Ren2015}, and the influential You Only Look Once (YOLO) family~\cite{Redmon2016,Redmon2017,Bochkovskiy2020,Terven2023}.
+Deteksi objek telah muncul sebagai teknologi fundamental dalam visi komputer, dengan aplikasi yang luas mulai dari sistem otonom, pencitraan medis, hingga pemantauan ekologi~\cite{LeCun2015,Zhao2019}. Evolusi arsitektur pembelajaran mendalam, khususnya *Convolutional Neural Networks* (CNN), secara fundamental telah mengubah kemampuan deteksi, menghasilkan model terobosan termasuk *Region-based CNN (R-CNN)*~\cite{Girshick2014}, *Faster R-CNN*~\cite{Ren2015}, dan keluarga *You Only Look Once (YOLO)* yang berpengaruh~\cite{Redmon2016,Redmon2017,Bochkovskiy2020,Terven2023}.  
 
-The YOLO architecture has garnered significant attention within the computer vision community due to its exceptional balance between real-time processing capabilities and competitive detection accuracy~\cite{Jocher2022}. YOLOv8, the latest iteration in this lineage, represents a substantial advancement in detection performance while maintaining computational efficiency suitable for deployment across diverse hardware configurations~\cite{Terven2023}. However, despite these remarkable advances, single-model approaches inherently suffer from several critical limitations including hyperparameter sensitivity, dataset bias susceptibility, and reduced robustness when confronted with environmental variations and edge cases~\cite{Dietterich2000}.
+Arsitektur YOLO telah mendapatkan perhatian signifikan dalam komunitas visi komputer karena keseimbangan luar biasa antara kemampuan pemrosesan real-time dan akurasi deteksi yang kompetitif~\cite{Jocher2022}. YOLOv8, iterasi terbaru dalam lini ini, merepresentasikan kemajuan substansial dalam kinerja deteksi sekaligus mempertahankan efisiensi komputasi yang sesuai untuk implementasi pada berbagai konfigurasi perangkat keras~\cite{Terven2023}. Namun, meskipun terdapat kemajuan yang mengesankan, pendekatan model tunggal secara inheren masih memiliki keterbatasan kritis termasuk sensitivitas hiperparameter, kerentanan terhadap bias dataset, dan berkurangnya robustnes ketika dihadapkan dengan variasi lingkungan maupun kasus tepi~\cite{Dietterich2000}.  
 
-Ensemble learning methodologies have emerged as a powerful paradigm to address these fundamental limitations by strategically combining predictions from multiple diverse models to achieve superior performance compared to any individual constituent model~\cite{Zhou2002,Breiman2001,Freund1997}. In the context of object detection, ensemble approaches encounter unique technical challenges, particularly in the realm of bounding box fusion, where multiple potentially overlapping predictions from different models must be intelligently aggregated to produce coherent final outputs~\cite{Solovyev2021}.
+Metodologi *ensemble learning* telah muncul sebagai paradigma kuat untuk mengatasi keterbatasan fundamental ini dengan secara strategis menggabungkan prediksi dari berbagai model untuk mencapai kinerja yang lebih baik dibandingkan model tunggal manapun~\cite{Zhou2002,Breiman2001,Freund1997}. Dalam konteks deteksi objek, pendekatan ansambel menghadapi tantangan teknis unik, khususnya dalam *bounding box fusion*, di mana banyak prediksi yang saling tumpang tindih dari model berbeda harus digabungkan secara cerdas untuk menghasilkan keluaran akhir yang koheren~\cite{Solovyev2021}.  
 
-Traditional Non-Maximum Suppression (NMS) techniques, while effective for managing redundant predictions within single models, may not optimally handle the complex prediction landscapes generated by diverse ensemble components~\cite{Solovyev2021}. This limitation has motivated the development of more sophisticated fusion strategies, with Weighted Boxes Fusion (WBF) emerging as a promising alternative that demonstrates superior performance in handling overlapping predictions from heterogeneous model ensembles~\cite{Solovyev2021}.
+Teknik *Non-Maximum Suppression (NMS)* tradisional, meskipun efektif dalam mengelola prediksi redundan pada model tunggal, mungkin tidak optimal dalam menangani lanskap prediksi kompleks yang dihasilkan oleh komponen ansambel yang beragam~\cite{Solovyev2021}. Keterbatasan ini memotivasi pengembangan strategi fusi yang lebih canggih, dengan *Weighted Boxes Fusion (WBF)* muncul sebagai alternatif menjanjikan yang menunjukkan kinerja lebih unggul dalam menangani prediksi tumpang tindih dari ansambel model heterogen~\cite{Solovyev2021}.  
 
-Unlike conventional NMS approaches that suppress overlapping bounding boxes, WBF employs an intelligent merging strategy that considers both confidence scores and spatial relationships between predictions, thereby preserving valuable information that would otherwise be discarded in traditional suppression schemes~\cite{Solovyev2021}. This approach has shown particular promise in scenarios involving complex object arrangements and overlapping instances.
+Tidak seperti pendekatan NMS konvensional yang menekan *bounding box* yang tumpang tindih, WBF menerapkan strategi penggabungan cerdas yang mempertimbangkan skor kepercayaan serta hubungan spasial antar prediksi, sehingga mempertahankan informasi berharga yang sebaliknya akan dibuang oleh skema penekanan tradisional~\cite{Solovyev2021}. Pendekatan ini menunjukkan potensi khusus pada skenario dengan susunan objek kompleks dan instansi yang saling tumpang tindih.  
 
-Within the specialized domain of ecological monitoring and biodiversity conservation, accurate detection of aquatic species presents a constellation of unique technical challenges stemming from underwater imaging conditions, highly variable lighting environments, complex naturalistic backgrounds, and the inherent difficulty of distinguishing between morphologically similar species~\cite{Kalafi2018,Leow2015,Qin2016}. Fish detection and classification have gained considerable attention as critical applications for population monitoring, ecosystem health assessment, and conservation efforts~\cite{Mandal2018,Ditria2020,Campbell2015}.
+Dalam domain khusus pemantauan ekologi dan konservasi keanekaragaman hayati, deteksi akurat spesies akuatik menghadirkan berbagai tantangan teknis akibat kondisi pencitraan bawah air, variasi pencahayaan yang tinggi, latar belakang alami yang kompleks, serta kesulitan inheren dalam membedakan spesies dengan morfologi serupa~\cite{Kalafi2018,Leow2015,Qin2016}. Deteksi dan klasifikasi ikan telah menarik perhatian signifikan sebagai aplikasi penting untuk pemantauan populasi, penilaian kesehatan ekosistem, dan upaya konservasi~\cite{Mandal2018,Ditria2020,Campbell2015}.  
 
-Traditional manual counting and identification methodologies are not only labor-intensive and time-consuming but also prone to human error and observer bias, making automated detection systems increasingly valuable for large-scale ecological studies and long-term monitoring programs~\cite{Tamou2021}. The integration of advanced computer vision techniques with ecological research represents a significant opportunity to enhance the scale, accuracy, and consistency of biodiversity monitoring efforts.
+Metodologi manual tradisional untuk menghitung dan mengidentifikasi tidak hanya memakan waktu dan tenaga, tetapi juga rentan terhadap kesalahan manusia dan bias pengamat, sehingga sistem deteksi otomatis semakin bernilai untuk studi ekologi skala besar dan program pemantauan jangka panjang~\cite{Tamou2021}. Integrasi teknik visi komputer canggih dengan penelitian ekologi merepresentasikan peluang signifikan untuk meningkatkan skala, akurasi, dan konsistensi upaya pemantauan keanekaragaman hayati.  
 
-The Medaka fish (Oryzias species) represents a particularly important model organism for both fundamental scientific research and practical ecological monitoring applications. These small freshwater fish are widely distributed across Asian aquatic ecosystems and serve as valuable bioindicators of aquatic ecosystem health and environmental change~\cite{Salimi2016}. However, accurate detection and taxonomic classification of different Oryzias species remains technically challenging due to their subtle morphological differences, similar coloration patterns, and the variability introduced by environmental imaging conditions.
+Ikan Medaka (*Oryzias* sp.) merupakan organisme model yang sangat penting baik untuk penelitian ilmiah dasar maupun aplikasi praktis pemantauan ekologi. Ikan air tawar kecil ini tersebar luas di ekosistem perairan Asia dan berfungsi sebagai bioindikator berharga untuk kesehatan ekosistem akuatik serta perubahan lingkungan~\cite{Salimi2016}. Namun, deteksi akurat dan klasifikasi taksonomi dari berbagai spesies *Oryzias* tetap menantang secara teknis karena perbedaan morfologi yang halus, pola warna yang mirip, serta variabilitas yang diperkenalkan oleh kondisi pencitraan lingkungan.  
 
-This research addresses several critical knowledge gaps in ensemble-based object detection methodologies specifically applied to ecological monitoring scenarios. First, while ensemble methods have demonstrated considerable promise in general object detection benchmarks, their effectiveness and practical applicability for aquatic species detection remain systematically underexplored. Second, the comparative performance analysis between traditional NMS and advanced WBF techniques within the specific context of YOLOv8-based ensemble architectures has not been comprehensively investigated across diverse confidence threshold regimes. Third, the fundamental trade-offs between detection accuracy improvements and computational efficiency costs in ensemble approaches require systematic quantitative evaluation to inform practical deployment strategies in resource-constrained field monitoring scenarios.
+Penelitian ini berupaya menjawab beberapa kesenjangan pengetahuan kritis dalam metodologi deteksi objek berbasis ansambel yang diterapkan secara khusus pada skenario pemantauan ekologi. Pertama, meskipun metode ansambel telah menunjukkan potensi besar pada tolok ukur deteksi objek umum, efektivitas dan aplikasinya untuk deteksi spesies akuatik masih kurang dieksplorasi secara sistematis. Kedua, analisis perbandingan kinerja antara NMS tradisional dan teknik WBF canggih dalam konteks spesifik arsitektur ansambel berbasis YOLOv8 belum diteliti secara komprehensif pada berbagai rezim ambang kepercayaan. Ketiga, trade-off fundamental antara peningkatan akurasi deteksi dan biaya efisiensi komputasi dalam pendekatan ansambel memerlukan evaluasi kuantitatif sistematis untuk mendukung strategi penerapan praktis dalam skenario pemantauan lapangan yang terbatas sumber daya.  
 
-The primary research contributions of this work are:
+Kontribusi utama penelitian ini adalah:  
 
 \begin{itemize}
-    \item \textbf{Comprehensive Ensemble Architecture}: Development and systematic implementation of a robust YOLOv8 ensemble framework specifically optimized for Medaka fish detection, incorporating rigorous K-fold cross-validation methodologies to ensure enhanced generalization across diverse environmental conditions and imaging scenarios.
+    \item \textbf{Arsitektur Ansambel Komprehensif}: Pengembangan dan implementasi sistematis kerangka kerja ansambel YOLOv8 yang tangguh, dioptimalkan khusus untuk deteksi ikan Medaka, dengan menerapkan metodologi *K-fold cross-validation* yang ketat guna memastikan generalisasi lebih baik pada berbagai kondisi lingkungan dan skenario pencitraan.
     
-    \item \textbf{Advanced Fusion Strategy Analysis}: Detailed comparative evaluation between traditional Non-Maximum Suppression (NMS) and state-of-the-art Weighted Boxes Fusion (WBF) techniques for bounding box aggregation in multi-model ensemble configurations, providing quantitative insights into optimal fusion strategies.
+    \item \textbf{Analisis Strategi Fusi Lanjutan}: Evaluasi komparatif mendetail antara teknik *Non-Maximum Suppression (NMS)* tradisional dan *Weighted Boxes Fusion (WBF)* mutakhir untuk agregasi *bounding box* dalam konfigurasi ansambel multi-model, memberikan wawasan kuantitatif tentang strategi fusi yang optimal.
     
-    \item \textbf{Comprehensive Evaluation Framework}: Implementation of extensive evaluation protocols incorporating COCO-style mean Average Precision (mAP) metrics, detailed precision-recall analysis, computational efficiency benchmarking, and systematic performance assessment across multiple confidence threshold regimes to ensure robust validation.
+    \item \textbf{Kerangka Evaluasi Komprehensif}: Implementasi protokol evaluasi ekstensif yang menggabungkan metrik *mean Average Precision (mAP)* bergaya COCO, analisis presisi-recall mendetail, tolok ukur efisiensi komputasi, serta penilaian kinerja sistematis pada berbagai rezim ambang kepercayaan untuk memastikan validasi yang robust.
     
-    \item \textbf{Practical Deployment Analysis}: Quantitative characterization of accuracy-efficiency trade-offs combined with practical deployment recommendations to guide implementation decisions in real-world ecological monitoring scenarios with varying computational resource constraints.
+    \item \textbf{Analisis Penerapan Praktis}: Karakterisasi kuantitatif tentang trade-off akurasi-efisiensi yang dikombinasikan dengan rekomendasi penerapan praktis guna memandu keputusan implementasi dalam skenario pemantauan ekologi nyata dengan keterbatasan sumber daya komputasi.
     
-    \item \textbf{Methodological Validation}: Systematic validation employing comprehensive data augmentation strategies, rigorous cross-validation techniques, and statistical significance testing to ensure robust performance across diverse environmental conditions and species variations.
-\end{itemize}
+    \item \textbf{Validasi Metodologis}: Validasi sistematis dengan menerapkan strategi augmentasi data komprehensif, teknik *cross-validation* yang ketat, dan pengujian signifikansi statistik untuk memastikan kinerja yang robust di berbagai kondisi lingkungan dan variasi spesies.
+\end{itemize}  
 
-The remainder of this manuscript is structured as follows: Section~2 provides a comprehensive literature review encompassing object detection architectures, ensemble learning methodologies, and aquatic species monitoring applications. Section~3 details the proposed methodology including dataset preparation protocols, model architecture specifications, and ensemble fusion technique implementations. Section~4 presents extensive experimental results with detailed performance analysis and statistical validation. Section~5 discusses the broader implications of findings, acknowledges limitations, and explores practical deployment considerations. Finally, Section~6 concludes with future research directions and potential extensions of this work.
+Sisa naskah ini terstruktur sebagai berikut: Bagian~2 menyajikan tinjauan pustaka komprehensif yang mencakup arsitektur deteksi objek, metodologi pembelajaran ansambel, dan aplikasi pemantauan spesies akuatik. Bagian~3 merinci metodologi yang diusulkan termasuk protokol persiapan dataset, spesifikasi arsitektur model, dan implementasi teknik fusi ansambel. Bagian~4 menyajikan hasil eksperimen ekstensif dengan analisis kinerja mendetail dan validasi statistik. Bagian~5 membahas implikasi yang lebih luas dari temuan, keterbatasan yang diakui, serta pertimbangan penerapan praktis. Akhirnya, Bagian~6 menyimpulkan dengan arah penelitian masa depan dan potensi pengembangan lanjutan dari penelitian ini.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Related Work}
 
 \subsection{Object Detection Architectures}
 
-The evolution of object detection has been marked by several paradigm shifts, beginning with traditional computer vision approaches and progressing to sophisticated deep learning architectures. Early detection systems relied on handcrafted features and classical machine learning techniques, exemplified by the Viola-Jones framework~\cite{Freund1997}, which introduced the concept of boosting for object detection applications.
+Evolusi deteksi objek telah ditandai oleh beberapa pergeseran paradigma, dimulai dari pendekatan visi komputer tradisional hingga berkembang menjadi arsitektur pembelajaran mendalam yang canggih. Sistem deteksi awal bergantung pada fitur buatan tangan dan teknik pembelajaran mesin klasik, yang dicontohkan oleh kerangka kerja Viola-Jones~\cite{Freund1997}, yang memperkenalkan konsep *boosting* untuk aplikasi deteksi objek.  
 
-The advent of deep learning revolutionized object detection through the introduction of region-based approaches. R-CNN~\cite{Girshick2014} pioneered the integration of CNNs for feature extraction in detection pipelines, though computational efficiency remained a significant limitation. Subsequent developments including Fast R-CNN and Faster R-CNN~\cite{Ren2015} addressed these efficiency concerns while maintaining high detection accuracy. The Cascade R-CNN architecture~\cite{Cai2018} further refined this approach by implementing progressive refinement of detection quality through multiple detection stages.
+Munculnya pembelajaran mendalam merevolusi deteksi objek melalui pengenalan pendekatan berbasis region. R-CNN~\cite{Girshick2014} memelopori integrasi CNN untuk ekstraksi fitur dalam alur deteksi, meskipun efisiensi komputasi tetap menjadi keterbatasan signifikan. Perkembangan selanjutnya termasuk Fast R-CNN dan Faster R-CNN~\cite{Ren2015} mengatasi masalah efisiensi tersebut sambil mempertahankan akurasi deteksi yang tinggi. Arsitektur Cascade R-CNN~\cite{Cai2018} lebih lanjut menyempurnakan pendekatan ini dengan menerapkan perbaikan progresif terhadap kualitas deteksi melalui beberapa tahap deteksi.  
 
-Single-shot detection methods emerged as a response to the computational demands of region-based approaches. The Single Shot MultiBox Detector (SSD)~\cite{Liu2019} and the YOLO family~\cite{Redmon2016,Redmon2017} demonstrated that competitive accuracy could be achieved while maintaining real-time processing capabilities. YOLOv4~\cite{Bochkovskiy2020} and subsequent iterations have continued to push the boundaries of this efficiency-accuracy trade-off.
+Metode deteksi sekali jalan (*single-shot detection*) muncul sebagai respons terhadap tuntutan komputasi dari pendekatan berbasis region. *Single Shot MultiBox Detector (SSD)*~\cite{Liu2019} dan keluarga YOLO~\cite{Redmon2016,Redmon2017} menunjukkan bahwa akurasi kompetitif dapat dicapai sambil tetap mempertahankan kemampuan pemrosesan real-time. YOLOv4~\cite{Bochkovskiy2020} dan iterasi selanjutnya terus mendorong batasan trade-off antara efisiensi dan akurasi.  
 
-The latest YOLOv8 architecture represents the current state-of-the-art in real-time object detection, incorporating advanced features including anchor-free detection, enhanced feature pyramid networks, and optimized training procedures~\cite{Terven2023}. These improvements have resulted in significant performance gains across diverse detection benchmarks while maintaining computational efficiency suitable for deployment in resource-constrained environments.
+Arsitektur YOLOv8 terbaru merepresentasikan *state-of-the-art* dalam deteksi objek real-time, dengan mengintegrasikan fitur-fitur canggih termasuk deteksi *anchor-free*, jaringan piramida fitur yang ditingkatkan, serta prosedur pelatihan yang dioptimalkan~\cite{Terven2023}. Perbaikan ini menghasilkan peningkatan kinerja signifikan pada berbagai tolok ukur deteksi sambil tetap mempertahankan efisiensi komputasi yang sesuai untuk penerapan pada lingkungan dengan keterbatasan sumber daya.  
 
-\subsection{Ensemble Learning in Object Detection}
+\subsection{Pembelajaran Ansambel dalam Deteksi Objek}
 
-Ensemble learning principles, originally developed for classification tasks~\cite{Dietterich2000}, have been successfully adapted to object detection scenarios with unique challenges and opportunities. The fundamental premise of ensemble learning—that combining multiple diverse models can achieve superior performance compared to individual models—applies particularly well to detection tasks where model diversity can capture complementary aspects of object appearance and spatial relationships~\cite{Zhou2002}.
+Prinsip pembelajaran ansambel, yang awalnya dikembangkan untuk tugas klasifikasi~\cite{Dietterich2000}, telah berhasil diadaptasi ke skenario deteksi objek dengan tantangan dan peluang yang unik. Premis fundamental pembelajaran ansambel—bahwa penggabungan beberapa model yang beragam dapat mencapai kinerja lebih baik dibandingkan model individual—sangat relevan untuk tugas deteksi di mana keragaman model dapat menangkap aspek-aspek pelengkap dari penampilan objek dan hubungan spasial~\cite{Zhou2002}.  
 
-Traditional ensemble approaches in classification, including bagging~\cite{Breiman2001} and boosting~\cite{Freund1997}, have been extended to detection scenarios, though the integration of spatial predictions introduces additional complexity. The challenge of combining multiple bounding box predictions from different models has led to specialized fusion techniques beyond simple voting mechanisms used in classification ensembles.
+Pendekatan ansambel tradisional dalam klasifikasi, termasuk *bagging*~\cite{Breiman2001} dan *boosting*~\cite{Freund1997}, telah diperluas ke skenario deteksi, meskipun integrasi prediksi spasial menambahkan kompleksitas tambahan. Tantangan dalam menggabungkan beberapa prediksi *bounding box* dari model berbeda telah mendorong pengembangan teknik fusi khusus di luar mekanisme voting sederhana yang digunakan dalam ansambel klasifikasi.  
 
-Recent work has explored various ensemble strategies specifically for object detection. These approaches range from simple averaging of confidence scores to sophisticated fusion techniques that consider spatial relationships between predictions. The choice of ensemble strategy significantly impacts both detection accuracy and computational efficiency, requiring careful consideration of application-specific requirements.
+Penelitian terbaru telah mengeksplorasi berbagai strategi ansambel khusus untuk deteksi objek. Pendekatan ini berkisar dari perataan sederhana skor kepercayaan hingga teknik fusi canggih yang mempertimbangkan hubungan spasial antar prediksi. Pemilihan strategi ansambel berdampak signifikan pada akurasi deteksi dan efisiensi komputasi, sehingga memerlukan pertimbangan cermat terhadap kebutuhan spesifik aplikasi.  
 
-\subsection{Bounding Box Fusion Techniques}
+\subsection{Teknik Fusi Bounding Box}
 
-The fusion of bounding box predictions from multiple models represents a critical component of ensemble object detection systems. Traditional Non-Maximum Suppression (NMS) operates by selecting the highest-confidence detection and suppressing nearby overlapping detections based on intersection-over-union (IoU) thresholds. While effective for single-model scenarios, NMS may not optimally handle the diverse prediction landscapes generated by ensemble systems.
+Fusi prediksi *bounding box* dari beberapa model merepresentasikan komponen kritis dalam sistem deteksi objek berbasis ansambel. *Non-Maximum Suppression (NMS)* tradisional bekerja dengan memilih deteksi dengan kepercayaan tertinggi dan menekan deteksi tumpang tindih di sekitarnya berdasarkan ambang *intersection-over-union (IoU)*. Meskipun efektif dalam skenario model tunggal, NMS mungkin tidak optimal dalam menangani lanskap prediksi beragam yang dihasilkan oleh sistem ansambel.  
 
-Weighted Boxes Fusion (WBF)~\cite{Solovyev2021} emerged as an advanced alternative to NMS, specifically designed for ensemble scenarios. Rather than suppressing overlapping boxes, WBF intelligently merges predictions by computing weighted averages of bounding box coordinates and confidence scores. This approach considers both the confidence of individual predictions and their spatial relationships, potentially preserving valuable information that would be discarded by traditional NMS approaches.
+*Weighted Boxes Fusion (WBF)*~\cite{Solovyev2021} muncul sebagai alternatif canggih terhadap NMS, yang dirancang khusus untuk skenario ansambel. Alih-alih menekan kotak yang tumpang tindih, WBF secara cerdas menggabungkan prediksi dengan menghitung rata-rata tertimbang dari koordinat *bounding box* dan skor kepercayaan. Pendekatan ini mempertimbangkan baik kepercayaan prediksi individual maupun hubungan spasialnya, sehingga berpotensi mempertahankan informasi berharga yang akan dibuang oleh pendekatan NMS tradisional.  
 
-The WBF algorithm operates by clustering nearby predictions based on IoU overlap, then computing weighted averages of coordinates and confidences within each cluster. This approach has demonstrated superior performance in various ensemble detection scenarios, particularly when dealing with overlapping objects or uncertain boundaries.
+Algoritme WBF bekerja dengan mengelompokkan prediksi yang berdekatan berdasarkan tumpang tindih IoU, kemudian menghitung rata-rata tertimbang koordinat dan skor kepercayaan dalam setiap klaster. Pendekatan ini telah menunjukkan kinerja unggul dalam berbagai skenario deteksi ansambel, khususnya saat menangani objek yang saling tumpang tindih atau batas yang tidak pasti.  
 
-\subsection{Aquatic Species Detection and Monitoring}
+\subsection{Deteksi dan Pemantauan Spesies Akuatik}
 
-The application of computer vision techniques to aquatic species monitoring represents a rapidly growing field with significant ecological and conservation implications. Underwater imaging presents unique challenges including variable lighting conditions, water turbidity, complex backgrounds, and distortions introduced by water medium effects~\cite{Kalafi2018,Leow2015}.
+Penerapan teknik visi komputer pada pemantauan spesies akuatik merepresentasikan bidang yang berkembang pesat dengan implikasi ekologi dan konservasi yang signifikan. Pencitraan bawah air menghadirkan tantangan unik termasuk kondisi pencahayaan yang bervariasi, kekeruhan air, latar belakang yang kompleks, dan distorsi yang ditimbulkan oleh medium air~\cite{Kalafi2018,Leow2015}.  
 
-Early approaches to automated fish detection relied on traditional computer vision techniques, including background subtraction and handcrafted feature extraction. However, these methods struggled with the complexity and variability of underwater environments, leading to limited practical adoption in field monitoring scenarios.
+Pendekatan awal untuk deteksi ikan otomatis bergantung pada teknik visi komputer tradisional, termasuk *background subtraction* dan ekstraksi fitur buatan tangan. Namun, metode ini kesulitan menghadapi kompleksitas dan variabilitas lingkungan bawah air, yang membatasi adopsi praktisnya pada skenario pemantauan lapangan.  
 
-Deep learning approaches have shown considerable promise for aquatic species detection and classification. Qin et al.~\cite{Qin2016} developed DeepFish, one of the first deep learning systems specifically designed for underwater fish recognition, demonstrating the potential of CNNs for this application domain. Subsequent work has explored various architectures and training strategies for improved performance in challenging underwater conditions.
+Pendekatan pembelajaran mendalam telah menunjukkan potensi besar untuk deteksi dan klasifikasi spesies akuatik. Qin et al.~\cite{Qin2016} mengembangkan *DeepFish*, salah satu sistem pembelajaran mendalam pertama yang dirancang khusus untuk pengenalan ikan bawah air, yang mendemonstrasikan potensi CNN dalam domain aplikasi ini. Penelitian selanjutnya mengeksplorasi berbagai arsitektur dan strategi pelatihan untuk meningkatkan kinerja dalam kondisi bawah air yang menantang.  
 
-Recent advances have focused on addressing specific challenges in aquatic monitoring, including species classification~\cite{Tamou2021}, behavioral analysis~\cite{Salimi2016}, and population assessment~\cite{Mandal2018}. These systems have demonstrated practical utility in ecological research and conservation applications, though challenges remain in achieving the accuracy and reliability required for large-scale deployment.
+Kemajuan terbaru berfokus pada penanganan tantangan spesifik dalam pemantauan akuatik, termasuk klasifikasi spesies~\cite{Tamou2021}, analisis perilaku~\cite{Salimi2016}, dan penilaian populasi~\cite{Mandal2018}. Sistem ini telah menunjukkan utilitas praktis dalam penelitian ekologi dan aplikasi konservasi, meskipun tantangan masih ada untuk mencapai akurasi dan keandalan yang dibutuhkan untuk penerapan skala besar.  
 
-\subsection{Medaka Fish as Model Organisms}
+\subsection{Ikan Medaka sebagai Organisme Model}
 
-Medaka fish (Oryzias species) have gained prominence as important model organisms in both laboratory research and ecological monitoring contexts. These small freshwater fish are widely distributed across Asian aquatic ecosystems and exhibit characteristics that make them valuable for biodiversity studies and environmental monitoring programs.
+Ikan Medaka (*Oryzias* sp.) telah mendapatkan perhatian sebagai organisme model penting baik dalam penelitian laboratorium maupun konteks pemantauan ekologi. Ikan air tawar kecil ini tersebar luas di ekosistem perairan Asia dan memiliki karakteristik yang menjadikannya berharga untuk studi keanekaragaman hayati serta program pemantauan lingkungan.  
 
-The morphological similarity between different Oryzias species presents particular challenges for automated detection and classification systems. Traditional identification requires expert knowledge and careful examination of subtle morphological features, making automated approaches particularly valuable for large-scale monitoring efforts.
+Kemiripan morfologi antar spesies *Oryzias* menghadirkan tantangan khusus bagi sistem deteksi dan klasifikasi otomatis. Identifikasi tradisional memerlukan pengetahuan ahli dan pemeriksaan cermat terhadap fitur morfologi halus, sehingga pendekatan otomatis menjadi sangat berharga untuk upaya pemantauan skala besar.  
 
-Previous work on Medaka detection has primarily focused on laboratory settings with controlled imaging conditions. The extension to natural environments with variable lighting, backgrounds, and water conditions represents a significant technical challenge that has not been thoroughly addressed in existing literature.
+Penelitian sebelumnya tentang deteksi Medaka terutama berfokus pada pengaturan laboratorium dengan kondisi pencitraan terkontrol. Ekstensi ke lingkungan alami dengan pencahayaan, latar belakang, dan kondisi air yang bervariasi merepresentasikan tantangan teknis signifikan yang belum banyak ditangani dalam literatur yang ada.  
 
-\subsection{Cross-Validation and Model Evaluation}
+\subsection{Cross-Validation dan Evaluasi Model}
 
-Robust evaluation methodologies are essential for assessing the performance and generalizability of detection systems. Cross-validation techniques, originally developed for classification tasks~\cite{Stone1974,Kohavi1995}, have been adapted for object detection scenarios with modifications to account for spatial prediction requirements.
+Metodologi evaluasi yang kuat sangat penting untuk menilai kinerja dan generalisasi sistem deteksi. Teknik *cross-validation*, yang awalnya dikembangkan untuk tugas klasifikasi~\cite{Stone1974,Kohavi1995}, telah diadaptasi ke skenario deteksi objek dengan modifikasi untuk mengakomodasi kebutuhan prediksi spasial.  
 
-K-fold cross-validation provides a systematic approach to assess model performance across different data splits, helping to identify overfitting and ensure generalization to unseen data~\cite{Browne2000}. In detection tasks, careful consideration must be given to maintaining class balance and spatial distribution across folds.
+*K-fold cross-validation* menyediakan pendekatan sistematis untuk menilai kinerja model pada berbagai pembagian data, membantu mengidentifikasi *overfitting* dan memastikan generalisasi ke data yang belum terlihat~\cite{Browne2000}. Dalam tugas deteksi, perhatian khusus harus diberikan untuk menjaga keseimbangan kelas dan distribusi spasial di seluruh *fold*.  
 
-The COCO evaluation protocol has emerged as the standard for object detection assessment, providing comprehensive metrics including mean Average Precision (mAP) across different IoU thresholds and object scales. These metrics enable detailed analysis of detection performance across various scenarios and facilitate meaningful comparisons between different approaches.
+Protokol evaluasi COCO telah muncul sebagai standar untuk penilaian deteksi objek, menyediakan metrik komprehensif termasuk *mean Average Precision (mAP)* pada berbagai ambang IoU dan skala objek. Metrik ini memungkinkan analisis mendetail terhadap kinerja deteksi pada berbagai skenario serta memfasilitasi perbandingan yang bermakna antar pendekatan.  
 
-\subsection{Data Augmentation Strategies}
+\subsection{Strategi Augmentasi Data}
 
-Data augmentation has proven essential for training robust detection models, particularly in scenarios with limited training data or high environmental variability~\cite{Shorten2019}. Augmentation techniques for object detection must carefully preserve spatial relationships between objects and their bounding boxes while introducing appropriate variations to improve generalization.
+Augmentasi data telah terbukti penting untuk melatih model deteksi yang tangguh, terutama dalam skenario dengan data pelatihan terbatas atau variabilitas lingkungan yang tinggi~\cite{Shorten2019}. Teknik augmentasi untuk deteksi objek harus hati-hati menjaga hubungan spasial antara objek dan *bounding box*-nya sambil memperkenalkan variasi yang sesuai untuk meningkatkan generalisasi.  
 
-Common augmentation strategies include geometric transformations (rotation, scaling, translation), photometric adjustments (brightness, contrast, color variation), and advanced techniques such as mixup and cutout. The selection and parameterization of augmentation strategies significantly impacts model performance and requires careful consideration of domain-specific characteristics.
+Strategi augmentasi umum mencakup transformasi geometris (rotasi, skala, translasi), penyesuaian fotometrik (kecerahan, kontras, variasi warna), dan teknik lanjutan seperti *mixup* dan *cutout*. Pemilihan dan parameterisasi strategi augmentasi berdampak signifikan terhadap kinerja model dan memerlukan pertimbangan cermat terhadap karakteristik spesifik domain.  
 
-In aquatic imaging scenarios, specific augmentation strategies may be particularly relevant, including simulation of water distortion effects, lighting variations, and turbidity changes. These domain-specific augmentations can improve model robustness to the challenging conditions encountered in real-world aquatic monitoring applications.
+Dalam skenario pencitraan akuatik, strategi augmentasi tertentu mungkin sangat relevan, termasuk simulasi efek distorsi air, variasi pencahayaan, dan perubahan kekeruhan. Augmentasi spesifik domain ini dapat meningkatkan ketahanan model terhadap kondisi menantang yang ditemui dalam aplikasi pemantauan akuatik dunia nyata.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
 
-\subsection{Dataset Collection and Preparation}
+\subsection{Koleksi dan Persiapan Dataset}
 
-Our dataset comprises 1,247 high-resolution images of Medaka fish (Oryzias species) collected from diverse aquatic environments across multiple geographical locations. The dataset encompasses two primary species: \textit{Oryzias celebensis} (n=723 instances) and \textit{Oryzias javanicus} (n=524 instances), representing the morphological diversity present in natural populations.
+Dataset kami terdiri dari 1.247 citra resolusi tinggi ikan Medaka (spesies \textit{Oryzias}) yang dikumpulkan dari berbagai lingkungan perairan di beberapa lokasi geografis. Dataset ini mencakup dua spesies utama: \textit{Oryzias celebensis} (n=723 individu) dan \textit{Oryzias javanicus} (n=524 individu), yang merepresentasikan keragaman morfologi dalam populasi alami.  
 
-Image acquisition was conducted using standardized protocols across multiple collection sites, including natural freshwater habitats, controlled laboratory environments, and semi-natural observation facilities. Images were captured at resolutions ranging from 1920×1080 to 4096×3072 pixels using calibrated digital cameras with consistent color profiles to ensure data quality and reproducibility.
+Akuisisi citra dilakukan dengan protokol standar di berbagai lokasi pengumpulan, termasuk habitat air tawar alami, lingkungan laboratorium terkontrol, dan fasilitas observasi semi-alami. Citra diambil dengan resolusi antara 1920×1080 hingga 4096×3072 piksel menggunakan kamera digital terkalibrasi dengan profil warna konsisten untuk memastikan kualitas data dan reprodusibilitas.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{% This command is only used for ``preprints''.
 	\begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
 		\centering
 		\includegraphics[width=0.8\textwidth]{Images/experiment_1_dataset.png}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-\caption{Representative samples from the Medaka dataset showing diversity in species, environmental conditions, and imaging scenarios. (\textbf{a}) \textit{O. celebensis} specimens in various naturalistic settings. (\textbf{b}) \textit{O. javanicus} specimens demonstrating morphological variation and environmental diversity.\label{fig:dataset-samples}}
+\caption{Contoh representatif dari dataset Medaka yang menunjukkan keragaman spesies, kondisi lingkungan, dan skenario pencitraan. (\textbf{a}) Spesimen \textit{O. celebensis} dalam berbagai lingkungan naturalistik. (\textbf{b}) Spesimen \textit{O. javanicus} yang menunjukkan variasi morfologis dan keragaman lingkungan.\label{fig:dataset-samples}}
 	\end{adjustwidth}
 \end{figure}
 
-Manual annotation was performed by expert ichthyologists using standardized annotation protocols. Each fish instance was carefully labeled with precise bounding box coordinates and species identification, following established taxonomic guidelines. To ensure annotation quality and consistency, a subset of 200 images underwent independent annotation by multiple experts, achieving an inter-annotator agreement of 94.3\% (Cohen's $\kappa$ = 0.89), indicating high annotation reliability.
+Anotasi manual dilakukan oleh ahli iktiologi menggunakan protokol anotasi standar. Setiap individu ikan diberi label secara cermat dengan koordinat \textit{bounding box} yang presisi serta identifikasi spesies, mengikuti pedoman taksonomi yang telah ditetapkan. Untuk memastikan kualitas dan konsistensi anotasi, sebanyak 200 citra diverifikasi secara independen oleh beberapa ahli, menghasilkan tingkat kesepakatan antar anotator sebesar 94,3\% (Cohen's $\kappa$ = 0,89), yang menunjukkan reliabilitas anotasi yang tinggi.  
 
-\subsection{Data Augmentation Strategy}
+\subsection{Strategi Augmentasi Data}
 
-To enhance model robustness and generalization capability, we implemented a comprehensive data augmentation pipeline specifically designed for aquatic imaging scenarios. The augmentation strategy encompasses both geometric and photometric transformations while preserving the spatial integrity of bounding box annotations.
+Untuk meningkatkan robustnes dan kemampuan generalisasi model, kami menerapkan pipeline augmentasi data yang komprehensif dan dirancang khusus untuk skenario pencitraan akuatik. Strategi augmentasi mencakup transformasi geometris dan fotometris, dengan tetap mempertahankan integritas spasial anotasi \textit{bounding box}.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{% This command is only used for ``preprints''.
 	\begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
 		\centering
 		\includegraphics[width=0.45\textwidth]{Images/augmentation1.png}
 		\includegraphics[width=0.45\textwidth]{Images/augmentation2.png}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-\caption{Data augmentation examples demonstrating the range of transformations applied to enhance dataset diversity. (\textbf{a}) Original image with ground truth annotations. (\textbf{b}) Augmented versions showing geometric transformations, photometric adjustments, and simulated aquatic distortion effects.\label{fig:data-augmentation}}
+\caption{Contoh augmentasi data yang menunjukkan rentang transformasi untuk meningkatkan keragaman dataset. (\textbf{a}) Citra asli dengan anotasi \textit{ground truth}. (\textbf{b}) Versi teraugmentasi yang menunjukkan transformasi geometris, penyesuaian fotometris, serta efek distorsi akuatik simulasi.\label{fig:data-augmentation}}
 	\end{adjustwidth}
 \end{figure}
 
-Geometric augmentations include random rotation (±15°), horizontal flipping (probability 0.5), scaling (0.8-1.2×), and translation (±10\% of image dimensions). Photometric augmentations encompass brightness adjustment (±20\%), contrast variation (±15\%), hue shifting (±10°), and saturation modification (±20\%). Additionally, we incorporated domain-specific augmentations including Gaussian noise injection ($\sigma$ = 0-0.05), simulated water ripple effects, and varying degrees of motion blur to replicate realistic underwater imaging conditions.
+Augmentasi geometris mencakup rotasi acak (±15°), pembalikan horizontal (probabilitas 0,5), penskalaan (0,8–1,2×), dan translasi (±10\% dimensi citra). Augmentasi fotometris mencakup penyesuaian kecerahan (±20\%), variasi kontras (±15\%), pergeseran hue (±10°), dan modifikasi saturasi (±20\%). Selain itu, augmentasi spesifik domain diterapkan, termasuk injeksi derau Gaussian ($\sigma$ = 0–0,05), simulasi efek riak air, dan variasi tingkat \textit{motion blur} untuk mereplikasi kondisi pencitraan bawah air yang realistis.  
 
-The augmentation pipeline increased the effective training dataset size by a factor of 8×, resulting in approximately 10,000 training instances per fold during cross-validation. This expansion significantly enhanced the model's ability to generalize across diverse environmental conditions and imaging scenarios.
+Pipeline augmentasi ini meningkatkan ukuran efektif dataset pelatihan sebesar 8×, menghasilkan sekitar 10.000 instansi pelatihan per lipatan selama \textit{cross-validation}. Ekspansi ini secara signifikan meningkatkan kemampuan model untuk melakukan generalisasi pada kondisi lingkungan dan skenario pencitraan yang beragam.  
 
-\subsection{YOLOv8 Base Architecture}
+\subsection{Arsitektur Dasar YOLOv8}
 
-We adopted YOLOv8 as our foundational detection architecture due to its superior balance of accuracy and computational efficiency. YOLOv8 incorporates several architectural innovations including anchor-free detection, enhanced feature pyramid networks (FPN), and optimized activation functions that contribute to improved detection performance.
+Kami mengadopsi YOLOv8 sebagai arsitektur deteksi dasar karena keseimbangan superior antara akurasi dan efisiensi komputasi. YOLOv8 mengintegrasikan sejumlah inovasi arsitektural termasuk deteksi \textit{anchor-free}, jaringan piramida fitur yang ditingkatkan (FPN), dan fungsi aktivasi yang dioptimalkan untuk meningkatkan kinerja deteksi.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{% This command is only used for ``preprints''.
 	\begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
 		\centering
 		\includegraphics[width=0.8\textwidth]{Images/yolov8-architecture.jpg}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-\caption{YOLOv8 architecture overview showing the backbone network, feature pyramid structure, and detection heads. The architecture employs anchor-free detection with multiple prediction scales to handle objects of varying sizes effectively.\label{fig:yolov8-architecture}}
+\caption{Gambaran arsitektur YOLOv8 yang menunjukkan jaringan backbone, struktur piramida fitur, dan \textit{detection heads}. Arsitektur ini menggunakan deteksi \textit{anchor-free} dengan skala prediksi ganda untuk menangani objek dengan ukuran yang bervariasi secara efektif.\label{fig:yolov8-architecture}}
 	\end{adjustwidth}
 \end{figure}
 
-The YOLOv8 backbone utilizes a modified CSPDarknet architecture with efficient cross-stage partial connections and spatial pyramid pooling. The feature pyramid network enables multi-scale feature extraction and fusion, facilitating detection of objects across different size ranges. The detection head employs decoupled architectures for classification and localization tasks, improving convergence and final performance.
+Backbone YOLOv8 menggunakan arsitektur CSPDarknet yang dimodifikasi dengan koneksi parsial lintas tahap yang efisien serta *spatial pyramid pooling*. Jaringan piramida fitur memungkinkan ekstraksi dan fusi fitur multi-skala, memfasilitasi deteksi objek dengan berbagai ukuran. Bagian \textit{detection head} menggunakan arsitektur terpisah untuk tugas klasifikasi dan lokalisasi, sehingga meningkatkan konvergensi dan kinerja akhir.  
 
-Model training was conducted using the AdamW optimizer with an initial learning rate of 0.001, weight decay of 0.0005, and cosine annealing learning rate scheduling. Training proceeded for 300 epochs with early stopping based on validation mAP monitoring. Input images were resized to 640×640 pixels while maintaining aspect ratios through appropriate padding to preserve spatial relationships.
+Pelatihan model dilakukan menggunakan optimizer AdamW dengan laju pembelajaran awal 0,001, \textit{weight decay} sebesar 0,0005, dan penjadwalan laju pembelajaran \textit{cosine annealing}. Pelatihan berlangsung selama 300 epoch dengan \textit{early stopping} berdasarkan pemantauan mAP validasi. Citra masukan diubah ukurannya menjadi 640×640 piksel dengan mempertahankan rasio aspek melalui padding yang sesuai agar hubungan spasial tetap terjaga.  
 
-\subsection{K-Fold Cross-Validation Protocol}
+\subsection{Protokol K-Fold Cross-Validation}
 
-To ensure robust performance evaluation and minimize bias associated with specific train-test splits, we implemented a systematic 5-fold cross-validation protocol. The dataset was stratified based on species distribution and imaging conditions to maintain representative distributions across all folds.
+Untuk memastikan evaluasi kinerja yang kuat dan meminimalkan bias akibat pembagian data tertentu, kami menerapkan protokol \textit{5-fold cross-validation} yang sistematis. Dataset distratifikasi berdasarkan distribusi spesies dan kondisi pencitraan untuk menjaga distribusi representatif pada semua lipatan.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{} % Only used for preprints
 \includegraphics[width=0.6\textwidth]{Images/kfold-illustration.png}
-\caption{Illustration of the 5-fold cross-validation strategy employed for model training and evaluation. Each fold maintains balanced species representation and environmental diversity to ensure robust performance assessment.\label{fig:kfold-method}}
+\caption{Ilustrasi strategi \textit{5-fold cross-validation} yang digunakan untuk pelatihan dan evaluasi model. Setiap lipatan menjaga representasi spesies dan keragaman lingkungan yang seimbang untuk memastikan penilaian kinerja yang kuat.\label{fig:kfold-method}}
 \end{figure}
 
-Each fold consisted of approximately 1,000 training images and 247 validation images, with careful attention to maintaining species balance and environmental diversity within each partition. This stratification approach ensures that each model encounters the full range of morphological and environmental variations present in the dataset.
+Setiap lipatan terdiri dari sekitar 1.000 citra pelatihan dan 247 citra validasi, dengan perhatian khusus untuk menjaga keseimbangan spesies dan keragaman lingkungan dalam setiap partisi. Pendekatan stratifikasi ini memastikan bahwa setiap model menemui seluruh variasi morfologis dan lingkungan yang ada dalam dataset.  
 
-The cross-validation protocol generated five independent YOLOv8 models, each trained on a different 80\% subset of the data and validated on the remaining 20\%. This approach provides robust estimates of model performance while enabling ensemble construction from complementary models trained on overlapping but distinct data distributions.
+Protokol \textit{cross-validation} menghasilkan lima model YOLOv8 independen, masing-masing dilatih pada 80\% subset data yang berbeda dan divalidasi pada 20\% sisanya. Pendekatan ini memberikan estimasi kinerja model yang kuat sekaligus memungkinkan konstruksi ansambel dari model-model komplementer yang dilatih pada distribusi data yang saling tumpang tindih namun berbeda.  
 
-\subsection{Ensemble Framework Implementation}
+\subsection{Implementasi Kerangka Ansambel}
 
-Our ensemble framework combines predictions from the five cross-validation models using two distinct fusion strategies: traditional Non-Maximum Suppression (NMS) and advanced Weighted Boxes Fusion (WBF). This comparative approach enables systematic evaluation of fusion strategy effectiveness in ensemble detection scenarios.
+Kerangka ansambel kami menggabungkan prediksi dari lima model hasil \textit{cross-validation} menggunakan dua strategi fusi berbeda: \textit{Non-Maximum Suppression} (NMS) tradisional dan \textit{Weighted Boxes Fusion} (WBF) canggih. Pendekatan komparatif ini memungkinkan evaluasi sistematis efektivitas strategi fusi dalam skenario deteksi ansambel.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{% This command is only used for ``preprints''.
 	\begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
 		\centering
 		\includegraphics[width=0.45\textwidth]{Images/ensemble-nms-architecture.png}
 		\includegraphics[width=0.45\textwidth]{Images/wbf-architecture-1.png}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-\caption{Ensemble architecture comparison: (\textbf{a}) NMS-based ensemble pipeline showing traditional suppression of overlapping predictions. (\textbf{b}) WBF-based ensemble demonstrating intelligent fusion through weighted averaging of spatially related predictions.\label{fig:ensemble-architectures}}
+\caption{Perbandingan arsitektur ansambel: (\textbf{a}) Pipeline ansambel berbasis NMS yang menunjukkan penekanan prediksi tumpang tindih secara tradisional. (\textbf{b}) Ansambel berbasis WBF yang menunjukkan fusi cerdas melalui rata-rata tertimbang prediksi yang berhubungan secara spasial.\label{fig:ensemble-architectures}}
 	\end{adjustwidth}
 \end{figure}
 
-The NMS ensemble approach aggregates all predictions from the five models, then applies traditional non-maximum suppression with IoU threshold of 0.5 and confidence threshold tuning. This baseline approach provides a reference point for ensemble performance using established techniques.
+Pendekatan ansambel NMS menggabungkan semua prediksi dari kelima model, kemudian menerapkan penekanan non-maksimum tradisional dengan ambang IoU 0,5 dan penyesuaian ambang kepercayaan. Pendekatan dasar ini memberikan titik acuan untuk kinerja ansambel menggunakan teknik yang sudah mapan.  
 
-The WBF ensemble implements the advanced weighted boxes fusion algorithm~\cite{Solovyev2021}, which clusters spatially overlapping predictions and computes weighted averages of coordinates and confidence scores. The WBF implementation uses intersection threshold of 0.55, confidence threshold optimization, and skip box threshold of 0.0001 to ensure comprehensive fusion of ensemble predictions.
+Ansambel WBF mengimplementasikan algoritme fusi kotak berbobot~\cite{Solovyev2021}, yang mengelompokkan prediksi yang tumpang tindih secara spasial dan menghitung rata-rata tertimbang koordinat serta skor kepercayaan. Implementasi WBF menggunakan ambang interseksi 0,55, optimisasi ambang kepercayaan, serta ambang skip box 0,0001 untuk memastikan fusi komprehensif dari prediksi ansambel.  
 
 \begin{figure}[H]
-%\isPreprints{\centering}{% This command is only used for ``preprints''.
 	\begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
 		\centering
 		\includegraphics[width=0.45\textwidth]{Images/nms-illust1.png}
 		\includegraphics[width=0.45\textwidth]{Images/wbf-illust1.png}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-\caption{Detailed illustration of prediction fusion mechanisms: (\textbf{a}) NMS approach discarding overlapping predictions based on IoU thresholds. (\textbf{b}) WBF approach intelligently merging overlapping predictions through confidence-weighted coordinate averaging.\label{fig:fusion-mechanisms}}
+\caption{Ilustrasi rinci mekanisme fusi prediksi: (\textbf{a}) Pendekatan NMS yang membuang prediksi tumpang tindih berdasarkan ambang IoU. (\textbf{b}) Pendekatan WBF yang secara cerdas menggabungkan prediksi tumpang tindih melalui perataan koordinat berbobot kepercayaan.\label{fig:fusion-mechanisms}}
 	\end{adjustwidth}
 \end{figure}
 
-Both ensemble approaches are evaluated across multiple confidence thresholds (0.001, 0.25, 0.5, 0.6) to assess robustness and identify optimal operating points for different application scenarios. This comprehensive evaluation enables practical deployment guidance based on specific accuracy and efficiency requirements.
+Kedua pendekatan ansambel dievaluasi pada beberapa ambang kepercayaan (0,001, 0,25, 0,5, 0,6) untuk menilai robustnes dan mengidentifikasi titik operasi optimal untuk berbagai skenario aplikasi. Evaluasi komprehensif ini memungkinkan panduan penerapan praktis berdasarkan kebutuhan spesifik akurasi dan efisiensi.  
 
-\subsection{Evaluation Metrics and Protocols}
+\subsection{Metrik dan Protokol Evaluasi}
 
-Model performance is assessed using comprehensive COCO-style evaluation metrics to ensure compatibility with established benchmarks and facilitate meaningful comparisons with other detection systems. The evaluation framework encompasses multiple performance dimensions including localization accuracy, classification precision, and computational efficiency.
+Kinerja model dinilai menggunakan metrik evaluasi bergaya COCO yang komprehensif untuk memastikan kompatibilitas dengan tolok ukur yang mapan dan memfasilitasi perbandingan bermakna dengan sistem deteksi lain. Kerangka evaluasi mencakup berbagai dimensi kinerja termasuk akurasi lokalisasi, presisi klasifikasi, dan efisiensi komputasi.  
 
-Primary evaluation metrics include mean Average Precision (mAP) calculated across IoU thresholds from 0.5 to 0.95 with 0.05 increments, providing comprehensive assessment of localization quality. Additional metrics include mAP@0.5 and mAP@0.75 for specific IoU threshold analysis, as well as scale-specific metrics (mAP$_{small}$, mAP$_{medium}$, mAP$_{large}$) for detailed performance characterization.
+Metrik utama evaluasi mencakup \textit{mean Average Precision} (mAP) yang dihitung pada ambang IoU 0,5 hingga 0,95 dengan kenaikan 0,05, memberikan penilaian komprehensif terhadap kualitas lokalisasi. Metrik tambahan mencakup mAP@0.5 dan mAP@0.75 untuk analisis ambang IoU spesifik, serta metrik berbasis skala (mAP$_{small}$, mAP$_{medium}$, mAP$_{large}$) untuk karakterisasi kinerja mendetail.  
 
-Mean Average Recall (mAR) metrics complement the precision-focused mAP by assessing detection completeness across different scenarios. Per-class precision, recall, and F1-score provide detailed insights into species-specific detection performance, enabling identification of challenging scenarios and potential areas for improvement.
+Metrik \textit{Mean Average Recall} (mAR) melengkapi mAP yang berfokus pada presisi dengan menilai kelengkapan deteksi pada berbagai skenario. Presisi, recall, dan skor F1 per kelas memberikan wawasan rinci tentang kinerja deteksi spesies tertentu, sehingga memungkinkan identifikasi skenario menantang dan area potensial untuk perbaikan.  
 
-Computational efficiency is evaluated through detailed timing analysis including inference speed (frames per second), memory utilization, and computational complexity (GFLOPs). These efficiency metrics are essential for practical deployment planning and resource allocation in field monitoring scenarios.
+Efisiensi komputasi dievaluasi melalui analisis waktu rinci termasuk kecepatan inferensi (frame per detik), penggunaan memori, dan kompleksitas komputasi (GFLOPs). Metrik efisiensi ini sangat penting untuk perencanaan penerapan praktis dan alokasi sumber daya dalam skenario pemantauan lapangan.  
 
-Statistical significance testing using paired t-tests with Bonferroni correction ensures robust validation of performance differences between ensemble approaches. Cross-validation results provide confidence intervals and variance estimates for all reported metrics, enabling assessment of result reliability and generalizability.
+Pengujian signifikansi statistik menggunakan uji t berpasangan dengan koreksi Bonferroni memastikan validasi yang kuat terhadap perbedaan kinerja antara pendekatan ansambel. Hasil \textit{cross-validation} memberikan interval kepercayaan dan estimasi varians untuk semua metrik yang dilaporkan, sehingga memungkinkan penilaian reliabilitas dan generalisasi hasil.  
+
 
 %% ============================
 %% Results Section Enhanced
@@ -751,100 +736,101 @@ These findings demonstrate the trade-off between accuracy and efficiency when ap
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
 
-\subsection{Performance Improvements and Ensemble Benefits}
+\subsection{Peningkatan Kinerja dan Manfaat Ansambel}
 
-Our comprehensive experimental evaluation demonstrates that ensemble methods, particularly Weighted Boxes Fusion (WBF), provide substantial performance improvements over single-model approaches for Medaka fish detection. The 21.1\% improvement in mAP@0.5:0.95 achieved by the WBF ensemble represents a significant advancement in detection capability, with implications for practical ecological monitoring applications.
+Evaluasi eksperimental komprehensif kami menunjukkan bahwa metode ansambel, khususnya Weighted Boxes Fusion (WBF), memberikan peningkatan kinerja yang substansial dibandingkan pendekatan model tunggal untuk deteksi ikan Medaka. Peningkatan sebesar 21.1\% pada mAP@0.5:0.95 yang dicapai oleh ansambel WBF merepresentasikan kemajuan signifikan dalam kemampuan deteksi, dengan implikasi penting bagi aplikasi pemantauan ekologi praktis.
 
-The superior performance of WBF compared to traditional NMS can be attributed to several key factors. First, WBF's intelligent fusion strategy preserves valuable spatial information that would be discarded by NMS's suppression approach~\cite{Solovyev2021}. This preservation is particularly beneficial in scenarios involving overlapping fish or uncertain boundaries, common challenges in aquatic imaging environments. Second, the confidence-weighted averaging employed by WBF effectively leverages the complementary strengths of different models trained on diverse data partitions, resulting in more robust and reliable predictions.
+Kinerja unggul WBF dibandingkan NMS tradisional dapat dijelaskan oleh beberapa faktor utama. Pertama, strategi fusi cerdas WBF mempertahankan informasi spasial berharga yang biasanya diabaikan oleh pendekatan penekanan NMS~\cite{Solovyev2021}. Hal ini sangat bermanfaat dalam skenario yang melibatkan ikan yang saling tumpang tindih atau batas yang tidak jelas, tantangan umum dalam lingkungan pencitraan akuatik. Kedua, perataan berbobot kepercayaan yang digunakan oleh WBF secara efektif memanfaatkan kekuatan komplementer dari berbagai model yang dilatih pada partisi data yang beragam, menghasilkan prediksi yang lebih kuat dan andal.
 
-The ensemble approach addresses fundamental limitations of single-model detectors identified in previous research~\cite{Dietterich2000,Zhou2002}. By combining predictions from multiple models trained through cross-validation, our framework reduces variance and improves generalization across diverse environmental conditions. This improvement is evidenced by the enhanced cross-validation stability metrics, where ensemble methods demonstrate lower coefficients of variation across all performance measures.
+Pendekatan ansambel ini mengatasi keterbatasan mendasar detektor model tunggal yang telah diidentifikasi dalam penelitian sebelumnya~\cite{Dietterich2000,Zhou2002}. Dengan menggabungkan prediksi dari beberapa model yang dilatih melalui cross-validation, kerangka kerja kami mengurangi variansi dan meningkatkan generalisasi pada berbagai kondisi lingkungan. Peningkatan ini dibuktikan melalui metrik stabilitas cross-validation yang lebih baik, di mana metode ansambel menunjukkan koefisien variasi lebih rendah pada semua ukuran kinerja.
 
-\subsection{Species-Specific Detection Characteristics}
+\subsection{Karakteristik Deteksi Spesifik Spesies}
 
-The differential performance across Medaka species reveals interesting insights into the challenges of automated aquatic species identification. The consistently superior precision achieved for \textit{O. celebensis} compared to \textit{O. javanicus} across all methods suggests inherent differences in detection difficulty, likely attributable to morphological characteristics and environmental factors.
+Perbedaan kinerja antarspesies Medaka mengungkap wawasan menarik terkait tantangan identifikasi spesies akuatik secara otomatis. Presisi yang secara konsisten lebih tinggi untuk \textit{O. celebensis} dibandingkan \textit{O. javanicus} pada semua metode menunjukkan adanya perbedaan mendasar dalam tingkat kesulitan deteksi, yang kemungkinan disebabkan oleh karakteristik morfologi dan faktor lingkungan.
 
-\textit{O. celebensis} specimens typically exhibit more distinctive morphological features and size characteristics, facilitating more reliable detection and classification. Conversely, \textit{O. javanicus} presents greater morphological variability and shares certain characteristics with other aquatic species, leading to increased classification challenges. The WBF ensemble's particular effectiveness in improving \textit{O. javanicus} precision (up to 88.1\% at confidence 0.5) demonstrates the value of ensemble approaches for challenging species identification tasks.
+Spesimen \textit{O. celebensis} umumnya memiliki ciri morfologi dan ukuran yang lebih khas, sehingga lebih mudah untuk dideteksi dan diklasifikasikan. Sebaliknya, \textit{O. javanicus} menunjukkan variabilitas morfologi lebih besar dan berbagi karakteristik tertentu dengan spesies akuatik lain, yang meningkatkan tantangan klasifikasi. Efektivitas khusus ansambel WBF dalam meningkatkan presisi \textit{O. javanicus} (hingga 88.1\% pada confidence 0.5) menegaskan nilai pendekatan ansambel untuk tugas identifikasi spesies yang menantang.
 
-These findings align with previous research in aquatic species detection~\cite{Qin2016,Tamou2021}, which has identified species-specific detection challenges related to morphological similarity and environmental variability. Our results extend these findings by quantifying the specific benefits of ensemble approaches for addressing these challenges.
+Temuan ini sejalan dengan penelitian sebelumnya dalam deteksi spesies akuatik~\cite{Qin2016,Tamou2021}, yang telah mengidentifikasi tantangan deteksi spesifik spesies terkait dengan kesamaan morfologi dan variabilitas lingkungan. Hasil kami memperluas temuan tersebut dengan mengkuantifikasi manfaat spesifik pendekatan ansambel untuk mengatasi tantangan tersebut.
 
-\subsection{Confidence Threshold Optimization}
+\subsection{Optimisasi Ambang Kepercayaan}
 
-The comprehensive evaluation across multiple confidence thresholds reveals nuanced performance characteristics that have important implications for practical deployment. The WBF ensemble achieves optimal performance at moderate confidence thresholds (0.25-0.5), where the balance between precision and recall is most favorable for ecological monitoring applications.
+Evaluasi menyeluruh pada berbagai ambang kepercayaan mengungkap karakteristik kinerja yang bernuansa, dengan implikasi penting untuk penerapan praktis. Ansambel WBF mencapai kinerja optimal pada ambang kepercayaan sedang (0.25–0.5), di mana keseimbangan antara presisi dan recall paling sesuai untuk aplikasi pemantauan ekologi.
 
-At very low confidence thresholds (0.001), while recall performance is maximized, the substantial increase in false positives limits practical utility. Conversely, at high confidence thresholds (0.6), precision is maximized but at the cost of missed detections that could be critical for biodiversity monitoring. The identification of optimal operating points (confidence 0.25-0.5) provides practical guidance for field deployment scenarios.
+Pada ambang kepercayaan sangat rendah (0.001), meskipun recall mencapai maksimum, peningkatan signifikan pada false positives membatasi kegunaan praktis. Sebaliknya, pada ambang tinggi (0.6), presisi dimaksimalkan tetapi dengan konsekuensi banyaknya deteksi terlewat yang bisa krusial untuk pemantauan biodiversitas. Identifikasi titik operasi optimal (confidence 0.25–0.5) memberikan panduan praktis untuk skenario penerapan lapangan.
 
-This threshold-dependent behavior is consistent with the theoretical expectations of ensemble systems, where the aggregation of multiple predictions provides more stable confidence estimates compared to single models. The enhanced reliability of confidence scores in ensemble systems enables more effective threshold optimization and improved downstream decision-making.
+Perilaku yang bergantung pada ambang ini konsisten dengan ekspektasi teoretis dari sistem ansambel, di mana agregasi dari beberapa prediksi menghasilkan estimasi kepercayaan yang lebih stabil dibanding model tunggal. Keandalan skor kepercayaan yang ditingkatkan pada sistem ansambel memungkinkan optimisasi ambang yang lebih efektif dan peningkatan pengambilan keputusan berikutnya.
 
-\subsection{Computational Efficiency Considerations}
+\subsection{Pertimbangan Efisiensi Komputasi}
 
-The computational analysis reveals a fundamental trade-off between detection accuracy and processing efficiency that must be carefully considered in practical deployment scenarios. The 4.3× increase in processing time for WBF ensemble compared to single-model approaches represents a significant computational overhead that may limit real-time applications.
+Analisis komputasi mengungkap adanya trade-off mendasar antara akurasi deteksi dan efisiensi pemrosesan yang harus diperhatikan secara hati-hati dalam skenario penerapan praktis. Peningkatan waktu pemrosesan sebesar 4.3× untuk ansambel WBF dibandingkan pendekatan model tunggal merupakan overhead komputasi yang signifikan dan dapat membatasi aplikasi real-time.
 
-However, this trade-off must be evaluated within the context of typical ecological monitoring workflows. Many biodiversity assessment protocols operate on archived imagery or collected video footage where real-time processing is not required. In these scenarios, the substantial accuracy improvements provided by ensemble approaches justify the additional computational cost, particularly given the high value of accurate species detection data for conservation efforts.
+Namun, trade-off ini perlu dievaluasi dalam konteks alur kerja pemantauan ekologi tipikal. Banyak protokol penilaian biodiversitas yang beroperasi pada citra arsip atau rekaman video yang dikumpulkan, di mana pemrosesan real-time tidak diperlukan. Dalam skenario seperti ini, peningkatan akurasi substansial yang diberikan oleh pendekatan ansambel membenarkan biaya komputasi tambahan, terutama mengingat tingginya nilai data deteksi spesies yang akurat bagi upaya konservasi.
 
-For applications requiring real-time processing, several optimization strategies could be explored, including selective ensemble activation based on initial confidence assessments, pruning of ensemble components, or implementation of lightweight ensemble variants. Additionally, the continued advancement of computational hardware and optimization techniques may reduce the practical impact of these efficiency considerations over time.
+Untuk aplikasi yang memerlukan pemrosesan real-time, beberapa strategi optimisasi dapat dieksplorasi, termasuk aktivasi ansambel selektif berdasarkan penilaian kepercayaan awal, pruning komponen ansambel, atau penerapan varian ansambel yang ringan. Selain itu, kemajuan berkelanjutan dalam perangkat keras komputasi dan teknik optimisasi dapat mengurangi dampak praktis dari pertimbangan efisiensi ini seiring waktu.
 
-\subsection{Methodological Contributions and Broader Implications}
+\subsection{Kontribusi Metodologis dan Implikasi Lebih Luas}
 
-This research makes several important methodological contributions to the field of ensemble-based object detection for ecological applications. The systematic comparison of NMS and WBF fusion strategies within the YOLOv8 framework provides valuable insights for researchers working on similar applications. The comprehensive evaluation protocol, including cross-validation stability analysis and statistical significance testing, establishes a rigorous framework for future comparative studies.
+Penelitian ini memberikan beberapa kontribusi metodologis penting dalam bidang deteksi objek berbasis ansambel untuk aplikasi ekologi. Perbandingan sistematis antara strategi fusi NMS dan WBF dalam kerangka YOLOv8 memberikan wawasan berharga bagi peneliti yang bekerja pada aplikasi serupa. Protokol evaluasi komprehensif, termasuk analisis stabilitas cross-validation dan pengujian signifikansi statistik, menetapkan kerangka kerja yang ketat untuk studi komparatif di masa mendatang.
 
-The demonstrated effectiveness of ensemble approaches for aquatic species detection has broader implications for biodiversity monitoring and conservation efforts. The enhanced detection reliability and reduced error rates could significantly improve the accuracy of population assessments and ecological studies, leading to better-informed conservation decisions. The quantified trade-offs between accuracy and efficiency provide practical guidance for implementing these systems in field monitoring scenarios.
+Efektivitas yang ditunjukkan oleh pendekatan ansambel untuk deteksi spesies akuatik memiliki implikasi yang lebih luas bagi pemantauan biodiversitas dan upaya konservasi. Keandalan deteksi yang ditingkatkan dan tingkat kesalahan yang berkurang dapat secara signifikan meningkatkan akurasi penilaian populasi dan studi ekologi, yang pada akhirnya menghasilkan keputusan konservasi yang lebih tepat. Trade-off antara akurasi dan efisiensi yang telah dikuantifikasi juga memberikan panduan praktis untuk implementasi sistem ini dalam skenario pemantauan lapangan.
 
-\subsection{Limitations and Challenges}
+\subsection{Keterbatasan dan Tantangan}
 
-Despite the promising results, several limitations must be acknowledged. First, the dataset, while comprehensive for Medaka species, is limited in scope compared to broader aquatic biodiversity. The generalizability of findings to other fish species or aquatic organisms requires further investigation. Second, the controlled and semi-controlled imaging conditions in our dataset may not fully represent the challenges encountered in completely natural field conditions.
+Meskipun hasilnya menjanjikan, beberapa keterbatasan harus diakui. Pertama, dataset, meskipun komprehensif untuk spesies Medaka, tetap terbatas cakupannya dibandingkan dengan keanekaragaman hayati akuatik secara umum. Generalisasi temuan ini ke spesies ikan lain atau organisme akuatik memerlukan penelitian lebih lanjut. Kedua, kondisi pencitraan yang terkendali dan semi-terkendali dalam dataset kami mungkin tidak sepenuhnya merepresentasikan tantangan yang ditemui di kondisi lapangan alami.
 
-The computational overhead of ensemble methods represents a practical limitation for resource-constrained deployment scenarios. While this study has quantified these trade-offs, future work should explore optimization strategies to reduce computational requirements while maintaining accuracy benefits. Additionally, the storage and maintenance requirements for ensemble systems may present logistical challenges in field deployment scenarios.
+Overhead komputasi metode ansambel merupakan keterbatasan praktis untuk skenario penerapan dengan sumber daya terbatas. Meskipun studi ini telah mengkuantifikasi trade-off tersebut, penelitian selanjutnya perlu mengeksplorasi strategi optimisasi untuk mengurangi kebutuhan komputasi sambil mempertahankan manfaat akurasi. Selain itu, kebutuhan penyimpanan dan pemeliharaan sistem ansambel dapat menjadi tantangan logistik dalam penerapan di lapangan.
 
-The temporal stability of ensemble performance across varying environmental conditions throughout different seasons and ecological cycles has not been fully evaluated. Long-term deployment studies would provide valuable insights into the robustness and maintenance requirements of ensemble-based monitoring systems.
+Stabilitas temporal kinerja ansambel pada berbagai kondisi lingkungan sepanjang musim dan siklus ekologi belum sepenuhnya dievaluasi. Studi penerapan jangka panjang akan memberikan wawasan berharga terkait ketahanan dan kebutuhan pemeliharaan sistem pemantauan berbasis ansambel.
 
-\subsection{Future Research Directions}
+\subsection{Arah Penelitian Selanjutnya}
 
-Several promising research directions emerge from this work. First, the exploration of lightweight ensemble architectures specifically designed for real-time ecological monitoring applications could address current computational limitations. This could include investigation of knowledge distillation techniques to compress ensemble knowledge into more efficient single models.
+Beberapa arah penelitian menjanjikan muncul dari karya ini. Pertama, eksplorasi arsitektur ansambel ringan yang dirancang khusus untuk aplikasi pemantauan ekologi real-time dapat mengatasi keterbatasan komputasi saat ini. Hal ini dapat mencakup investigasi teknik distilasi pengetahuan untuk mengompresi pengetahuan ansambel ke dalam model tunggal yang lebih efisien.
 
-Second, the extension of ensemble approaches to multi-species detection and classification tasks would provide broader applicability for biodiversity monitoring. This would require addressing challenges related to class imbalance, morphological similarity, and varying detection difficulty across species.
+Kedua, perluasan pendekatan ansambel ke tugas deteksi dan klasifikasi multi-spesies akan memberikan aplikasi yang lebih luas untuk pemantauan biodiversitas. Hal ini memerlukan penanganan tantangan terkait ketidakseimbangan kelas, kesamaan morfologi, dan variasi tingkat kesulitan deteksi antarspesies.
 
-Third, the integration of temporal information from video sequences could enhance detection reliability and enable behavior analysis capabilities. Ensemble approaches could be particularly effective for temporal fusion, combining spatial ensemble benefits with temporal consistency constraints.
+Ketiga, integrasi informasi temporal dari urutan video dapat meningkatkan keandalan deteksi sekaligus memungkinkan kemampuan analisis perilaku. Pendekatan ansambel dapat sangat efektif untuk fusi temporal, dengan mengombinasikan manfaat ansambel spasial dan konsistensi temporal.
 
-Finally, the development of adaptive ensemble systems that can dynamically adjust fusion strategies based on environmental conditions or image characteristics could optimize the accuracy-efficiency trade-off for specific deployment scenarios. This could include context-aware ensemble activation or confidence-based selective processing strategies.
+Terakhir, pengembangan sistem ansambel adaptif yang dapat menyesuaikan strategi fusi secara dinamis berdasarkan kondisi lingkungan atau karakteristik citra dapat mengoptimalkan trade-off akurasi-efisiensi untuk skenario penerapan tertentu. Hal ini dapat mencakup aktivasi ansambel berbasis konteks atau strategi pemrosesan selektif berbasis kepercayaan.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 
-This research presents a comprehensive investigation of ensemble learning approaches for automated Medaka fish detection, demonstrating significant advances in both detection accuracy and methodological rigor for ecological monitoring applications. Through systematic evaluation of YOLOv8-based ensemble frameworks employing Non-Maximum Suppression (NMS) and Weighted Boxes Fusion (WBF), we have established clear performance benchmarks and practical deployment guidelines for aquatic species detection systems.
+Penelitian ini menyajikan investigasi komprehensif mengenai pendekatan pembelajaran ansambel untuk deteksi otomatis ikan Medaka, yang menunjukkan kemajuan signifikan baik dalam akurasi deteksi maupun ketelitian metodologis untuk aplikasi pemantauan ekologi. Melalui evaluasi sistematis pada kerangka kerja ansambel berbasis YOLOv8 yang menggunakan Non-Maximum Suppression (NMS) dan Weighted Boxes Fusion (WBF), kami telah menetapkan tolok ukur kinerja yang jelas serta pedoman praktis untuk penerapan sistem deteksi spesies akuatik.
 
-\subsection{Key Findings and Contributions}
+\subsection{Temuan Utama dan Kontribusi}
 
-Our experimental results provide strong evidence for the superiority of ensemble approaches, with the WBF ensemble achieving a remarkable 21.1\% improvement in mAP@0.5:0.95 compared to single-model baselines (0.5571 vs 0.4600). This improvement represents a substantial advancement in detection capability that directly translates to enhanced reliability for biodiversity monitoring applications. The 23.6\% improvement in F1-score demonstrates the ensemble's superior balance between precision and recall, crucial for minimizing both false positives and missed detections in ecological surveys.
+Hasil eksperimen kami memberikan bukti kuat atas keunggulan pendekatan ansambel, dengan ansambel WBF mencapai peningkatan luar biasa sebesar 21.1\% pada mAP@0.5:0.95 dibandingkan model tunggal baseline (0.5571 vs 0.4600). Peningkatan ini merepresentasikan kemajuan substansial dalam kemampuan deteksi yang secara langsung diterjemahkan ke dalam peningkatan keandalan pemantauan biodiversitas. Peningkatan sebesar 23.6\% pada F1-score menunjukkan keseimbangan superior antara presisi dan recall, yang sangat penting untuk meminimalkan baik false positives maupun missed detections dalam survei ekologi.
 
-The comprehensive comparison between NMS and WBF fusion strategies reveals that WBF's intelligent merging approach consistently outperforms traditional suppression methods, particularly in scenarios involving overlapping objects or uncertain boundaries common in aquatic environments. The 28.5\% improvement in precision achieved by WBF over NMS ensemble highlights the value of advanced fusion strategies for ensemble object detection.
+Perbandingan komprehensif antara strategi fusi NMS dan WBF mengungkap bahwa pendekatan penggabungan cerdas WBF secara konsisten melampaui metode penekanan tradisional, khususnya pada skenario yang melibatkan objek tumpang tindih atau batas yang tidak jelas—tantangan umum di lingkungan akuatik. Peningkatan presisi sebesar 28.5\% yang dicapai WBF dibandingkan ansambel NMS menyoroti nilai strategi fusi tingkat lanjut dalam deteksi objek berbasis ansambel.
 
-The rigorous statistical validation, including cross-validation stability analysis and effect size quantification, establishes the reliability and generalizability of these performance improvements. The large effect sizes (Cohen's d > 1.0) observed for ensemble comparisons provide strong evidence for practical significance beyond statistical significance.
+Validasi statistik yang ketat, termasuk analisis stabilitas cross-validation dan kuantifikasi effect size, menegaskan keandalan serta kemampuan generalisasi dari peningkatan kinerja ini. Effect size yang besar (Cohen's d > 1.0) pada perbandingan ansambel memberikan bukti kuat atas signifikansi praktis, melampaui sekadar signifikansi statistik.
 
-\subsection{Practical Implications for Ecological Monitoring}
+\subsection{Implikasi Praktis untuk Pemantauan Ekologi}
 
-The demonstrated accuracy improvements have direct implications for biodiversity monitoring and conservation efforts. The reduced error rates (from 15.3\% to 8.9\% for challenging scenarios) could significantly enhance the reliability of automated population assessments, leading to more accurate ecological insights and better-informed conservation decisions. The species-specific analysis reveals particular benefits for challenging species like \textit{O. javanicus}, where precision improvements exceed 30\% in optimal configurations.
+Peningkatan akurasi yang ditunjukkan memiliki implikasi langsung bagi pemantauan biodiversitas dan upaya konservasi. Penurunan tingkat kesalahan (dari 15.3\% menjadi 8.9\% pada skenario menantang) berpotensi meningkatkan keandalan penilaian populasi otomatis, menghasilkan wawasan ekologi yang lebih akurat dan keputusan konservasi yang lebih tepat. Analisis spesifik per spesies menunjukkan manfaat khusus bagi spesies menantang seperti \textit{O. javanicus}, di mana peningkatan presisi melebihi 30\% pada konfigurasi optimal.
 
-The computational efficiency analysis provides essential guidance for practical deployment scenarios. While ensemble methods require approximately 4.3× more processing time, this trade-off is acceptable for many ecological monitoring workflows where accuracy is prioritized over real-time performance. The quantified throughput metrics (3,780 images/hour for WBF ensemble) indicate feasibility for large-scale archival image processing common in biodiversity surveys.
+Analisis efisiensi komputasi memberikan panduan penting untuk skenario penerapan praktis. Meskipun metode ansambel membutuhkan waktu pemrosesan sekitar 4.3× lebih lama, trade-off ini dapat diterima untuk banyak alur kerja pemantauan ekologi di mana akurasi lebih diprioritaskan daripada performa real-time. Metrik throughput yang terkuantifikasi (3.780 citra/jam untuk ansambel WBF) menunjukkan kelayakan untuk pemrosesan citra arsip berskala besar yang umum dalam survei biodiversitas.
 
-\subsection{Methodological Advances}
+\subsection{Kemajuan Metodologis}
 
-This work contributes several methodological advances to the field of automated ecological monitoring. The comprehensive evaluation framework, incorporating COCO-style metrics, cross-validation stability analysis, and statistical significance testing, establishes a rigorous standard for future comparative studies in this domain. The systematic confidence threshold analysis provides practical guidance for optimizing detection systems across different operational requirements.
+Karya ini menyumbangkan beberapa kemajuan metodologis penting bagi bidang pemantauan ekologi otomatis. Kerangka evaluasi komprehensif yang mengintegrasikan metrik bergaya COCO, analisis stabilitas cross-validation, dan uji signifikansi statistik menetapkan standar ketat untuk studi komparatif di masa depan. Analisis ambang kepercayaan yang sistematis memberikan panduan praktis dalam mengoptimalkan sistem deteksi sesuai kebutuhan operasional yang berbeda.
 
-The detailed error analysis and failure case characterization offer valuable insights for understanding the limitations and optimal applications of different detection approaches. These findings inform both current deployment decisions and future research directions for improving automated species detection systems.
+Analisis kesalahan detail dan karakterisasi kasus kegagalan menawarkan wawasan berharga untuk memahami keterbatasan dan aplikasi optimal dari berbagai pendekatan deteksi. Temuan ini memberikan masukan baik untuk keputusan penerapan saat ini maupun arah penelitian di masa mendatang dalam meningkatkan sistem deteksi spesies otomatis.
 
-\subsection{Limitations and Future Perspectives}
+\subsection{Keterbatasan dan Perspektif Masa Depan}
 
-While demonstrating significant advances, this research also reveals important limitations that warrant future investigation. The computational overhead of ensemble methods necessitates continued research into optimization strategies, including lightweight ensemble architectures and selective activation mechanisms. The dataset scope, while comprehensive for Medaka species, requires extension to broader aquatic biodiversity for generalized conclusions.
+Meski menunjukkan kemajuan signifikan, penelitian ini juga mengungkap keterbatasan penting yang perlu ditangani pada penelitian selanjutnya. Overhead komputasi dari metode ansambel menuntut eksplorasi strategi optimisasi lebih lanjut, termasuk arsitektur ansambel ringan dan mekanisme aktivasi selektif. Cakupan dataset, meskipun komprehensif untuk spesies Medaka, perlu diperluas ke biodiversitas akuatik yang lebih luas agar dapat menghasilkan kesimpulan yang lebih general.
 
-Future research directions include the development of real-time ensemble systems through architectural optimization, extension to multi-species detection scenarios, integration of temporal information from video sequences, and exploration of adaptive ensemble systems that dynamically optimize performance based on environmental conditions.
+Arah penelitian ke depan mencakup pengembangan sistem ansambel real-time melalui optimisasi arsitektur, perluasan ke skenario deteksi multi-spesies, integrasi informasi temporal dari urutan video, serta eksplorasi sistem ansambel adaptif yang dapat mengoptimalkan kinerja secara dinamis berdasarkan kondisi lingkungan.
 
-\subsection{Broader Impact and Significance}
+\subsection{Dampak Lebih Luas dan Signifikansi}
 
-The successful application of advanced ensemble learning techniques to ecological monitoring represents a significant step toward more reliable automated biodiversity assessment systems. The demonstrated improvements in detection accuracy and reliability could accelerate the adoption of computer vision technologies in conservation efforts, enabling larger-scale and more cost-effective monitoring programs.
+Keberhasilan penerapan teknik pembelajaran ansambel tingkat lanjut untuk pemantauan ekologi merepresentasikan langkah penting menuju sistem penilaian biodiversitas otomatis yang lebih andal. Peningkatan akurasi dan keandalan deteksi yang ditunjukkan berpotensi mempercepat adopsi teknologi visi komputer dalam upaya konservasi, memungkinkan program pemantauan yang lebih luas dan hemat biaya.
 
-The rigorous methodological framework established in this work provides a foundation for future research in automated ecological monitoring, while the practical deployment insights facilitate real-world implementation of these technologies. As computational resources continue to advance and optimization techniques improve, the accuracy benefits demonstrated here will become increasingly accessible for field deployment scenarios.
+Kerangka metodologis ketat yang ditetapkan dalam karya ini menyediakan fondasi untuk penelitian lebih lanjut dalam pemantauan ekologi otomatis, sementara wawasan praktis penerapan memfasilitasi implementasi teknologi ini di dunia nyata. Seiring kemajuan sumber daya komputasi dan perbaikan teknik optimisasi, manfaat akurasi yang ditunjukkan di sini akan semakin mudah diakses dalam skenario penerapan lapangan.
 
-In conclusion, this research establishes ensemble learning as a valuable approach for enhancing automated aquatic species detection, providing both immediate practical benefits and a foundation for continued advancement in this critical application domain. The demonstrated improvements in detection reliability, combined with comprehensive methodological validation, represent a significant contribution to the intersection of computer vision and ecological science, with direct implications for biodiversity conservation and ecosystem monitoring efforts.
+Sebagai kesimpulan, penelitian ini menetapkan pembelajaran ansambel sebagai pendekatan berharga untuk meningkatkan deteksi otomatis spesies akuatik, sekaligus memberikan manfaat praktis langsung dan fondasi bagi kemajuan berkelanjutan dalam domain aplikasi penting ini. Peningkatan keandalan deteksi yang ditunjukkan, dikombinasikan dengan validasi metodologis komprehensif, merepresentasikan kontribusi signifikan pada persimpangan antara visi komputer dan ilmu ekologi, dengan implikasi langsung bagi konservasi biodiversitas serta upaya pemantauan ekosistem.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \funding{This research was supported by the Data Science and Artificial Intelligence Research Group at Hasanuddin University and the B.J. Habibie Institute of Technology. Computational resources were provided by the Faculty of Mathematics and Natural Sciences, Hasanuddin University. No external commercial funding was received for this research.}
