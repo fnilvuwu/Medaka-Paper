@@ -1,0 +1,2 @@
+- tambahkan YOLO untuk deteksi ikannya terlebih dahulu
+- lalu kemudian digunakan MobileNetV2 pada gambar ikan yang sudah dicrop tersebut
