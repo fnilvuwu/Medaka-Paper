@@ -1,0 +1,176 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \section{Materials and Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this section explains the materials used include various tools and components essential for processing data and system implementation.
+
+%\subsection{Materials used in this research include the following essential components :}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%&
+\subsection{Data Sources}  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%The dataset used in this study is entirely primary data taken from the results of capturing fish objects moving freely in the aquarium. The classified fish species are Oryzias celebensis and Oryzias javanicus which are the ancestors of all medaka fish in Indonesia. Both fish are endangered and serious conservation efforts are needed to prevent the extinction of this rare fish. In front of the aquarium, four rectangular rooms with flat widths were built as a place to take pictures when the fish passed by, were active, or stopped in the room. The rooms were given different background colors, i.e.,  red, black, blue, and green. Above them were placed lights in such a way that the medaka fish could be clearly seen during the photo shoot even though their size was relatively small. 
+
+The dataset used in this investigation is a mixed dataset built from two data resources, i.e., primary data taken from the results of capturing freely moving fish objects in an aquarium, and secondary data obtained from the results of acquiring fish image data on the Internet. The classified fish species are \textit{Oryzias celebensis} and \textit{Oryzias javanicus} which are the ancestors of all medaka fishes in Indonesia. Both fishes are endangered, and serious conservation efforts are needed to prevent the extinction of this rare fish. In front of the aquarium, four rectangular rooms with flat widths were built as a place to take pictures when the fish passed by, were active, or stopped in the room. The rooms were given different background colors, i.e.,  red, black, blue, and green. Above them were placed lights in such a way that the medaka fish could be clearly seen during the photo shoot even though their size was relatively small. 
+
+
+Berikut adalah langkah kerja sistematis untuk akuisisi data dalam membangun dataset sumber hibrid bagi deteksi Oryzias celebensis dan Oryzias javanicus:
+
+\begin{enumerate}
+    \item Defining Dataset Requirements
+    \begin{itemize}
+        \item Dataset Specifications: Determine the required number of samples, minimum image resolution, and file format (JPEG, PNG, etc.).
+        \item Data Sources: Combine data from captured videos and images from the Internet to improve species representation.
+    \end{itemize}
+
+    \item Acquiring Data from Captured Videos
+    \begin{itemize}
+        \item Video Recording: Capture fish in various lighting and aquatic environments.
+        \item Video Preprocessing:
+  
+          \begin{itemize}
+            \item Frame Extraction: Extract frames at specific intervals to avoid redundant data.
+            \item Noise Reduction: Apply filtering techniques like Gaussian blur or histogram equalization.
+            \item Segmentation & Tracking: Use background subtraction or object tracking (SORT, DeepSORT) to highlight fish in frames.
+        \end{itemize}
+    \end{itemize}
+    
+   \begin{itemize}
+        \item Image Annotation:
+        \begin{itemize}
+            \item Utilize bounding box or mask segmentation with tools like LabelImg or Roboflow.
+            \item Save annotations in YOLO (.txt) or COCO (.json) format based on model requirements.
+        \end{itemize}
+    
+    \end{itemize}
+\end{enumerate}
+
+
+
+ 
+\subsection{Research Methodology}
+menjelaskan diagram alur penelitian: Image processing, Building Block Architecture (YOLO, MobileNetV2,Tranfer Learning), The Novel YOLO-Medaka
+
+Many researchers have proposed various combinations of Machine Learning and Deep Learning (ML/DL) algorithms to solve the problem of object detection, classification, and identification in digital images. In this paper, the YOLO-Medaka algorithm is introduced to detect and classify digital objects by combining three methods of YOLOv8, MobileNetV2 and ANN-MLP architecture. YOLOv8 is used for object detection because it has a single-stage detection concept, which means detecting objects at one time and has excellent accuracy. As seen in several experiments. for example, after modification, namely YOLOv8-CAB, it succeeds in detecting some objects that are missing detection by YOLOv8 before, also achieves higher accuracy and much better detection confidence. \cite{talib2024yolov8}. Another experiment also conducts object detection, such as analysing vehicle detection under various image conditions. This study utilises the YOLOv8 method to process the images with output the bounding boxes and classes of the detected objects. Additionally, data augmentation is applied to improve the model's ability to recognise vehicles from different directions and viewpoints \cite{panja2024yolov8}.
+
+MobileNetV2 is deployed for mobile devices such as smartphones and tablets, which focus on computational efficiency and smaller model size, since MobileNetV2 is designed for mobile devices and embedded vision applications. As seen in the fruit classification experiment that compared the performance between MobileNetV2 and Inceptionv3, the results show that MobileNetV2 has a better accuracy rate, which means better performance than Inceptionv3. In an experiment with a different case, comparing the performance of MobileNetV2 with DenseNet121 for the classification of coral reefs, the results show that MobileNetV2 is more optimal for devices with limited computing power and is lighter and faster \cite{karnadi2024klasifikasi,utomo2025perbandingan}. In addition, the MobileNetV2 architecture has proven effective in increasing computational efficiency without sacrificing accuracy, which is an important aspect for implementing this model on mobile devices. High computational efficiency is possible for implementation in the real world, where computing resources may be limited \cite{maulana2024deteksi}.
+
+ANN-MLP is tasked with processing the data conducted by the input, hidden and output layers they have, then producing the classification of $\textit{Oryzias celebensis}$ and $\textit{Oryzias javanicus}$. ANN-MLP is one of the algorithms that is widely used because of its ease of implementation in web applications (client/server or full stack programming). Some of its implementations include the classification of marine fish even though they are covered by seaweed or coral, the classification of types of diseases in aquatic plants, and the classification of certain problems or certain cases, both inherent in objects and their environment. This paper specifically focuses on the automatic detection and classification of two small, rare and endangered freshwater fish species in Indonesia, namely, $\textit{Oryzias celebensis}$ and $\textit{Oryzias javanicus}$. The method used to solve this problem consists of 3 stages, namely the data preparation stage based on the model architecture, the model development stage, and the model selection stage through performance evaluation. The illustration of the method is depicted as in Figure ~\ref{fig: diagram-system}
+
+Several researchers have conducted object detection, classification and identification in images using MobileNetV2, or versions modified with various techniques, for applications such as mask detection, rust disease classification in plants, melanoma cancer classification, and classification of Cicer arietinum varieties. In our research case, the main focus is the automatic object detection of \textit{Oryzias celebensis} and \textit{Oryzias javanicus}, particularly endangered species in Indonesia. The methods and techniques we used are further explained below:
+
+\subsection{Image Processing}
+
+\subsubsection{Capturing Method}
+The images were taken with four different background colors: red, black, blue, and green. The aquarium was illuminated from above to make the fish clearly visible.
+
+\subsubsection{Rescaling}
+The captured images of medaka fish will be rescaled to a square size of 224x224 pixels. Two rescaling methods will be applied: Padding and Non-Padding. The Padding method adds a uniform background color to both sides of the image if it's too small. Meanwhile, the Non-Padding method rescales the image directly to fit the square dimensions. All this process can be seen in Figure \ref{fig: padding} 
+
+
+\subsubsection{Normalization}
+Color value normalization is performed on each pixel by dividing it by 255, as shown in Figure \ref{fig: normalization}.
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/normalization.png}
+\caption{Color Value Normalization for Each Pixel.
+\label{fig: normalization}}
+\end{figure}
+
+\subsubsection{Augmentation}
+Ada dua metode augmentasi yang digunakan yaitu: shift dan rotasi. Randomly shift the image left/right by $20\%$ of its width. Randomly shift the image up/down by $20\%$ of its height, as shown in Figure \ref{fig: rotate}.
+
+\begin{figure}[h]
+\includegraphics[width=7 cm]{Images/rotate.png}
+\caption{Width shift and height shift of 0.2 ($20\%$).
+\label{fig: rotate}}
+\end{figure}
+
+\subsubsection{Image Dataset Splitting}
+There are 661 images of \textit{Oryzias celebensis}, divided into 456 ($70\%$) for training, 146 ($20\%$) for validation, and 59 ($10\%$) for testing. There are 886 images of \textit{Oryzias javanicus}, split into 612 ($70\%$) for training, 177 ($20\%$) for validation, and 97 ($10\%$) for testing. An example image can be seen in Figure \ref{fig: Oryzias}.
+
+\subsection{Building Block Architecture}
+
+\subsubsection{YOLOv8}
+The YOLOv8 architecture is designed to improve speed, accuracy, and ease of use over its predecessors (YOLOv5, YOLOv7). We use YOLOv8 as the main architecture model in this research, some components will be combined with MobileNetv2 and ANN-MLP architecture models. While YOLOv8 has several important components namely:
+
+\begin{itemize}
+    \item Backbone Network. The network serves to extract hierarchical features from the input image, providing a comprehensive representation of the visual information.
+    \item Neck Architecture. The neck structure is responsible for feature fusion, combining multi-scale information and improving the model’s ability to detect objects of varying sizes. 
+    \item YOLO Head. This component generates predictions based on the features extracted by the backbone network and the neck architecture.
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=14 cm]{Images/YOLOv8 Architecture.png}
+\caption{YOLOv8 Architecture.
+\label{fig: YOLOv8}}
+\end{figure}
+ 
+\subsubsection{MobileNetV2}
+This architecture will be combined with several components in the backbone component of YOLOv8. This is done to improve the performance of hierarchical image feature extraction. Based on MobileNetv2 architecture and features, let’s looks the component and its steps.
+\begin{itemize}
+    \item Data Preparation. This involves preprocessing the images, splitting the dataset into training and validation sets, and applying data augmentation techniques to improve the model’s generalization ability.
+    \item Transfer Learning. For initializing the model with pre-trained weights, the training process can be accelerated, and the model can benefit from the knowledge learned from the source dataset.
+    \item Fine-tuning. This process Involves training the model on a target dataset while keeping the pre-trained weights fixed for some layers.
+    \item Hyperparameter Tuning. Play a role in optimizing the performance of MobileNetV2. Carefully select parameters such as learning rate and regularization techniques to achieve the best possible results.
+\end{itemize}
+
+\begin{figure}[h]
+\includegraphics[width=9 cm]{Images/MobileNetV2 Arcitecture.png}
+\caption{MobileNetV2 Architecture.
+\label{fig: MobileNetV2}}
+\end{figure}
+
+\subsubsection{VGG16}
+Based on the VGG-16 architecture, it is illustrated below in detail:
+\begin{itemize}
+    \item Input Layer. Input dimensions: (224, 224, 3). 
+    \item Convolutional Layers (64 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 64 filters each and a filter size of 3×3. Same padding is applied to maintain spatial dimensions.
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Convolutional Layers (128 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 128 filters each and a filter size of 3×3. 
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Convolutional Layers (256 filters, 3×3 filters, same padding). Two consecutive convolutional layers with 256 filters each and a filter size of 3×3.
+    \item Convolutional Layers (512 filters, 3×3 filters, same padding). Two sets of three consecutive convolutional layers with 512 filters each and a filter size of 3×3.
+    \item Max Pooling Layer (2×2, stride 2). Max-pooling layer with a pool size of 2×2 and a stride of 2.
+    \item Stack of Convolutional Layers and Max Pooling Two additional convolutional layers after the previous stack. Filter size: 3×3.
+    \item Flattening. Flatten the output feature map (7x7x512) into a vector of size 25088.
+    \item Fully Connected Layers. Three fully connected layers with ReLU activation. First layer with input size 25088 and output size 4096. Second layer with input size 4096 and output size 4096. Third layer with input size 4096 and output size 1000, corresponding to the 1000 classes in the ILSVRC challenge. Softmax activation is applied to the output of the third fully connected layer for classification.
+\end{itemize}
+
+\subsubsection{Transfer Learning}
+   \begin{itemize}
+     \item Load MobileNetV2 model.
+     \item Freeze all layers.
+     \item Create a Top Model with the following sequence: 
+     \[ Flatten,Dense^\rightarrow(x_1),Dense^\rightarrow(x_2), Dropout(\rho),SoftMax.\]     
+     \item After constructing the Top Model's output layer, fine-tuning is performed by freezing the first X layers, then fitting the model with these parameters: Total Epochs, Batch Size, and Steps per Epoch.
+    \end{itemize}
+
+\subsection{Computational Environment}
+In this applied research project, the process of forming deep learning and transfer learning models uses the DIKTI AI Center facility which uses NVIDIA technology with a computing capacity of 25 PetaFLOPS. The supercomputer facility consists of five NVIDIA DGX A100 server machine nodes. Each node has a dual AMD Rome CPU with eight graphics processing units (GPUs) with multi-instance GPU (MIG) capabilities: 4 GPU @ 40GB, Processor 8 Core, and RAM 64 GB. 
+Each server node is equipped with 1TB of RAM and 5TB of high-speed NVME storage, with a total processing power of 5 TeraFLOPS per node. The supercomputer nodes are interconnected via a high-speed Mellanox network, with NVLink links between the five units, each of which has 8 Core GPUs. The procurement of the DIKTI AI Center supercomputer facility is used to strengthen the creation of national AI talent through various training and education activities in collaboration with industry. This facility can be used by educational institutions, including Hasanuddin University, to facilitate the development of AI technology innovations to meet the needs of industry and society. The software used is Jupiter Notebook, TensorFlow, Roboflow, and OpenCV cuda version 11.4.
+
+
+\subsection{Performance Measurements}
+After the model fitting process, performance evaluation is conducted using two scenarios. Based on the Confusion Matrix.
+
+    \begin{figure}[h]
+    \includegraphics[width=6 cm]{Images/Confusion Matrix.png}
+    \caption{Confusion Matrix.
+    \label{fig: confusion}}
+    \end{figure}     
+    
+    
+     \begin{description}
+        \item \[Sensitivity \text{ }(recall) = \frac{TP}{TP+FN}\]
+        \item \[Accuracy = \frac{TP+TN}{TP+FN+FP+FN}\] 
+        \item \[Precision = \frac{TP}{TP+FP}\]
+        \item \[F_n-Score = (n+1)\times\frac{Precision \times Recall}{Precision + Recall}\]
+    \end{description}
+    
+        Area Under the Curve - Receiver Operating Characteristic (AUC-ROC). 
+        \begin{figure}[h]
+            \includegraphics[width=6 cm]{Images/AUC-ROC.png}
+            \caption{The AUC-ROC curve}
+            \label{fig: AUC-ROC}
+        \end{figure}
+            %\texttt{enumerate} environment
+    

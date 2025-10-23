@@ -1,0 +1,35 @@
+Berdasarkan Tabel 2, model P-MobileNetV2 menunjukkan hasil evaluasi kinerja yang lebih baik dibandingkan model lainnya, dengan Sensitivitas = $98.46\%$, Presisi = $98.46\%$, F1 Score = $98.46\%$, dan Akurasi = $98,7\%$. Dalam penelitian ini, kami juga menerapkan teknik padding pada dataset kami. Teknik ini melibatkan penambahan nilai batas buatan untuk mengisi ruang kosong, memastikan gambar tetap berbentuk persegi (rasio aspek 1:1), yang membantu mempertahankan informasi spasial selama proses konvolusi. Hasilnya, model P-MobileNetV2 dan P-VGG16 yang dilatih pada dataset dengan padding mencapai metrik yang lebih tinggi dibandingkan model yang dilatih tanpa padding dataset, membuktikan bahwa teknik ini dapat secara efektif meningkatkan kinerja model. Hal ini dapat diamati pada Gambar 10 dan 12, di mana kedua grafik menunjukkan tren yang secara signifikan lebih baik dibandingkan Gambar 9 dan 11."
+
+Lebih lanjut, penelitian kami memberikan wawasan bahwa teknik padding tidak hanya meningkatkan akurasi model tetapi juga membantu menjaga konsistensi dan mempertahankan konteks spasial pada gambar dataset. Hal ini menjadi sangat krusial untuk tugas-tugas seperti segmentasi dan deteksi objek, di mana informasi spasial dalam gambar atau dataset memiliki tingkat kepentingan yang tinggi. Oleh karena itu, penerapan teknik padding dalam penelitian ini terbukti menjadi langkah kritis dalam meningkatkan kinerja model dan mencapai hasil yang kuat dalam tugas klasifikasi kami.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Patents}
+
+%This section is not mandatory, but may be added if there are patents resulting from the work reported in this manuscript.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace{6pt} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% optional
+%\supplementary{The following supporting information can be downloaded at:  \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.}
+
+% Only for journal Methods and Protocols:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title. A supporting video article is available at doi: link.}
+
+% Only for journal Hardware:
+% If you wish to submit a video article, please do so with any other supplementary material.
+% \supplementary{The following supporting information can be downloaded at: \linksupplementary{s1}, Figure S1: title; Table S1: title; Video S1: title.\vspace{6pt}\\
+%\begin{tabularx}{\textwidth}{lll}
+%\toprule
+%\textbf{Name} & \textbf{Type} & \textbf{Description} \\
+%\midrule
+%S1 & Python script (.py) & Script of python source code used in XX \\
+%S2 & Text (.txt) & Script of modelling code used to make Figure X \\
+%S3 & Text (.txt) & Raw data from experiment X \\
+%S4 & Video (.mp4) & Video demonstrating the hardware in use \\
+%... & ... & ... \\
+%\bottomrule
+%\end{tabularx}
+%}
