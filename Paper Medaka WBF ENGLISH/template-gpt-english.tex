@@ -216,6 +216,7 @@ In this work, we propose a novel Medaka fish dataset with images captured under 
 % The remainder of this manuscript is structured as follows: Section~2 provides a comprehensive literature review encompassing object detection architectures, ensemble learning methodologies, and aquatic species monitoring applications. Section~3 details the proposed methodology including dataset preparation protocols, model architecture specifications, and ensemble fusion technique implementations. Section~4 presents extensive experimental results with detailed performance analysis and statistical validation. Section~5 discusses the broader implications of findings, acknowledges limitations, and explores practical deployment considerations. Finally, Section~6 concludes with future research directions and potential extensions of this work.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Ensemble Learning in Object Detection}
 
 Ensemble learning principles, originally developed for classification tasks~\cite{Dietterich2000}, have been successfully adapted to object detection scenarios with unique challenges and opportunities. The fundamental premise of ensemble learning—that combining multiple diverse models can achieve superior performance compared to individual models—applies particularly well to detection tasks where model diversity can capture complementary aspects of object appearance and spatial relationships~\cite{Zhou2002}.
@@ -256,6 +257,44 @@ Data augmentation has proven essential for training robust detection models, par
 Common augmentation strategies include geometric transformations (rotation, scaling, translation), photometric adjustments (brightness, contrast, color variation), and advanced techniques such as mixup and cutout. The selection and parameterization of augmentation strategies significantly impacts model performance and requires careful consideration of domain-specific characteristics.
 
 In aquatic imaging scenarios, specific augmentation strategies may be particularly relevant, including simulation of water distortion effects, lighting colors variations, and turbidity changes. These domain-specific augmentations can improve model robustness to the challenging conditions encountered in real-world aquatic monitoring applications.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Related Work}
+
+\subsection{Object Detection Architectures}
+
+The evolution of object detection has been marked by several paradigm shifts, beginning with traditional computer vision approaches and progressing to sophisticated deep learning architectures. Early detection systems relied on handcrafted features and classical machine learning techniques, exemplified by the Viola-Jones framework~\cite{Freund1997}, which introduced the concept of boosting for object detection applications.
+
+The advent of deep learning revolutionized object detection through the introduction of region-based approaches. R-CNN~\cite{Girshick2014} pioneered the integration of CNNs for feature extraction in detection pipelines, though computational efficiency remained a significant limitation. Subsequent developments including Fast R-CNN and Faster R-CNN~\cite{Ren2015} addressed these efficiency concerns while maintaining high detection accuracy. The Cascade R-CNN architecture~\cite{Cai2018} further refined this approach by implementing progressive refinement of detection quality through multiple detection stages.
+
+Single-shot detection methods emerged as a response to the computational demands of region-based approaches. The Single Shot MultiBox Detector (SSD)~\cite{Liu2019} and the YOLO family~\cite{Redmon2016,Redmon2017} demonstrated that competitive accuracy could be achieved while maintaining real-time processing capabilities. YOLOv4~\cite{Bochkovskiy2020} and subsequent iterations have continued to push the boundaries of this efficiency-accuracy trade-off.
+
+The latest YOLOv8 architecture represents the current state-of-the-art in real-time object detection, incorporating advanced features including anchor-free detection, enhanced feature pyramid networks, and optimized training procedures~\cite{Terven2023}. These improvements have resulted in significant performance gains across diverse detection benchmarks while maintaining computational efficiency suitable for deployment in resource-constrained environments.
+
+\subsection{Ensemble Learning in Object Detection}
+
+Ensemble learning principles, originally developed for classification tasks~\cite{Dietterich2000}, have been successfully adapted to object detection scenarios with unique challenges and opportunities. The fundamental premise of ensemble learning—that combining multiple diverse models can achieve superior performance compared to individual models—applies particularly well to detection tasks where model diversity can capture complementary aspects of object appearance and spatial relationships~\cite{Zhou2002}.
+@@ -268,15 +243,6 @@ \subsection{Aquatic Species Detection and Monitoring}
+Deep learning approaches have shown considerable promise for aquatic species detection and classification. Qin et al.~\cite{Qin2016} developed DeepFish, one of the first deep learning systems specifically designed for underwater fish recognition, demonstrating the potential of CNNs for this application domain. Subsequent work has explored various architectures and training strategies for improved performance in challenging underwater conditions.
+
+Recent advances have focused on addressing specific challenges in aquatic monitoring, including species classification~\cite{Tamou2021}, behavioral analysis~\cite{Salimi2016}, and population assessment~\cite{Mandal2018}. These systems have demonstrated practical utility in ecological research and conservation applications, though challenges remain in achieving the accuracy and reliability required for large-scale deployment.
+
+\subsection{Medaka Fish as Model Organisms}
+
+Medaka fish (Oryzias species) have gained prominence as important model organisms in both laboratory research and ecological monitoring contexts. These small freshwater fish are widely distributed across Asian aquatic ecosystems and exhibit characteristics that make them valuable for biodiversity studies and environmental monitoring programs.
+
+The morphological similarity between different Oryzias species presents particular challenges for automated detection and classification systems. Traditional identification requires expert knowledge and careful examination of subtle morphological features, making automated approaches particularly valuable for large-scale monitoring efforts.
+
+Previous work on Medaka detection has primarily focused on laboratory settings with controlled imaging conditions. The extension to natural environments with variable lighting, backgrounds, and water conditions represents a significant technical challenge that has not been thoroughly addressed in existing literature.
+
+\subsection{Cross-Validation and Model Evaluation}
+
+Robust evaluation methodologies are essential for assessing the performance and generalizability of detection systems. Cross-validation techniques, originally developed for classification tasks~\cite{Stone1974,Kohavi1995}, have been adapted for object detection scenarios with modifications to account for spatial prediction requirements.
+@@ -291,12 +257,14 @@ \subsection{Data Augmentation Strategies}
+
+Common augmentation strategies include geometric transformations (rotation, scaling, translation), photometric adjustments (brightness, contrast, color variation), and advanced techniques such as mixup and cutout. The selection and parameterization of augmentation strategies significantly impacts model performance and requires careful consideration of domain-specific characteristics.
+
+In aquatic imaging scenarios, specific augmentation strategies may be particularly relevant, including simulation of water distortion effects, lighting variations, and turbidity changes. These domain-specific augmentations can improve model robustness to the challenging conditions encountered in real-world aquatic monitoring applications.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Materials and Methods}
