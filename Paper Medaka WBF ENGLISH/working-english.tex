@@ -219,21 +219,35 @@ In this work, we propose a novel Medaka fish dataset with images captured under 
 \subsection{Data Gathering}
 % Penjelasan tentang teknik pengambilan gambar, lokasi pengambilan, spek kamera untuk primary data. Sementara untuk secondary data, sumbernya dari mana, totalnya berapa. 
 
-Jelaskan karena medaka termasuk spesies yang langka, sehingga pengumpulan datanya itu dari laboratorium terkontrol yang sudah dikumpulkan semuanya.  Therefore, or
+% Jelaskan karena medaka termasuk spesies yang langka, sehingga pengumpulan datanya itu dari laboratorium terkontrol yang sudah dikumpulkan semuanya.  Therefore, or
 
-Karena data yang ada di lab sedikit, dilakukan pula pengumpulan data dari internet sebagai secondary data.
+% Karena data yang ada di lab sedikit, dilakukan pula pengumpulan data dari internet sebagai secondary data.
 
-It can be seen from Figure \ref{fig:data_acquisition_strategies} that we use two strategies to build our dataset. Our primary data were taken using ..., while our secondary data were collected from various websites.
+Given the scarcity of publicly available Medaka fish imagery and the critical need for precise taxonomic identification in ecological monitoring, we constructed a comprehensive hybrid dataset called the \textit{Medaka Fish Dataset}. This dataset, as shown in Figure \ref{fig:data_acquisition_strategies}, combines primary data that we collected through controlled laboratory imaging and \textit{in situ} field observation, with curated internet-sourced images as our secondary data. This approach directly addresses the fundamental challenge specified in our introduction regarding the absence of dedicated datasets for endangered Medaka species detection while ensuring sufficient morphological diversity to support the robustness of our proposed model. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{Images/mixture-medaka-dataset.pdf}
-\caption{Examples of annotated Medaka images from the mixed dataset.}
+\includegraphics[width=0.75\textwidth]{Images/mixture-medaka-dataset.pdf}
+\caption{Representative samples from the Medaka dataset showing diversity in species, environmental conditions, and imaging scenarios. (\textbf{a}) \textit{O. celebensis} specimens in various naturalistic settings. (\textbf{b}) \textit{O. javanicus} specimens demonstrating morphological variation and environmental diversity.}
 \label{fig:data_acquisition_strategies}
 \end{figure}
 
+Primary data acquisition combined (i) controlled laboratory imaging at the Genetics Laboratory, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Indonesia and (ii) \textit{in situ} observation in the Tanjung coastal freshwater-estuarine transition zone in Makassar, Indonesia. 
+% Penjelasan spek
+This dual setting was intentionally designed to balance morphological clarity with real-world environmental variability. In the laboratory setting, \textit{O. celebensis} and \textit{O. javanicus} were photographed using a Canon EOS M50 camera (24.1 MP, 6000×4000 px CMOS sensor) in modular glass aquaria with four different background colors. The camera operates at an aperture of \textit{f/2.5} under diffuse LED lighting. This is done to help minimize light reflection and motion blur while maintaining natural colors. We also used four background colors (red, black, blue, and green) to (1) enhance contrast across pigmentation conditions, (2) avoid overfitting on single color-light pairs, and (3) approximate the natural substrate diversity.
+
+In addition to controlled laboratory imaging, we also added \textit{in situ} observation images to increase the variety of our data. These field images contributed heterogeneous backgrounds, such as irregular substrates, floating particles, and fluctuating lighting. However, images affected by severe turbidity, glaring light reflections, occlusions, or unclear body contours were discarded. Nearly identical temporal sequences, excessive motion blur, and noticeable chromatic aberrations were also excluded. Only minor normalization was applied, consisting of orientation adjustments and removal of unusable frames. No denoising or color correction was performed in order to preserve the genuine visual variation.
+
+In parallel, secondary images were curated from publicly available online sources. To ensure reliability, only specimens that were clear and taxonomically identifiable were retained. Also, images with artificial backgrounds, compression artifacts, or ambiguous species characteristics were excluded to maintain the integrity of our dataset.
+
+% It can be seen from Figure \ref{fig:data_acquisition_strategies} that we use two strategies to build our dataset. Our primary data were taken from combining (i) controlled laboratory imaging (Genetics laboratory, Faculty of Mathematics and Natural Sciences, Hasanuddin University) and (ii) in-situ observation in the Tanjung coastal freshwater-estuarine transition zone (Makassar). Meanwhile, our secondary data was collected from various websites using Google Image crawling, and then we manually selected it to ensure the quality.
+
+% 
+
 % Penjelasan tentang dataset lebih rinci
-A total of 1,247 high-resolution images ranging from 1920x1080 to 4096x3072 pixels of Medaka fish (Oryzias species) were obtained, and were annotated using ..., resulting in a total of 723 instances of \textit{Oryzias celebensis} and 524 instances of \textit{Oryzias javanicus}. Figure \ref{fig:dataset_hybrid} shows the examples of annotated Medaka images from our dataset, both from the primary and the secondary data.
+A total of 1,139 high-resolution images ranging from 1920x1080 to 4096x3072 pixels of Medaka fish (\textit{Oryzias} species) were gathered from both primary and secondary sources. Then the Medaka fish in these images were annotated using Roboflow, resulting in a total of 1,280 labeled instances: 641 of \textit{Oryzias celebensis} and 639 of \textit{Oryzias javanicus}. Figure \ref{fig:dataset_hybrid} shows the examples of annotated Medaka images from our dataset.
+
+
 
 % \begin{table}[H]
 % \caption{Dataset distribution of Medaka fish images.}
@@ -259,7 +273,7 @@ A total of 1,247 high-resolution images ranging from 1920x1080 to 4096x3072 pixe
 
 \subsection{Data Filtering, Pre-processing, and Annotation}
 
-As illustrated in Fugure \ref{fig:data_acquisition_strategies}, after both of raw images and raw photos were collected, we then filtered the images based on the file size and the image PSNR.
+As illustrated in Figure \ref{fig:data_acquisition_strategies}, after both of raw images and raw photos were collected, we then filtered the images based on the file size and the image PSNR.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
