@@ -223,16 +223,18 @@ In this work, we propose a novel Medaka fish dataset with images captured under 
 
 % Karena data yang ada di lab sedikit, dilakukan pula pengumpulan data dari internet sebagai secondary data.
 
-Given the scarcity of publicly available Medaka fish imagery and the critical need for precise taxonomic identification in ecological monitoring, we constructed a comprehensive hybrid dataset called the \textit{Medaka Fish Dataset}. This dataset, as shown in Figure \ref{fig:data_acquisition_strategies}, combines primary data that we collected through controlled laboratory imaging and \textit{in situ} field observation, with curated internet-sourced images as our secondary data. This approach directly addresses the fundamental challenge specified in our introduction regarding the absence of dedicated datasets for endangered Medaka species detection while ensuring sufficient morphological diversity to support the robustness of our proposed model. 
+% TODO: Putuskan datasetnya namanya mixture medaka fish dataset atau medaka fish dataset saja
+
+Given the scarcity of publicly available Medaka fish imagery and the critical need for precise taxonomic identification in ecological monitoring, we constructed a comprehensive hybrid dataset called the \textit{Medaka Fish Dataset}. This dataset, as shown in Figure \ref{fig:data_acquisition_strategies}, combines primary data that we collected through controlled laboratory imaging and \textit{in situ} field observation, with curated internet-sourced images as our secondary data. This approach directly addresses the fundamental challenge specified in our introduction regarding the absence of dedicated datasets for endangered Medaka species detection while ensuring sufficient morphological diversity to support the robustness of our proposed model.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{Images/mixture-medaka-dataset.pdf}
-\caption{Representative samples from the Medaka dataset showing diversity in species, environmental conditions, and imaging scenarios. (\textbf{a}) \textit{O. celebensis} specimens in various naturalistic settings. (\textbf{b}) \textit{O. javanicus} specimens demonstrating morphological variation and environmental diversity.}
-\label{fig:data_acquisition_strategies}
+    \centering
+    \includegraphics[width=0.75\textwidth]{Images/mixture-medaka-dataset.pdf}
+    \caption{Representative samples from the Medaka dataset showing diversity in species, environmental conditions, and imaging scenarios. (\textbf{a}) \textit{O. celebensis} specimens in various naturalistic settings. (\textbf{b}) \textit{O. javanicus} specimens demonstrating morphological variation and environmental diversity.}
+    \label{fig:data_acquisition_strategies}
 \end{figure}
 
-Primary data acquisition combined (i) controlled laboratory imaging at the Genetics Laboratory, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Indonesia and (ii) \textit{in situ} observation in the Tanjung coastal freshwater-estuarine transition zone in Makassar, Indonesia. 
+Primary data acquisition combined (i) controlled laboratory imaging at the Genetics Laboratory, Faculty of Mathematics and Natural Sciences, Hasanuddin University, Indonesia and (ii) \textit{in situ} observation in the Tanjung coastal freshwater-estuarine transition zone in Makassar, Indonesia.
 % Penjelasan spek
 This dual setting was intentionally designed to balance morphological clarity with real-world environmental variability. In the laboratory setting, \textit{O. celebensis} and \textit{O. javanicus} were photographed using a Canon EOS M50 camera (24.1 MP, 6000×4000 px CMOS sensor) in modular glass aquaria with four different background colors. The camera operates at an aperture of \textit{f/2.5} under diffuse LED lighting. This is done to help minimize light reflection and motion blur while maintaining natural colors. We also used four background colors (red, black, blue, and green) to (1) enhance contrast across pigmentation conditions, (2) avoid overfitting on single color-light pairs, and (3) approximate the natural substrate diversity.
 
@@ -245,9 +247,9 @@ In parallel, secondary images were curated from publicly available online source
 % 
 
 % Penjelasan tentang dataset lebih rinci
-A total of 1,139 high-resolution images ranging from 1920x1080 to 4096x3072 pixels of Medaka fish (\textit{Oryzias} species) were gathered from both primary and secondary sources. Then the Medaka fish in these images were annotated using Roboflow, resulting in a total of 1,280 labeled instances: 641 of \textit{Oryzias celebensis} and 639 of \textit{Oryzias javanicus}. Figure \ref{fig:dataset_hybrid} shows the examples of annotated Medaka images from our dataset.
-
-
+% DONE cek ulang jumlah dataset asli sesaat setalah akuisisi selesai
+% DONE mungkin perlu dieval dulu apakah harus langsung disebut di sini hasil anotasinya atau bagaimana
+Consequently, the combination of the two acquisition strategies yielded a comprehensive dataset that balances controlled imaging precision with ecological variability. In total, 1,511 high-resolution images ranging from 1920x1080 to 4096x3072 pixels of Medaka fish (\textit{Oryzias} species) were compiled.
 
 % \begin{table}[H]
 % \caption{Dataset distribution of Medaka fish images.}
@@ -265,15 +267,117 @@ A total of 1,139 high-resolution images ranging from 1920x1080 to 4096x3072 pixe
 % \end{table}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{Images/dataset_hybrid.jpg}
-\caption{Examples of annotated Medaka images from the mixed dataset.}
-\label{fig:dataset_hybrid}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/dataset_hybrid.jpg}
+    \caption{Examples of annotated Medaka images from the mixed dataset.}
+    \label{fig:dataset_hybrid}
 \end{figure}
 
 \subsection{Data Filtering, Pre-processing, and Annotation}
 
-As illustrated in Figure \ref{fig:data_acquisition_strategies}, after both of raw images and raw photos were collected, we then filtered the images based on the file size and the image PSNR.
+% The collected raw images underwent a series of filtering and preprocessing steps prior to annotation to ensure consistency and quality across the dataset.
+
+% We first filtered the raw images based on file size and Peak Signal-to-Noise Ratio (PSNR) to eliminate corrupted or low-quality samples. Images smaller than X KB or with PSNR below Y dB were discarded. As a result, only N images (Z% of the total) were retained for further processing.
+
+% Each image was auto-oriented to correct metadata-induced rotations and resized to 640×640 pixels to ensure compatibility with subsequent model training. No data augmentation was applied at this stage to preserve the natural distribution of visual features.
+
+% Filtered and preprocessed images were then annotated using Roboflow. Bounding box annotations were generated for each object of interest following consistent labeling guidelines. The final annotations were exported in YOLO format, which directly integrates with the training pipeline.
+
+Subsequently, as illustrated in Figure \ref{fig:data_acquisition_strategies}, the collected raw images and raw photos were filtered based on their file size and PSNR values. The PSNR for each image was computed using Equation~\ref{eq:psnr}, where the Mean Squared Error (MSE) between an image and its reference was obtained using Equation~\ref{eq:mse}.
+
+\begin{equation}
+    \label{eq:mse}
+    MSE = \frac{1}{mn} \sum_{i=0}^{m-1} \sum_{j=0}^{n-1} [I(i,j) - K(i,j)]^2
+\end{equation}
+
+\begin{equation}
+    \label{eq:psnr}
+    PSNR= 10 \log_{10} \frac{MAX^2_i}{MSE}
+\end{equation}
+
+A higher PSNR indicates better image fidelity and lower noise. Hence, images falling below a predefined PSNR threshold were discarded to maintain dataset integrity. The remaining samples were then passed through a preprocessing pipeline.
+
+There were two preprocessing steps applied in this research: (1) automatic orientation correction and (2) image resizing to a fixed resolution of 640x640 pixels. Both preprocessing steps follow the default configuration commonly adopted in YOLO-based object detection pipelines.
+
+% After filtering the dataset, we preprocessed
+% Preprocessing
+% Auto-Orient: Applied
+% Resize: Stretch to 640x640
+
+% Then the Medaka fish in these images were annotated using Roboflow, resulting in a total of 1,280 labeled instances: 641 of \textit{Oryzias celebensis} and 639 of \textit{Oryzias javanicus}. 
+
+% DONE: Cek ulang angkanya, hasil preprocessing, tiap label berapa, dan tiap image berapa objek
+
+Finally, 1,139 filtered and preprocessed images were annotated using Roboflow, resulting in a total of 1,239 labeled instances: 641 of \textit{Oryzias celebensis} and 598 of \textit{Oryzias javanicus}, respectively. Figure \ref{fig:dataset_hybrid} shows the examples of annotated Medaka images from our dataset. The annotation process was conducted by domain experts, who applied bounding boxes to each fish instance and assigned the corresponding species class. In most cases, each image contained a single fish object (1,071 images), while 62 images included two to three objects, and only four images contained between four and five objects.
+
+\subsection{Yolo's Architecture V8}
+
+% Model training was conducted using the AdamW optimizer with an initial learning rate of 0.001, weight decay of 0.0005, and cosine annealing learning rate scheduling. Training proceeded for 300 epochs with early stopping based on validation mAP monitoring. Input images were resized to 640×640 pixels while maintaining aspect ratios through appropriate padding to preserve spatial relationships.
+
+% DONE: Cek spesifikasi trainingnya
+% DONE: Cek versi yolonya apa, apakah 8s atau 8 biasa
+In this study, we used the YOLOv8 model as our foundation object detection model. Figure \ref{fig:gambar_yolo} shows the detailed architecture of YOLOv8 and its three main components, the backbone, neck, and head \cite{yaseen_what_2024}. The first component, the backbone, extracts multi-scale features from input images using an advanced convolutional neural network (CNN) that improves upon the previous CSPLayer from YOLOv5, now called the C2f module \cite{Terven2023}. This module applies depthwise separable convolution to optimize the balance between processing speed and feature extraction capabilities \cite{yaseen_what_2024}. The second component, the neck, integrates and refines the extracted features through the combined adaptation of the Path Aggregation Network (PANet) and the Feature Pyramid Network (FPN). This structure performs multi-scale feature fusion by aggregating feature maps from three hierarchical levels of the backbone using the C2f module \cite{wang_alf-yolo_2024}. Finally, the head component is responsible for generating the final prediction, which includes bounding box coordinates, confidence scores, and class labels using an anchor-free approach. This approach replaces the previous version's anchor-based method to simplify the prediction process, reduce the number of hyperparameters, and improve generalization abilities to variations in object size and proportions \cite{Terven2023}. Thus, by integrating these three components, YOLOv8 improves accuracy, inference speed, and flexibility for a range of object detection tasks.
+
+%YOLOv8 improves upon Yolov5 through three key architectural changes: the C2f module, anchor-free detection, and a decoupled head \cite{Terven2023}. 
+
+% DONE: Berapa batch sizenya
+
+The training process was carried out on the Medaka dataset with an input size of 640×640 pixels for 50 epochs using the AdamW optimizer with a initial learning rate of 0.01, a batch size of 16, and weight decay of 0.05. Model performance was evaluated using the mean Average Precision (mAP) and mean Average Recall (mAR) to measure detection capabilities for each object class.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[draft,width=8cm,height=5cm]{gambar-tidak-ada.png}
+    \caption{Yolo V8 Architecture}
+    \label{fig:gambar_yolo}
+\end{figure}
+
+\subsection{k-fold validation}
+% K-fold bekerja dengan membagi dataset menjadi k fold 
+k-fold validation is a technique used to estimate the performance of a learning algorithm on a given dataset. It works by randomly dividing a dataset into $k$ disjoint folds with approximately equal size. One fold is used as the validation set for the other $k-1$ folds used to train the algorithm in each iteration. The algorithm’s overall performance is then computed as the average of the evaluation metrics obtained across all $k$ folds, and thus reflects performance estimation at the fold level \cite{wong_performance_2015}.
+
+% DONE: Kaitkan dengan penelitian sebelumnya yang memainkan versi dan size
+Previous studies, such as \cite{Solovyev2021, khalili_face_2022}, have shown that box ensembling  indeed increases the performance of object detection models. However, these works mainly focused on ensembling different YOLO versions or model sizes, putting more attention on model diversity than data diversity. In contrast, we looked back at some traditional machine learning techniques, in which we identify opportunities to improve performance by focusing on the dataset itself, especially in cases of data scarcity, through $k$-fold cross-validation-based ensembling learning models.
+
+In this study, a YOLOv8 model was applied to the Medaka dataset using a 5-fold cross-validation scheme. The dataset was divided into five subsets, each comprising 16\%, and one test subset comprising 20\%. In each fold iteration, one 16\% subset was used for validation, while the remaining four subsets were used for training, with the 20\% subset remaining as the fixed test set. These folds were rotated alternately so that each 16\% subset became the validation set once, resulting in five different fold configurations:
+
+\begin{itemize}
+    \item Fold 1: 16\% train, 16\% train, 16\% train, 16\% train, 16\% val, 20\% test
+    \item Fold 2: 16\% train, 16\% train, 16\% train, 16\% val, 16\% train, 20\% test
+    \item Fold 3: 16\% train, 16\% train, 16\% val, 16\% train, 16\% train, 20\% test
+    \item Fold 4: 16\% train, 16\% val, 16\% train, 16\% train, 16\% train, 20\% test
+    \item Fold 5: 16\% val, 16\% train, 16\% train, 16\% train, 16\% train, 20\% test
+\end{itemize}
+
+\subsection{Ensemble Methods}
+
+After applying 5-fold cross-validation, the predictions from the trained five YOLOv8 models were combined using ensemble techniques. The three ensemble methods used were Weighted Box Fusion (WBF), Non-Maximum Suppression, dan Non-Maximum Weighted (NMW).
+
+\subsubsection{Non-Maximum Suppression (NMS)}
+Non-Maximum Supression (NMS) is a method to generate \textit{exactly} one detection per object by assuming that highly overlapping detection belong to the same object and collapse them into one detection. NMS accepts the highest scoring detection, then rejects all detection that overlap more than some threshold $\theta$ and repeats the procedure with the remaining detection \cite{hosang_learning_2017}.
+
+% TODO: Soft NMS
+
+
+\subsubsection{\textit{Weighted Box Fusion} (WBF)}
+
+
+
+
+\subsubsection{\textit{Non-Maximum Weighted} (NMW)}
+
+\textbf{Weighted Box Fusion (WBF)} menggabungkan kotak prediksi dari berbagai model dengan menghitung rata-rata posisi bounding box, diatur berdasarkan skor kepercayaan (\textit{confidence score}) masing-masing prediksi. Pendekatan ini mempertahankan informasi dari seluruh prediksi relevan dan dapat menghasilkan kotak deteksi yang lebih presisi, khususnya ketika model memberikan prediksi yang sedikit berbeda.
+
+\textbf{Non-Maximum Suppression (NMS)} menyeleksi prediksi dengan skor kepercayaan tertinggi dan mengeliminasi kotak yang memiliki tumpang tindih (\textit{overlap}) melebihi \textit{IoU threshold} tertentu. Metode ini efisien secara komputasi namun berpotensi kehilangan prediksi valid yang saling tumpang tindih.
+
+\textbf{Non-Maximum Weighted (NMW)} merupakan varian dari NMS yang mempertimbangkan bobot skor kepercayaan untuk setiap prediksi saat melakukan \textit{suppressi}. Alih-alih menghapus sepenuhnya kotak yang tumpang tindih, NMW menyesuaikan posisi dan ukuran bounding box berdasarkan bobot, sehingga informasi prediksi tambahan tetap dipertahankan.
+
+
+
+\subsection{Evaluation metrics}
+% TODO: Definisi mAP dan mAR
+Kinerja ensemble dibandingkan dengan model tunggal menggunakan metrik \textit{mean Average Precision (mAP)}, \textit{precision}, dan \textit{recall} untuk menilai perbaikan generalisasi dan akurasi deteksi.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -294,9 +398,9 @@ As illustrated in Figure \ref{fig:data_acquisition_strategies}, after both of ra
 
 \informedconsent{Any research article describing a study involving humans should contain this statement. Please add ``Informed consent was obtained from all subjects involved in the study.'' OR ``Patient consent was waived due to REASON (please provide a detailed justification).'' OR ``Not applicable'' for studies not involving humans. You might also choose to exclude this statement if the study did not involve humans.
 
-Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper'' if applicable.}
+    Written informed consent for publication must be obtained from participating patients who can be identified (including by the patients themselves). Please state ``Written informed consent has been obtained from the patient(s) to publish this paper'' if applicable.}
 
-\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data is unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in section ``MDPI Research Data Policies'' at \url{https://www.mdpi.com/ethics}.} 
+\dataavailability{We encourage all authors of articles published in MDPI journals to share their research data. In this section, please provide details regarding where data supporting reported results can be found, including links to publicly archived datasets analyzed or generated during the study. Where no new data were created, or where data is unavailable due to privacy or ethical restrictions, a statement is still required. Suggested Data Availability Statements are available in section ``MDPI Research Data Policies'' at \url{https://www.mdpi.com/ethics}.}
 
 % Only for journal Drones
 %\durcstatement{Current research is limited to the [please insert a specific academic field, e.g., XXX], which is beneficial [share benefits and/or primary use] and does not pose a threat to public health or national security. Authors acknowledge the dual-use potential of the research involving xxx and confirm that all necessary precautions have been taken to prevent potential misuse. As an ethical responsibility, authors strictly adhere to relevant national and international laws about DURC. Authors advocate for responsible deployment, ethical considerations, regulatory compliance, and transparent reporting to mitigate misuse risks and foster beneficial outcomes.}
@@ -312,7 +416,7 @@ Written informed consent for publication must be obtained from participating pat
 
 \acknowledgments{In this section you can acknowledge any support given which is not covered by the author contribution or funding sections. This may include administrative and technical support, or donations in kind (e.g., materials used for experiments). Where GenAI has been used for purposes such as generating text, data, or graphics, or for study design, data collection, analysis, or interpretation of data, please add “During the preparation of this manuscript/study, the author(s) used [tool name, version information] for the purposes of [description of use]. The authors have reviewed and edited the output and take full responsibility for the content of this publication.”}
 
-\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.'' Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results''.} 
+\conflictsofinterest{Declare conflicts of interest or state ``The authors declare no conflicts of interest.'' Authors must identify and declare any personal circumstances or interest that may be perceived as inappropriately influencing the representation or interpretation of reported research results. Any role of the funders in the design of the study; in the collection, analyses or interpretation of data; in the writing of the manuscript; or in the decision to publish the results must be declared in this section. If there is no role, please state ``The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript; or in the decision to publish the results''.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Optional
@@ -321,16 +425,16 @@ Written informed consent for publication must be obtained from participating pat
 %\entrylink{The Link to this entry published on the encyclopedia platform.}
 
 \abbreviations{Abbreviations}{
-The following abbreviations are used in this manuscript:
-\\
+    The following abbreviations are used in this manuscript:
+    \\
 
-\noindent 
-\begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute\\
-DOAJ & Directory of open access journals\\
-TLA & Three letter acronym\\
-LD & Linear dichroism
-\end{tabular}
+    \noindent
+    \begin{tabular}{@{}ll}
+        MDPI & Multidisciplinary Digital Publishing Institute \\
+        DOAJ & Directory of open access journals              \\
+        TLA  & Three letter acronym                           \\
+        LD   & Linear dichroism
+    \end{tabular}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -342,17 +446,17 @@ LD & Linear dichroism
 \subsection[\appendixname~\thesubsection]{}
 The appendix is an optional section that can contain details and data supplemental to the main text---for example, explanations of experimental details that would disrupt the flow of the main text but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data are shown in the main text can be added here if brief, or as Supplementary Data. Mathematical proofs of results not central to the paper can be added as an appendix.
 
-\begin{table}[H] 
-\caption{This is a table caption.\label{tab5}}
-%\newcolumntype{C}{>{\centering\arraybackslash}X}
-\begin{tabularx}{\textwidth}{CCC}
-\toprule
-\textbf{Title 1}	& \textbf{Title 2}	& \textbf{Title 3}\\
-\midrule
-Entry 1		& Data			& Data\\
-Entry 2		& Data			& Data\\
-\bottomrule
-\end{tabularx}
+\begin{table}[H]
+    \caption{This is a table caption.\label{tab5}}
+    %\newcolumntype{C}{>{\centering\arraybackslash}X}
+    \begin{tabularx}{\textwidth}{CCC}
+        \toprule
+        \textbf{Title 1} & \textbf{Title 2} & \textbf{Title 3} \\
+        \midrule
+        Entry 1          & Data             & Data             \\
+        Entry 2          & Data             & Data             \\
+        \bottomrule
+    \end{tabularx}
 \end{table}
 
 \section[\appendixname~\thesection]{}
@@ -361,48 +465,48 @@ All appendix sections must be cited in the main text. In the appendices, Figures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\isPreprints{}{% This command is only used for ``preprints''.
 \begin{adjustwidth}{-\extralength}{0cm}
-%} % If the paper is ``preprints'', please uncomment this parenthesis.
-%\printendnotes[custom] % Un-comment to print a list of endnotes
+    %} % If the paper is ``preprints'', please uncomment this parenthesis.
+    %\printendnotes[custom] % Un-comment to print a list of endnotes
 
-\reftitle{References}
+    \reftitle{References}
 
-% Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
-% Citations and References in Supplementary files are permitted provided that they also appear in the reference list here. 
+    % Please provide either the correct journal abbreviation (e.g. according to the “List of Title Word Abbreviations” http://www.issn.org/services/online-services/access-to-the-ltwa/) or the full name of the journal.
+    % Citations and References in Supplementary files are permitted provided that they also appear in the reference list here. 
 
-%=====================================
-% References, variant A: external bibliography
-%=====================================
-% \bibliography{your_external_BibTeX_file}
+    %=====================================
+    % References, variant A: external bibliography
+    %=====================================
+    % \bibliography{your_external_BibTeX_file}
 
-%=====================================
-% References, variant B: internal bibliography
-%=====================================
+    %=====================================
+    % References, variant B: internal bibliography
+    %=====================================
 
-\bibliography{references}
-% If authors have biography, please use the format below
-%\section*{Short Biography of Authors}
-%\bio
-%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
-%{\textbf{Firstname Lastname} Biography of first author}
-%
-%\bio
-%{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
-%{\textbf{Firstname Lastname} Biography of second author}
+    \bibliography{references}
+    % If authors have biography, please use the format below
+    %\section*{Short Biography of Authors}
+    %\bio
+    %{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author1.pdf}}}
+    %{\textbf{Firstname Lastname} Biography of first author}
+    %
+    %\bio
+    %{\raisebox{-0.35cm}{\includegraphics[width=3.5cm,height=5.3cm,clip,keepaspectratio]{Definitions/author2.jpg}}}
+    %{\textbf{Firstname Lastname} Biography of second author}
 
-% For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
-% To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
-% To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
+    % For the MDPI journals use author-date citation, please follow the formatting guidelines on http://www.mdpi.com/authors/references
+    % To cite two works by the same author: \citeauthor{ref-journal-1a} (\citeyear{ref-journal-1a}, \citeyear{ref-journal-1b}). This produces: Whittaker (1967, 1975)
+    % To cite two works by the same author with specific pages: \citeauthor{ref-journal-3a} (\citeyear{ref-journal-3a}, p. 328; \citeyear{ref-journal-3b}, p.475). This produces: Wong (1999, p. 328; 2000, p. 475)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% for journal Sci
-%\reviewreports{\\
-%Reviewer 1 comments and authors’ response\\
-%Reviewer 2 comments and authors’ response\\
-%Reviewer 3 comments and authors’ response
-%}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\PublishersNote{}
-%\isPreprints{}{% This command is only used for ``preprints''.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% for journal Sci
+    %\reviewreports{\\
+    %Reviewer 1 comments and authors’ response\\
+    %Reviewer 2 comments and authors’ response\\
+    %Reviewer 3 comments and authors’ response
+    %}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \PublishersNote{}
+    %\isPreprints{}{% This command is only used for ``preprints''.
 \end{adjustwidth}
 %} % If the paper is ``preprints'', please uncomment this parenthesis.
 \end{document}
