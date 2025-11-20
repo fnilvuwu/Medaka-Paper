@@ -348,34 +348,43 @@ In this study, a YOLOv8 model was applied to the Medaka dataset using a 5-fold c
     \item Fold 5: 16\% val, 16\% train, 16\% train, 16\% train, 16\% train, 20\% test
 \end{itemize}
 
-\subsection{Ensemble Methods}
-
-After applying 5-fold cross-validation, the predictions from the trained five YOLOv8 models were combined using ensemble techniques. The three ensemble methods used were Weighted Box Fusion (WBF), Non-Maximum Suppression, dan Non-Maximum Weighted (NMW).
+\subsection{Ensemble Methods} \label{sec: ensemble}
+% TODO: Tambahkan penjelasan input ensemblenya
+After applying 5-fold cross-validation, the predictions from the trained five YOLOv8 models were combined using ensemble techniques. We experimented with three ensemble methods commonly used in object detection: Weighted Box Fusion (WBF), Non-Maximum Suppression (NMS), and Non-Maximum Weighted (NMW). In our experiments, we evaluated these three methods with IoU threshold of $\theta = 0.5, 0.75$, and a range of $0.50:0.95$ using MaxDets of 1, 10, and 100 accross different object scales.
 
 \subsubsection{Non-Maximum Suppression (NMS)}
-Non-Maximum Supression (NMS) is a method to generate \textit{exactly} one detection per object by assuming that highly overlapping detection belong to the same object and collapse them into one detection. NMS accepts the highest scoring detection, then rejects all detection that overlap more than some threshold $\theta$ and repeats the procedure with the remaining detection \cite{hosang_learning_2017}.
+In object detection, Non-Maximum Supression (NMS) or to be exact, GreedyNMS, merges multiple detections into a single final detection. GreedyNMS selects the highest-scoring detection, thereafter discarding all detections whose overlap over a specified threshold $\theta$, and repeats this procedure on the remaining detections \cite{hosang_learning_2017}.
 
 % TODO: Soft NMS
+In addition to GreedyNMS, we apply SoftNMS with a sigma value of $\sigma = 0.1$ in our experiments. SoftNMS differs from GreedyNMS in that it decreases the confidence scores of overlapping detections based on their IoU with the highest-scoring box, rather than discarding them outright. This approach allows detections that partially overlap with a high-confidence box to still contribute to the final results, improving recall without substantially affecting precision \cite{bodla_soft-nms_2017}.
 
 
 \subsubsection{\textit{Weighted Box Fusion} (WBF)}
-
-
-
+% TODO: Tujuan, Mekanisme pengelompokan box berdasarkan IoU, Rumus penggabungan koordinat berbobot confidence, Parameter eksperimen: IoU threshold, skema bobot, Dampak terhadap stabilitas ensemble
+Unlike Non-Maximum Suppression (NMS), which selects the single highest-confidence box and discards overlapping detections, WBF uses confidence scores of all proposed bounding boxes to construct the average boxes \cite{solovyev_weighted_2021}. In practice, the final bounding box is computed as a weighted average of the coordinates from all boxes in each overlapping group, with weights given by the confidence scores assigned by each model.
 
 \subsubsection{\textit{Non-Maximum Weighted} (NMW)}
+% TODO: – Tujuan, Mekanisme penurunan confidence berbasis overlap, Prosedur pemilihan box final, Parameter eksperimen: kurva penurunan bobot, IoU threshold, Dampak terhadap konsistensi deteksi
 
-\textbf{Weighted Box Fusion (WBF)} menggabungkan kotak prediksi dari berbagai model dengan menghitung rata-rata posisi bounding box, diatur berdasarkan skor kepercayaan (\textit{confidence score}) masing-masing prediksi. Pendekatan ini mempertahankan informasi dari seluruh prediksi relevan dan dapat menghasilkan kotak deteksi yang lebih presisi, khususnya ketika model memberikan prediksi yang sedikit berbeda.
-
-\textbf{Non-Maximum Suppression (NMS)} menyeleksi prediksi dengan skor kepercayaan tertinggi dan mengeliminasi kotak yang memiliki tumpang tindih (\textit{overlap}) melebihi \textit{IoU threshold} tertentu. Metode ini efisien secara komputasi namun berpotensi kehilangan prediksi valid yang saling tumpang tindih.
-
-\textbf{Non-Maximum Weighted (NMW)} merupakan varian dari NMS yang mempertimbangkan bobot skor kepercayaan untuk setiap prediksi saat melakukan \textit{suppressi}. Alih-alih menghapus sepenuhnya kotak yang tumpang tindih, NMW menyesuaikan posisi dan ukuran bounding box berdasarkan bobot, sehingga informasi prediksi tambahan tetap dipertahankan.
-
-
+Finally, we also employed Non-Maximum Weighted (NMW) to combine overlapping bounding boxes. In this method, each box in a group contributes to the final prediction proportionally to a weight calculated as the product of its confidence score and its IoU with the most confident box. The final bounding box is then obtained as the weighted average of all boxes in the group \cite{zhou_cad_2017}. Unlike Weighted Boxes Fusion (WBF), which uses confidence scores from all models to compute the average, NMW incorporates both the confidence and spatial overlap (IoU) of boxes within a single prediction set, allowing it to exploit local agreement among overlapping detections.
 
 \subsection{Evaluation metrics}
-% TODO: Definisi mAP dan mAR
-Kinerja ensemble dibandingkan dengan model tunggal menggunakan metrik \textit{mean Average Precision (mAP)}, \textit{precision}, dan \textit{recall} untuk menilai perbaikan generalisasi dan akurasi deteksi.
+Finally, we evaluated the performance of each ensemble methods in the previous section using \textit{Average Precision (AP)} and \textit{Average Recall (AR)}.
+
+\textbf{Average Precision (AP)} is calculated as the area under the Precision-Recall curve for each class, as defined in Equation~\eqref{eq:ap}:
+\begin{equation}
+\text{AP} = \int_0^1 \text{Precision}(r) \, dr
+\label{eq:ap}
+\end{equation}
+
+\textbf{Average Recall (AR)} is computed as the average recall over multiple IoU thresholds for each class, as defined in Equation~\eqref{eq:ar}:
+\begin{equation}
+\text{AR} = \frac{1}{T} \sum_{t=1}^{T} \text{Recall}_{\text{IoU}=t}
+\label{eq:ar}
+\end{equation}
+
+Higher AP and AR values indicate a model that is more accurate and better at detecting objects in the evaluation dataset.
+
 
 
 
